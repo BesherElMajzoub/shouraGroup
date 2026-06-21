@@ -1,0 +1,15 @@
+<svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shora">
+  <!-- top-left swoosh -->
+  <path fill="#141414" d="M60 250
+    C 35 150, 145 60, 300 62
+    C 230 92, 175 138, 168 205
+    C 132 220, 92 236, 60 250 Z"/>
+  <!-- bottom-right swoosh -->
+  <path fill="#141414" d="M540 130
+    C 565 230, 455 320, 300 318
+    C 370 288, 425 242, 432 175
+    C 468 160, 508 144, 540 130 Z"/>
+  <text x="300" y="218" text-anchor="middle"
+        font-family="Tajawal, Arial, sans-serif" font-weight="800"
+        font-size="92" letter-spacing="2" fill="#e11d26">SHORA</text>
+</svg>

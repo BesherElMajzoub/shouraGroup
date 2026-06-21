@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views';
+
+@theme {
+    --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+
+    /* Shora brand identity */
+    --color-brand: #e11d26;
+    --color-brand-dark: #b3141b;
+    --color-brand-light: #fbe9ea;
+    --color-ink: #141414;
+    --color-ink-soft: #4b4b4b;
+}
+
+/* Keep the design LTR-agnostic; we drive direction from <html dir="rtl"> */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== Animations ===== */
+@keyframes shora-float {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50%      { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+}
+@keyframes shora-fade-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shora-pop {
+    0%   { opacity: 0; transform: scale(.6); }
+    70%  { transform: scale(1.06); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes shora-pulse-glow {
+    0%, 100% { opacity: .35; transform: scale(1); }
+    50%      { opacity: .6;  transform: scale(1.08); }
+}
+
+@keyframes shora-ping {
+    0%   { transform: scale(1);   opacity: .6; }
+    70%, 100% { transform: scale(2.6); opacity: 0; }
+}
+.anim-ping       { animation: shora-ping 1.8s cubic-bezier(0,0,.2,1) infinite; }
+.anim-float      { animation: shora-float 6s ease-in-out infinite; }
+.anim-pop        { animation: shora-pop .6s cubic-bezier(.18,.89,.32,1.28) both; }
+.anim-glow       { animation: shora-pulse-glow 5s ease-in-out infinite; }
+.anim-fade-up    { animation: shora-fade-up .7s ease-out both; }
+
+/* Scroll reveal (driven by IntersectionObserver -> .in-view) */
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in-view { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .anim-float, .anim-pop, .anim-glow, .anim-fade-up { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+}
