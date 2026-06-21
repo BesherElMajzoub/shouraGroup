@@ -173,14 +173,14 @@
              style="background-image:url('{{ asset('images/pattern.svg') }}'); background-size:120px;"></div>
 
         <div class="hidden lg:block absolute inset-y-0 left-0 w-[55%]">
-            <img src="{{ asset('images/industrial_bg.png') }}" alt="مبنى مجموعة شورى"
+            <img src="{{ asset('images/shora-building.jpg') }}" alt="مبنى مجموعة شورى"
                  class="w-full h-full object-cover"
                  style="-webkit-mask-image:linear-gradient(to right,#000 45%,transparent 92%); mask-image:linear-gradient(to right,#000 45%,transparent 92%);">
         </div>
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 py-16 lg:py-28">
             <div class="lg:hidden mb-10 reveal">
-                <img src="{{ asset('images/industrial_bg.png') }}" alt="مبنى مجموعة شورى"
+                <img src="{{ asset('images/shora-building.jpg') }}" alt="مبنى مجموعة شورى"
                      class="w-full h-56 object-cover rounded-3xl shadow-xl">
             </div>
 

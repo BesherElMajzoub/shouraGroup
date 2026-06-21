@@ -20,24 +20,12 @@
     @endphp
 
     {{-- ===== PAGE HEADER ===== --}}
-    <section class="relative overflow-hidden bg-white border-b border-gray-100">
-        <div class="absolute top-0 inset-x-0 h-1 bg-brand"></div>
-        <div class="pointer-events-none absolute inset-0 opacity-[0.04]"
-             style="background-image:url('{{ asset('images/pattern.svg') }}'); background-size:100px;"></div>
-
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 py-10 lg:py-14">
-            <nav class="text-sm text-[#888] mb-4 flex items-center gap-2">
-                <a href="{{ url('/') }}" class="hover:text-brand transition-colors">الرئيسية</a>
-                <svg class="w-3.5 h-3.5 text-[#ccc] rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                <span class="text-[#141414] font-medium">تواصل معنا</span>
-            </nav>
-            <span class="inline-block text-brand font-bold text-xs tracking-widest uppercase mb-3">يسعدنا دائماً سماع صوتك</span>
-            <h1 class="text-3xl sm:text-4xl font-black text-[#141414] mb-3">تواصل معنا</h1>
-            <p class="max-w-xl text-[#555] leading-loose text-[15px]">
-                هل لديك استفسار، طلب عرض أسعار، أو بحاجة لدعم فني؟ تواصل معنا اليوم وسيقوم فريقنا المختص بالرد عليك في أسرع وقت ممكن.
-            </p>
-        </div>
-    </section>
+    @include('partials.page-header', [
+        'current' => 'تواصل معنا',
+        'eyebrow' => 'يسعدنا دائماً سماع صوتك',
+        'title'   => 'تواصل معنا',
+        'desc'    => 'هل لديك استفسار، طلب عرض أسعار، أو بحاجة لدعم فني؟ تواصل معنا اليوم وسيقوم فريقنا المختص بالرد عليك في أسرع وقت ممكن.',
+    ])
 
     {{-- ===== CONTACT CONTENT SECTION ===== --}}
     <section class="py-20 bg-white">
