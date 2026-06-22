@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', 'مجموعة شورى')</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/shora-logo.svg') }}">
     <meta name="description" content="@yield('description', 'مجموعة شورى — مجموعة شركات سورية رائدة في مجال المياه والمسابح والمقاولات.')">
     <link rel="canonical" href="{{ url()->current() }}">
 
