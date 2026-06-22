@@ -151,6 +151,213 @@
 
     @yield('content')
 
+    {{-- ============ زر "كن شريكاً" العائم + نموذجه ============ --}}
+    @php
+        $govs = ['دمشق','ريف دمشق','حلب','حمص','حماة','اللاذقية','طرطوس','إدلب','درعا','السويداء','القنيطرة','دير الزور','الرقة','الحسكة'];
+        $bizTypes = ['محل تجزئة','تاجر جملة','مقاول','ورشة / مصنع','مكتب هندسي','أخرى'];
+    @endphp
+
+    <style>
+        @keyframes partnerPulse {
+            0%, 100% { box-shadow: 0 12px 28px -6px rgba(225,29,38,.5), 0 0 0 0 rgba(225,29,38,.45); }
+            50%      { box-shadow: 0 12px 28px -6px rgba(225,29,38,.5), 0 0 0 14px rgba(225,29,38,0); }
+        }
+        #partnerBtn { animation: partnerPulse 2.4s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { #partnerBtn { animation: none; } }
+    </style>
+
+    {{-- الزر العائم على اليسار --}}
+    <button id="partnerBtn" type="button" aria-label="كن شريكاً"
+            class="group fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-[60] inline-flex items-center gap-2.5
+                   rounded-full bg-brand text-white
+                   px-5 sm:px-6 py-3.5 font-bold text-sm ring-1 ring-white/25
+                   hover:bg-brand-dark hover:-translate-y-0.5 transition-all">
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0ZM6.94 15.52A5.995 5.995 0 0 1 12 12.75a5.995 5.995 0 0 1 5.06 2.77M2.26 18.2a3 3 0 0 1 4.68-2.72M21.74 18.2a3 3 0 0 0-4.68-2.72M17.06 18.72A11.94 11.94 0 0 1 12 21c-1.83 0-3.57-.41-5.06-1.14"/>
+        </svg>
+        كن شريكاً
+    </button>
+
+    {{-- مودال نموذج "كن شريكاً" --}}
+    <div id="partnerModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="partnerTitle">
+        <div id="partnerBackdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+        <div class="absolute inset-0 overflow-y-auto p-4 sm:p-6 grid place-items-center">
+            <div id="partnerCard" dir="rtl"
+                 class="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl ring-1 ring-black/5
+                        opacity-0 translate-y-4 transition-all duration-300">
+
+                {{-- رأس النافذة --}}
+                <div class="relative overflow-hidden rounded-t-[2rem] bg-gradient-to-l from-brand to-brand-dark px-7 py-7 text-white">
+                    <svg class="pointer-events-none absolute -left-6 -top-6 w-40 h-40 opacity-10" fill="currentColor" viewBox="0 0 24 24"><path d="M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+                    <button type="button" data-partner-close aria-label="إغلاق"
+                            class="absolute top-4 left-4 w-9 h-9 rounded-full bg-white/15 hover:bg-white/30 grid place-items-center transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+                    </button>
+                    <span class="inline-block text-white/80 font-bold text-xs mb-1.5">انضمّ إلى شبكة شركاء شورى</span>
+                    <h2 id="partnerTitle" class="text-2xl sm:text-3xl font-black">كن شريكاً</h2>
+                    <p class="text-white/85 text-sm mt-2 leading-relaxed max-w-md">
+                        سجّل بيانات محلّك أو نشاطك التجاري وسيتواصل معك فريق الشراكات لبحث فرص التعاون والتوزيع.
+                    </p>
+                </div>
+
+                {{-- جسم النموذج --}}
+                <div class="p-7 sm:p-8">
+                    {{-- رسالة النجاح --}}
+                    <div id="partnerSuccess" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-right border border-green-200">
+                        شكراً لك! تم استلام طلب الشراكة بنجاح، وسيتواصل معك فريق الشراكات في أقرب وقت ممكن.
+                    </div>
+
+                    <form id="partnerForm" class="space-y-5 text-right">
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            {{-- المحافظة --}}
+                            <div>
+                                <label for="p_gov" class="block text-xs font-bold text-[#141414] mb-2">المحافظة <span class="text-brand">*</span></label>
+                                <div class="relative">
+                                    <select id="p_gov" required
+                                            style="-webkit-appearance:none; -moz-appearance:none; appearance:none;"
+                                            class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 pl-10 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
+                                        <option value="" disabled selected>اختر المحافظة</option>
+                                        @foreach ($govs as $g)
+                                            <option value="{{ $g }}">{{ $g }}</option>
+                                        @endforeach
+                                    </select>
+                                    <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                                </div>
+                            </div>
+
+                            {{-- المدينة / المنطقة --}}
+                            <div>
+                                <label for="p_city" class="block text-xs font-bold text-[#141414] mb-2">المدينة / المنطقة <span class="text-brand">*</span></label>
+                                <input type="text" id="p_city" required placeholder="مثال: المرجة، باب النصر..."
+                                       class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            {{-- اسم المحل --}}
+                            <div>
+                                <label for="p_shop" class="block text-xs font-bold text-[#141414] mb-2">اسم المحل / النشاط التجاري <span class="text-brand">*</span></label>
+                                <input type="text" id="p_shop" required
+                                       class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
+                            </div>
+
+                            {{-- نوع النشاط --}}
+                            <div>
+                                <label for="p_type" class="block text-xs font-bold text-[#141414] mb-2">نوع النشاط <span class="text-brand">*</span></label>
+                                <div class="relative">
+                                    <select id="p_type" required
+                                            style="-webkit-appearance:none; -moz-appearance:none; appearance:none;"
+                                            class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 pl-10 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
+                                        <option value="" disabled selected>اختر نوع النشاط</option>
+                                        @foreach ($bizTypes as $t)
+                                            <option value="{{ $t }}">{{ $t }}</option>
+                                        @endforeach
+                                    </select>
+                                    <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            {{-- الاسم الكامل --}}
+                            <div>
+                                <label for="p_name" class="block text-xs font-bold text-[#141414] mb-2">الاسم الكامل <span class="text-brand">*</span></label>
+                                <input type="text" id="p_name" required
+                                       class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
+                            </div>
+
+                            {{-- رقم الهاتف --}}
+                            <div>
+                                <label for="p_phone" class="block text-xs font-bold text-[#141414] mb-2">رقم الهاتف <span class="text-brand">*</span></label>
+                                <input type="tel" id="p_phone" required placeholder="09xxxxxxxx" dir="ltr"
+                                       class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all text-left">
+                            </div>
+                        </div>
+
+                        {{-- البريد الإلكتروني --}}
+                        <div>
+                            <label for="p_email" class="block text-xs font-bold text-[#141414] mb-2">البريد الإلكتروني <span class="text-gray-400 font-normal">(اختياري)</span></label>
+                            <input type="email" id="p_email" dir="ltr"
+                                   class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all text-left">
+                        </div>
+
+                        {{-- تفاصيل إضافية --}}
+                        <div>
+                            <label for="p_msg" class="block text-xs font-bold text-[#141414] mb-2">تفاصيل إضافية</label>
+                            <textarea id="p_msg" rows="3" placeholder="أخبرنا عن نشاطك ومجال التعاون الذي تطمح إليه..."
+                                      class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all resize-none"></textarea>
+                        </div>
+
+                        {{-- أزرار --}}
+                        <div class="flex flex-col-reverse sm:flex-row items-center gap-3 pt-1">
+                            <button type="button" data-partner-close
+                                    class="w-full sm:w-auto px-6 py-3.5 rounded-xl font-bold text-sm text-[#141414] bg-gray-100 hover:bg-gray-200 transition-colors">
+                                إلغاء
+                            </button>
+                            <button type="submit" id="partnerSubmit"
+                                    class="w-full sm:flex-1 inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/25">
+                                إرسال طلب الشراكة
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const btn      = document.getElementById('partnerBtn');
+            const modal    = document.getElementById('partnerModal');
+            if (!btn || !modal) return;
+            const backdrop = document.getElementById('partnerBackdrop');
+            const card     = document.getElementById('partnerCard');
+            const closers  = modal.querySelectorAll('[data-partner-close]');
+
+            function openModal() {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                requestAnimationFrame(() => {
+                    backdrop.classList.remove('opacity-0');
+                    card.classList.remove('opacity-0', 'translate-y-4');
+                });
+            }
+            function closeModal() {
+                backdrop.classList.add('opacity-0');
+                card.classList.add('opacity-0', 'translate-y-4');
+                document.body.style.overflow = '';
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+
+            btn.addEventListener('click', openModal);
+            backdrop.addEventListener('click', closeModal);
+            closers.forEach(c => c.addEventListener('click', closeModal));
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+            });
+
+            // إرسال تجريبي (واجهة فقط — مطابق لنموذج التواصل)
+            const form = document.getElementById('partnerForm');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const submitBtn = document.getElementById('partnerSubmit');
+                const success   = document.getElementById('partnerSuccess');
+                const original  = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'جاري الإرسال...';
+                setTimeout(() => {
+                    success.classList.remove('hidden');
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = original;
+                    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 1200);
+            });
+        })();
+    </script>
+
     {{-- ============ FOOTER ============ --}}
     <footer id="contact" class="scroll-mt-24 bg-[#141414] text-white relative overflow-hidden">
         <img src="{{ asset('images/shora-logo.svg') }}" alt=""
