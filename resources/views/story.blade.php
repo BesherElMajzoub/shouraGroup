@@ -20,26 +20,16 @@
                 <span class="inline-block text-brand font-bold text-sm mb-3">نظرة عامة</span>
                 <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-6">كيف بدأت الحكاية</h2>
                 <div class="space-y-4 text-[#4b4b4b] leading-loose text-[15px]">
-                    <p>
-                        انطلقت شورى من إيمان عميق بأنّ السوق السوري يستحقّ حلولاً تجمع بين الجودة
-                        العالية والخدمة الصادقة. بدأت المسيرة بنشاط تجاري صغير، ثم اتّسعت تدريجياً
-                        لتشمل قطاعات حيوية يحتاجها كل بيت ومشروع.
-                    </p>
-                    <p>
-                        مع كل عام، أضافت شورى خبرة جديدة وفريقاً أكثر تخصّصاً، حتى تحوّلت أقسامها
-                        إلى شركات مستقلة تعمل تحت مظلة واحدة، تجمعها قيم مشتركة ورؤية واضحة.
-                    </p>
-                    <p>
-                        اليوم، تفخر مجموعة شورى بأنها شريك موثوق لعملائها في مختلف المحافظات،
-                        وتواصل توسّعها بثبات نحو مستقبل أكثر استدامة.
-                    </p>
+                    @foreach (explode("\n\n", $story_overview_body) as $para)
+                        <p>{{ $para }}</p>
+                    @endforeach
                 </div>
             </div>
 
             <div class="reveal" style="transition-delay:.15s">
                 <div class="relative">
                     <div class="absolute -inset-3 rounded-[2rem] bg-brand/10 blur-2xl"></div>
-                    <img src="{{ asset('images/about_skyscrapers.png') }}" alt="مجموعة شورى"
+                    <img src="{{ str_starts_with($story_overview_image, 'images/') ? asset($story_overview_image) : asset('storage/' . $story_overview_image) }}" alt="مجموعة شورى"
                          class="relative w-full h-[360px] lg:h-[440px] object-cover rounded-[2rem] shadow-2xl">
                 </div>
             </div>
@@ -47,18 +37,6 @@
     </section>
 
     {{-- ===== TIMELINE ===== --}}
-    @php
-        $story = [
-            ['year' => '2008', 'title' => 'انطلاقة شورى', 'desc' => 'تأسيس شركة شورى للتجارة العامة كنواة لمجموعة طموحة، بفريق صغير ورؤية كبيرة لخدمة السوق السوري.'],
-            ['year' => '2011', 'title' => 'بناء الثقة الأولى', 'desc' => 'توسيع قاعدة العملاء وترسيخ سمعة شورى في الالتزام والجودة ضمن نشاطها التجاري.'],
-            ['year' => '2013', 'title' => 'الدخول في قطاع المياه', 'desc' => 'التوسّع نحو أنظمة معالجة وتحلية المياه ومستلزماتها، استجابةً لحاجة متنامية في السوق.'],
-            ['year' => '2016', 'title' => 'إطلاق قسمَي المسابح والمقاولات', 'desc' => 'توسيع الأنشطة لتشمل تصميم وتنفيذ المسابح والمقاولات العامة بكوادر متخصصة.'],
-            ['year' => '2018', 'title' => 'تطوير قسم الصيانة والتشغيل', 'desc' => 'إطلاق خدمات الصيانة الدورية والتشغيل لضمان استمرارية أداء الأنظمة والمحطات.'],
-            ['year' => '2020', 'title' => 'تأسيس مجموعة شورى', 'desc' => 'تحويل الأقسام إلى شركات متخصصة تحت مظلة المجموعة، بهيكلية أكثر مرونة واحترافية.'],
-            ['year' => '2022', 'title' => 'شراكات وتوريدات عالمية', 'desc' => 'توقيع اتفاقيات توريد مع علامات عالمية لتقديم أحدث المعدات والتقنيات لعملائنا.'],
-            ['year' => '2024', 'title' => 'حضور وطني أوسع', 'desc' => 'افتتاح فروع جديدة لخدمة العملاء في المحافظات السورية، ومواصلة مسيرة النمو المستدام.'],
-        ];
-    @endphp
     <section class="py-20 lg:py-28 bg-[#f7f7f8] relative overflow-hidden">
         <div class="pointer-events-none absolute inset-0 opacity-[0.03]"
              style="background-image:url('{{ asset('images/pattern.svg') }}'); background-size:120px;"></div>
@@ -72,7 +50,7 @@
             <div class="relative max-w-5xl mx-auto">
                 <div class="absolute top-2 bottom-2 right-5 lg:right-1/2 lg:translate-x-1/2 w-1 bg-brand/25 rounded-full"></div>
 
-                @foreach ($story as $i => $s)
+                @foreach ($timeline_nodes as $i => $s)
                     @php $right = $i % 2 === 0; @endphp
                     <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 items-center gap-y-3 lg:gap-x-14 mb-10 lg:mb-4 pr-14 lg:pr-0">
                         <div class="absolute right-[14px] lg:right-1/2 lg:translate-x-1/2 -translate-y-1/2 top-1/2
@@ -81,7 +59,7 @@
                         <div class="flex {{ $right ? 'lg:justify-end lg:order-1' : 'lg:justify-start lg:order-2' }}">
                             <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full grid place-items-center text-white font-black text-xl shadow-lg
                                         {{ $right ? 'bg-brand shadow-brand/30' : 'bg-[#141414]' }}">
-                                {{ $s['year'] }}
+                                {{ $s->event_date }}
                             </div>
                         </div>
 
@@ -89,8 +67,8 @@
                             <div class="relative bg-white rounded-2xl shadow-md ring-1 ring-black/5 p-6 text-right hover:shadow-xl transition-shadow">
                                 <span class="hidden lg:block absolute top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white"
                                       style="{{ $right ? 'right:-6px' : 'left:-6px' }}"></span>
-                                <h3 class="text-lg font-bold text-brand mb-2">{{ $s['title'] }}</h3>
-                                <p class="text-[#4b4b4b] text-sm leading-relaxed">{{ $s['desc'] }}</p>
+                                <h3 class="text-lg font-bold text-brand mb-2">{{ $s->title }}</h3>
+                                <p class="text-[#4b4b4b] text-sm leading-relaxed">{{ $s->description }}</p>
                             </div>
                         </div>
                     </div>
@@ -134,11 +112,13 @@
         <div class="pointer-events-none absolute inset-0 opacity-[0.05]"
              style="background-image:url('{{ asset('images/pattern.svg') }}'); background-size:120px;"></div>
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            @foreach (['+15' => 'سنة خبرة', '+50' => 'مشروع منجز', '+5' => 'شركات متخصصة', '+1000' => 'عميل سعيد'] as $num => $lbl)
-                <div class="reveal">
-                    <div class="text-4xl sm:text-5xl font-black text-brand mb-2">{{ $num }}</div>
-                    <div class="text-white/70 text-sm">{{ $lbl }}</div>
-                </div>
+            @foreach ($stats->whereIn('id', [4, 5, 3, 6]) as $stat)
+                @if($stat)
+                    <div class="reveal">
+                        <div class="text-4xl sm:text-5xl font-black text-brand mb-2">{{ $stat->value }}</div>
+                        <div class="text-white/70 text-sm">{{ $stat->label }}</div>
+                    </div>
+                @endif
             @endforeach
         </div>
     </section>

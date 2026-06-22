@@ -235,7 +235,7 @@
         }
     });
 
-    // Mock form submit function
+    // Form submit function: saves to DB and opens user mail app prefilled
     function handleContactSubmit(event) {
         event.preventDefault();
         
@@ -243,27 +243,73 @@
         const formSuccess = document.getElementById('formSuccess');
         const form = document.getElementById('contactForm');
         
-        // Disable button and change text to sending
+        const select = document.getElementById('department');
+        const deptName = select.options[select.selectedIndex].dataset.name;
+        const deptEmail = select.value;
+        
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
         submitBtn.disabled = true;
         submitBtn.innerHTML = `جاري الإرسال...`;
-        
-        setTimeout(() => {
-            // Show success message including the chosen department email
-            const select = document.getElementById('department');
-            const deptName = select.options[select.selectedIndex].dataset.name;
-            const deptEmail = select.value;
-            formSuccess.innerHTML = `شكراً لك! تم استلام رسالتك بنجاح وتوجيهها إلى <span class="font-black">${deptName}</span> (<span dir="ltr">${deptEmail}</span>). سيقوم أحد مهندسينا بالتواصل معك في غضون 24 ساعة.`;
-            formSuccess.classList.remove('hidden');
-            form.reset();
-            updateDeptEmail();
-            
-            // Re-enable button
+
+        // POST request to Laravel backend
+        fetch('{{ route("contact.store") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                phone: phone,
+                email: email,
+                department_name: deptName,
+                department_email: deptEmail,
+                subject: subject,
+                message: message
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                // Show success message
+                formSuccess.innerHTML = `شكراً لك! تم استلام رسالتك بنجاح وتوجيهها إلى <span class="font-black">${deptName}</span> (<span dir="ltr">${deptEmail}</span>). سيقوم أحد مهندسينا بالتواصل معك في غضون 24 ساعة.`;
+                formSuccess.classList.remove('hidden');
+                
+                // Form reset
+                form.reset();
+                updateDeptEmail();
+                
+                // Open mailto link
+                const mailtoBody = `الاسم: ${name}\nالهاتف: ${phone}\nالبريد الإلكتروني: ${email || 'غير متوفر'}\nالموضوع: ${subject}\n\nالرسالة:\n${message}`;
+                const mailtoUrl = `mailto:${deptEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailtoBody)}`;
+                
+                // Redirect user to their default mail client
+                window.location.href = mailtoUrl;
+
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `إرسال الرسالة الآن <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>`;
+                
+                // Scroll to success message
+                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert('عذراً، حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة لاحقاً.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `إرسال الرسالة الآن <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('عذراً، حدث خطأ فني أثناء الاتصال بالخادم. يرجى المحاولة لاحقاً.');
             submitBtn.disabled = false;
             submitBtn.innerHTML = `إرسال الرسالة الآن <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>`;
-            
-            // Scroll to success message
-            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 1200);
+        });
     }
 </script>
 @endpush

@@ -81,21 +81,15 @@
                 <span class="inline-block text-brand font-bold text-sm mb-3">شورى إخوان</span>
                 <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-6">من نحن</h2>
                 <div class="space-y-4 text-[#4b4b4b] leading-loose text-[15px]">
-                    <p>
-                        تأسست شركة شورى إخوان في عام 1978 في العاصمة دمشق، وبدأت رحلتها لتصبح اليوم واحدة من أهم الركائز الهندسية والتجارية في السوق السورية. نجحت الشركة في أن تصبح الخيار الأول للمشاريع الاستراتيجية.
-                    </p>
-                    <p>
-                        تسعى شورى إلى التطور في القطاعات التي تعمل بها، مع التركيز على تلبية أعقد دفاتر الشروط للقطاع العام والمنظمات الدولية.
-                    </p>
-                    <p>
-                        مع مرور الزمن، نمت شورى وأنشأت أقساماً متخصصة مدعومة بشراكات عالمية لتصنع مستقبلاً هندسياً واعداً.
-                    </p>
+                    @foreach (explode("\n\n", $about_body) as $para)
+                        <p>{{ $para }}</p>
+                    @endforeach
                 </div>
                 <div class="mt-8 grid grid-cols-3 gap-4 max-w-md">
-                    @foreach (['+45' => 'عاماً من الخبرة', '+5' => 'أقسام متخصصة', '15+' => 'شراكة عالمية'] as $num => $lbl)
+                    @foreach ($stats->take(3) as $stat)
                         <div class="text-center">
-                            <div class="text-2xl sm:text-3xl font-black text-brand">{{ $num }}</div>
-                            <div class="text-xs text-[#4b4b4b] mt-1">{{ $lbl }}</div>
+                            <div class="text-2xl sm:text-3xl font-black text-brand">{{ $stat->value }}</div>
+                            <div class="text-xs text-[#4b4b4b] mt-1">{{ $stat->label }}</div>
                         </div>
                     @endforeach
                 </div>
@@ -118,16 +112,6 @@
     </section>
 
     {{-- ============ 5) SERVICES — خدماتنا ============ --}}
-    @php
-        $services = [
-            ['title' => 'تركيب وتسليم مجموعات التوليد', 'desc' => 'تركيب وتسليم مجموعات التوليد الكهربائية الديزل والغاز بقدرات تتراوح بين 20 و2000 KVA.', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7Z'],
-            ['title' => 'تأهيل محطات ضخ المياه', 'desc' => 'تأهيل محطات ضخ المياه للمنظمات الدولية والجهات الحكومية بأعلى معايير الجودة.', 'icon' => 'M12 3c-3.5 4-6 7.2-6 10.5a6 6 0 0 0 12 0C18 10.2 15.5 7 12 3Z'],
-            ['title' => 'تجهيز خطوط الإنتاج بضواغط الهواء', 'desc' => 'تجهيز خطوط الإنتاج والمصانع بضواغط الهواء الكبرى وأنظمة معالجة الهواء والغازات.', 'icon' => 'M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 7h10v10H7z'],
-            ['title' => 'أنظمة شبكات الغازات الطبية', 'desc' => 'تنفيذ أنظمة شبكات الغازات الطبية لمختلف المشافي والمراكز الصحية وفق المعايير الدولية.', 'icon' => 'M19 7H5M19 12H5M19 17H5M3 7h.01M3 12h.01M3 17h.01'],
-            ['title' => 'مبيعات الجملة والتجزئة', 'desc' => 'تزويد التجار والمقاولين بمختلف منتجاتنا من معدات ومستلزمات هندسية عبر قنوات مبيعات الجملة.', 'icon' => 'M3 9l9-6 9 6v9a2 2 0 0 1-2 2h-5v-6H10v6H5a2 2 0 0 1-2-2V9Z'],
-            ['title' => 'التجهيزات الكهربائية والعُدد الصناعية', 'desc' => 'توريد القواطع والكنتكتورات وقواطع التوتر المتوسط والعُدد الصناعية من كبرى العلامات العالمية.', 'icon' => 'M11.4 2.6a5 5 0 0 0 6 6L21 12l-2 2-3.4-3.4a5 5 0 0 1-6-6L7 1l4.4 1.6ZM3 17l6-6M3 17l3 3 6-6'],
-        ];
-    @endphp
     <section id="services" class="scroll-mt-24 py-20 lg:py-28 bg-[#f7f7f8]">
         <div class="mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-14 reveal">
@@ -147,12 +131,12 @@
                                     group-hover:bg-brand group-hover:text-white transition-colors">
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.7"
                                  viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="{{ $s['icon'] }}"/>
+                                <path d="{{ $s->icon }}"/>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-[#141414] mb-2">{{ $s['title'] }}</h3>
-                        <p class="text-[#4b4b4b] text-sm leading-relaxed">{{ $s['desc'] }}</p>
-                        <a href="#contact" class="inline-flex items-center gap-1 mt-4 text-brand font-bold text-sm
+                        <h3 class="text-lg font-bold text-[#141414] mb-2">{{ $s->title }}</h3>
+                        <p class="text-[#4b4b4b] text-sm leading-relaxed">{{ $s->description }}</p>
+                        <a href="{{ url('/services') }}" class="inline-flex items-center gap-1 mt-4 text-brand font-bold text-sm
                                   opacity-0 group-hover:opacity-100 transition-opacity">
                             اطلب الخدمة
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
@@ -185,7 +169,7 @@
                     <div class="flex-1 pt-2">
                         <h3 class="text-3xl font-black text-[#141414] mb-4">الرؤية</h3>
                         <p class="text-[#4b4b4b] leading-loose text-[15px]">
-                            تحقيق الريادة في تقديم حلول هندسية متكاملة في قطاعات الطاقة والمياه على مستوى سوريا والمنطقة.
+                            {{ $vision_text }}
                         </p>
                     </div>
                     <div class="relative shrink-0 anim-float">
@@ -200,7 +184,7 @@
                     <div class="flex-1 pt-2">
                         <h3 class="text-3xl font-black text-[#141414] mb-4">الرسالة</h3>
                         <p class="text-[#4b4b4b] leading-loose text-[15px]">
-                            توفير منتجات عالمية الجودة، وخدمات ما بعد البيع استثنائية، وتقديم أفضل الحلول المتكاملة لعملائنا في القطاعين العام والخاص والمنظمات الدولية.
+                            {{ $mission_text }}
                         </p>
                     </div>
                     <div class="relative shrink-0 anim-float" style="animation-delay:1s">
@@ -374,13 +358,6 @@
     <section id="careers"   class="scroll-mt-24"></section>
 
     {{-- ============ 9) NEWS — الأخبار ============ --}}
-    @php
-        $news = [
-            ['cat' => 'مشاريع', 'date' => '12 حزيران 2026', 'title' => 'شورى تنجز محطة تحلية مياه جديدة في ريف دمشق', 'desc' => 'أتمّت مجموعة شورى تنفيذ وتشغيل محطة تحلية ومعالجة مياه بطاقة إنتاجية عالية لخدمة المنطقة.', 'img' => 'industrial_bg.png'],
-            ['cat' => 'شراكات', 'date' => '28 أيار 2026', 'title' => 'توقيع اتفاقية توريد معدات مسابح مع علامة عالمية', 'desc' => 'وقّعت شورى اتفاقية شراكة لتوريد أحدث أنظمة التنقية والمضخات للمسابح في السوق السوري.', 'img' => 'about_skyscrapers.png'],
-            ['cat' => 'إنجازات', 'date' => '10 أيار 2026', 'title' => 'افتتاح فرع جديد للمجموعة في حلب', 'desc' => 'ضمن خطة التوسّع، افتتحت مجموعة شورى فرعاً جديداً لتقديم خدماتها لعملائها في المنطقة الشمالية.', 'img' => 'saudi_map.png'],
-        ];
-    @endphp
     <section id="news" class="scroll-mt-24 py-20 lg:py-28 bg-[#f7f7f8]">
         <div class="mx-auto max-w-7xl px-4 sm:px-6">
             <div class="flex items-end justify-between gap-4 mb-12 reveal">
@@ -388,7 +365,7 @@
                     <span class="inline-block text-brand font-bold text-sm mb-3">آخر المستجدّات</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">الأخبار</h2>
                 </div>
-                <a href="#" class="hidden sm:inline-flex items-center gap-2 text-brand font-bold text-sm hover:gap-3 transition-all">
+                <a href="{{ route('news') }}" class="hidden sm:inline-flex items-center gap-2 text-brand font-bold text-sm hover:gap-3 transition-all">
                     كل الأخبار
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
@@ -400,18 +377,18 @@
                                     hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                              style="transition-delay:{{ $i*0.08 }}s">
                         <div class="relative h-52 overflow-hidden">
-                            <img src="{{ asset('images/'.$n['img']) }}" alt="{{ $n['title'] }}"
+                            <img src="{{ $n->image_url }}" alt="{{ $n->title }}"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-4 right-4 bg-brand text-white text-xs font-bold rounded-full px-3 py-1">{{ $n['cat'] }}</span>
+                            <span class="absolute top-4 right-4 bg-brand text-white text-xs font-bold rounded-full px-3 py-1">{{ $n->category->name }}</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-xs text-[#9a9a9a] mb-3">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                                {{ $n['date'] }}
+                                {{ $n->published_at ? $n->published_at->translatedFormat('j F Y') : '' }}
                             </div>
-                            <h3 class="text-lg font-bold text-[#141414] mb-2 leading-snug group-hover:text-brand transition-colors">{{ $n['title'] }}</h3>
-                            <p class="text-[#4b4b4b] text-sm leading-relaxed mb-4">{{ $n['desc'] }}</p>
-                            <a href="#" class="inline-flex items-center gap-1 text-brand font-bold text-sm">
+                            <h3 class="text-lg font-bold text-[#141414] mb-2 leading-snug group-hover:text-brand transition-colors">{{ $n->title }}</h3>
+                            <p class="text-[#4b4b4b] text-sm leading-relaxed mb-4">{{ $n->excerpt }}</p>
+                            <a href="{{ route('news.show', $n->slug) }}" class="inline-flex items-center gap-1 text-brand font-bold text-sm">
                                 اقرأ المزيد
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                             </a>
@@ -483,17 +460,6 @@
     </section>
 
     {{-- ============ 11) CLIENTS — عملاؤنا ============ --}}
-    @php
-        $clients = [
-            ['name' => 'Oxfam',                         'logo' => 'oxfam.png'],
-            ['name' => 'UNRWA',                         'logo' => 'unrwa.jpg'],
-            ['name' => 'الشركة السورية للبترول',        'logo' => 'spc.png'],
-            ['name' => 'الشركة السورية للاتصالات',      'logo' => 'syriatel.jpg'],
-            ['name' => 'الصندوق السيادي السوري',        'logo' => 'sovereign-fund.png'],
-            ['name' => 'المؤسسة السورية للمخابز',       'logo' => 'bakeries.jpg'],
-            ['name' => 'مؤسسة مياه درعا',              'logo' => 'daraa-water.jpg'],
-        ];
-    @endphp
     <section id="clients" class="scroll-mt-24 py-20 lg:py-28 bg-[#f7f7f8] relative overflow-hidden">
         {{-- خلفية منقّشة خفيفة --}}
         <div class="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -507,20 +473,20 @@
                     <span class="inline-block text-brand font-bold text-sm mb-3">شركاء النجاح</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-4">عملاؤنا</h2>
                     <p class="text-[#4b4b4b] leading-loose">
-                        يمكن لعملائنا الاعتماد علينا في أي وقت. تحرص شورى على تقديم منتجات عالية الجودة لكبرى المؤسسات الحكومية والدولية والخاصة.
+                        {{ $clients_intro }}
                     </p>
 
                     {{-- مؤشرات الثقة --}}
                     <div class="flex items-center gap-8 mt-8">
-                        <div>
-                            <div class="text-3xl font-black text-brand leading-none">+45</div>
-                            <div class="text-xs text-[#9a9a9a] mt-1.5">عاماً من الخبرة</div>
-                        </div>
-                        <span class="w-px h-10 bg-gray-200"></span>
-                        <div>
-                            <div class="text-3xl font-black text-brand leading-none">15+</div>
-                            <div class="text-xs text-[#9a9a9a] mt-1.5">شراكة عالمية</div>
-                        </div>
+                        @foreach ($stats->take(2) as $stat)
+                            <div>
+                                <div class="text-3xl font-black text-brand leading-none">{{ $stat->value }}</div>
+                                <div class="text-xs text-[#9a9a9a] mt-1.5">{{ $stat->label }}</div>
+                            </div>
+                            @if (!$loop->last)
+                                <span class="w-px h-10 bg-gray-200"></span>
+                            @endif
+                        @endforeach
                     </div>
 
                     {{-- أسهم التنقّل --}}
@@ -543,12 +509,12 @@
                             <div class="group shrink-0 w-40 sm:w-48 bg-white rounded-2xl ring-1 ring-black/5 shadow-sm
                                         hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                 <div class="relative h-32 flex items-center justify-center px-5">
-                                    <img src="{{ asset('images/clients/'.$c['logo']) }}" alt="{{ $c['name'] }}"
+                                    <img src="{{ $c->logo_url }}" alt="{{ $c->name }}"
                                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                          style="max-height:4rem; max-width:80%; opacity:.85;"
                                          class="object-contain grayscale group-hover:grayscale-0 transition">
                                     <span style="display:none"
-                                          class="absolute inset-0 items-center justify-center text-center px-3 font-black text-[15px] leading-snug text-[#4b4b4b] group-hover:text-brand transition-colors">{{ $c['name'] }}</span>
+                                          class="absolute inset-0 items-center justify-center text-center px-3 font-black text-[15px] leading-snug text-[#4b4b4b] group-hover:text-brand transition-colors">{{ $c->name }}</span>
                                 </div>
                             </div>
                         @endforeach

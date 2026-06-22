@@ -14,59 +14,6 @@
     ])
 
     {{-- ===== DETAILED SERVICES SECTION ===== --}}
-    @php
-        $services = [
-            [
-                'title' => 'أنظمة معالجة وتحلية المياه',
-                'dept' => 'قسم معالجة وتحلية المياه',
-                'desc' => 'نقدم حلولاً هندسية متكاملة لتصميم وتركيب وتشغيل محطات معالجة وتحلية المياه للقطاعات السكنية والتجارية والصناعية، مع الالتزام التام بالمعايير البيئية والصحية العالمية.',
-                'icon' => 'M12 3c-3.5 4-6 7.2-6 10.5a6 6 0 0 0 12 0C18 10.2 15.5 7 12 3Z',
-                'features' => ['محطات تحلية المياه بالتناضح العكسي (RO)', 'فلاتر إزالة الحديد والمنغنيز والشوائب', 'أنظمة تعقيم المياه بالأشعة فوق البنفسجية والأوزون', 'معالجة مياه الصرف الصحي وإعادة تدويرها'],
-                'image' => 'industrial_bg.png'
-            ],
-            [
-                'title' => 'تصميم وتنفيذ المسابح والبحيرات',
-                'dept' => 'قسم المسابح والبحيرات',
-                'desc' => 'نترجم تطلعاتكم إلى واقع ملموس من خلال تصميم وبناء المسابح والبحيرات الاصطناعية بمختلف الأشكال والأحجام، مجهزة بأحدث أنظمة الفلترة، التدفئة، والإضاءة الذكية.',
-                'icon' => 'M3 18c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M3 14c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M6 10V5a2 2 0 0 1 4 0M14 10V5a2 2 0 0 1 4 0',
-                'features' => ['تصاميم ثلاثية الأبعاد (3D) قبل التنفيذ', 'إنشاء الهياكل الخرسانية والعزل المائي المضمون', 'تركيب أنظمة الفلترة والتعقيم الكيميائي والملحي', 'أنظمة التدفئة بالطاقة الشمسية والمضخات الحرارية'],
-                'image' => 'about_skyscrapers.png'
-            ],
-            [
-                'title' => 'المقاولات العامة والإنشائية',
-                'dept' => 'قسم المقاولات والإنشاءات',
-                'desc' => 'نقوم بتنفيذ المشاريع السكنية والتجارية والبنية التحتية بكوادر هندسية وفنية مؤهلة، مستخدمين أفضل المواد والمعدات لضمان السلامة الإنشائية والجمالية.',
-                'icon' => 'M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 11h.01M15 11h.01',
-                'features' => ['أعمال التشييد والبناء المتكاملة (عظم ومفتاح)', 'تنفيذ البنى التحتية وشبكات الصرف والمياه', 'أعمال العزل الحراري والمائي للأسطح والمنشآت', 'إشراف هندسي مستمر لضمان تطابق المخططات'],
-                'image' => 'industrial_bg.png'
-            ],
-            [
-                'title' => 'الصيانة والتشغيل الدوري',
-                'dept' => 'قسم الصيانة والتشغيل',
-                'desc' => 'نضمن استدامة عمل أنظمتكم ومعداتكم بأقصى كفاءة من خلال برامج صيانة وقائية وعلاجية دورية تحت إشراف مهندسين وفنيين مختصين.',
-                'icon' => 'M11.4 2.6a5 5 0 0 0 6 6L21 12l-2 2-3.4-3.4a5 5 0 0 1-6-6L7 1l4.4 1.6ZM3 17l6-6M3 17l3 3 6-6',
-                'features' => ['عقود صيانة دورية للمحطات والمسابح', 'فحص وتحليل جودة المياه وتعديل الخواص الكيميائية', 'توفير وتغيير قطع الغيار الأصلية والمستهلكات', 'استجابة سريعة للأعطال الطارئة على مدار الساعة'],
-                'image' => 'about_skyscrapers.png'
-            ],
-            [
-                'title' => 'توريد المعدات والمستلزمات',
-                'dept' => 'قسم التجارة والتوريد',
-                'desc' => 'نستورد ونوفر باقة واسعة من المضخات، الفلاتر، والمواد الكيميائية من كبرى الماركات العالمية لضمان حصول عملائنا على أفضل المنتجات المعتمدة.',
-                'icon' => 'M3 9l9-6 9 6v9a2 2 0 0 1-2 2h-5v-6H10v6H5a2 2 0 0 1-2-2V9Z',
-                'features' => ['مضخات المياه المنزلية، الصناعية، والغاطسة', 'أنظمة فلاتر رملية وقطنية متعددة الأحجام', 'مواد تعقيم المسابح والمحطات (كلور، أسيد، مانع طحالب)', 'إكسسوارات ومعدات الإضاءة المائية الحديثة'],
-                'image' => 'industrial_bg.png'
-            ],
-            [
-                'title' => 'الاستشارات والدراسات الهندسية',
-                'dept' => 'قسم الاستشارات الهندسية',
-                'desc' => 'نقدم دراسات جدوى هندسية وتصاميم فنية متطورة للمشاريع المائية والإنشائية لمساعدتكم في اختيار الحل الأمثل والأكثر جدوى اقتصادية.',
-                'icon' => 'M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 7h10v10H7z',
-                'features' => ['حساب وتقدير تكاليف المشاريع ومسح الكميات', 'دراسة وتحليل عينات المياه وتقديم حلول الفلترة', 'تطوير مخططات هيدروليكية وميكانيكية متكاملة', 'الاستشارات البيئية واستدامة الموارد المائية'],
-                'image' => 'about_skyscrapers.png'
-            ],
-        ];
-    @endphp
-
     <section class="py-20 lg:py-28 bg-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 space-y-20 lg:space-y-28">
             @foreach ($services as $i => $s)
@@ -76,23 +23,25 @@
                     <div class="lg:col-span-7 space-y-6 {{ $isEven ? 'order-2 lg:order-1 text-right' : 'order-2 text-right' }}">
                         <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-brand-light text-brand">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="{{ $s['icon'] }}"/>
+                                <path d="{{ $s->icon }}"/>
                             </svg>
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-black text-[#141414]">{{ $s['title'] }}</h2>
-                        <p class="text-[#4b4b4b] leading-loose text-[15px]">{{ $s['desc'] }}</p>
+                        <h2 class="text-2xl sm:text-3xl font-black text-[#141414]">{{ $s->title }}</h2>
+                        <p class="text-[#4b4b4b] leading-loose text-[15px]">{{ $s->description }}</p>
 
-                        <ul class="grid sm:grid-cols-2 gap-3 pt-3">
-                            @foreach ($s['features'] as $feat)
-                                <li class="flex items-start gap-2.5 text-sm text-[#4b4b4b]">
-                                    <svg class="w-4 h-4 text-brand shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
-                                    <span>{{ $feat }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
+                        @if(is_array($s->features) || is_object($s->features))
+                            <ul class="grid sm:grid-cols-2 gap-3 pt-3">
+                                @foreach ($s->features as $feat)
+                                    <li class="flex items-start gap-2.5 text-sm text-[#4b4b4b]">
+                                        <svg class="w-4 h-4 text-brand shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                        <span>{{ $feat }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
 
                         <div class="pt-4 flex flex-wrap gap-4">
-                            <a href="{{ url('/contact') }}?service={{ urlencode($s['title']) }}&department={{ urlencode($s['dept']) }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-lg font-bold text-sm transition-colors">
+                            <a href="{{ url('/contact') }}?service={{ urlencode($s->title) }}&department={{ urlencode($s->dept) }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-lg font-bold text-sm transition-colors">
                                 اطلب الخدمة الآن
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                             </a>
@@ -103,7 +52,7 @@
                     <div class="lg:col-span-5 {{ $isEven ? 'order-1 lg:order-2' : 'order-1' }}">
                         <div class="relative overflow-hidden rounded-[2rem] shadow-xl group">
                             <div class="absolute inset-0 bg-brand/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                            <img src="{{ asset('images/' . $s['image']) }}" alt="{{ $s['title'] }}" class="w-full h-72 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="{{ $s->image_url }}" alt="{{ $s->title }}" class="w-full h-72 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
                 </div>
