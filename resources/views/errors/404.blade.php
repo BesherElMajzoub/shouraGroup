@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'الصفحة غير موجودة | مجموعة شورى')
-@section('description', 'عذراً، الصفحة التي تحاول الوصول إليها غير موجودة أو تم نقلها. يمكنك العودة للصفحة الرئيسية لمجموعة شورى.')
+@section('title', 'الصفحة غير موجودة | شورى إخوان')
+@section('description', 'عذراً، الصفحة التي تحاول الوصول إليها غير موجودة أو تم نقلها. يمكنك العودة للصفحة الرئيسية لشورى إخوان.')
 
 @section('content')
 
@@ -60,8 +60,8 @@
                     <span class="block text-xs font-bold text-[#9a9a9a] uppercase tracking-wider mb-4">قد تبحث عن أحد هذه الأقسام:</span>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         @foreach ([
-                            [url('/services'), 'خدماتنا'],
-                            [url('/products'), 'المنتجات'],
+                            [url('/sectors'), 'قطاعاتنا'],
+                            [url('/brands'), 'العلامات التجارية'],
                             [url('/projects'), 'مشاريعنا'],
                             [url('/news'), 'أخبارنا']
                         ] as [$href, $label])

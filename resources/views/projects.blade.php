@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'المشاريع | مجموعة شورى')
-@section('description', 'تصفح معرض المشاريع الكبرى والناجحة لمجموعة شورى في مجالات محطات المياه، المسابح الأولمبية، المقاولات، والبنى التحتية بمختلف المحافظات السورية.')
+@section('title', 'مشاريعنا | شورى إخوان')
+@section('description', 'سجل إنجازات شورى إخوان مع القطاعين العام والخاص والمنظمات الدولية — مجموعات التوليد، محطات الضخ، شبكات الغازات الطبية، والمعدات الصناعية.')
 
 @section('content')
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'المشاريع',
-        'eyebrow' => 'مسيرة حافلة بالإنجازات والعطاء',
-        'title'   => 'مشاريعنا',
-        'desc'    => 'فخورون بالإسهام في إعمار وتطوير البنية التحتية، وتوفير حلول مائية متطورة للمشاريع السكنية والتجارية والصناعية الكبرى في سوريا.',
+        'current' => 'مشاريعنا',
+        'eyebrow' => 'سجل حافل بالإنجازات',
+        'title'   => 'شركاء في بناء وتطوير البنية التحتية',
+        'desc'    => $projects_intro,
     ])
 
     {{-- ===== PROJECTS SECTION WITH FILTER ===== --}}
@@ -24,9 +24,10 @@
                         class="proj-btn px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-brand text-white shadow-lg shadow-brand/20">
                     كل المشاريع
                 </button>
-                @foreach ($categories as $f)
-                    <button type="button" 
-                            onclick="filterProjects('{{ $f->slug }}', this)" 
+                {{-- التصنيفات الفارغة لا تُعرض حتى لا يصل الزائر إلى شبكة خالية --}}
+                @foreach ($categories->filter(fn ($c) => $projects->contains('category_id', $c->id)) as $f)
+                    <button type="button"
+                            onclick="filterProjects('{{ $f->slug }}', this)"
                             class="proj-btn px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-[#f7f7f8] text-[#4b4b4b] hover:bg-gray-200">
                         {{ $f->name }}
                     </button>
@@ -62,7 +63,7 @@
 
                         {{-- Details --}}
                         <div class="p-6">
-                            <div class="text-[11px] font-bold text-brand mb-1">العميل: {{ $p->client }}</div>
+                            <div class="text-[11px] font-bold text-brand mb-1">الجهة المستفيدة: {{ $p->client }}</div>
                             <h3 class="text-xl font-bold text-[#141414] mb-3 leading-snug group-hover:text-brand transition-colors">{{ $p->title }}</h3>
                             <p class="text-[#4b4b4b] text-sm leading-relaxed mb-4 h-24 overflow-hidden line-clamp-4">{{ $p->description }}</p>
                             
@@ -77,6 +78,15 @@
                     </article>
                 @endforeach
             </div>
+
+            @if ($projects->isEmpty())
+                <div class="text-center py-20">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-light text-brand grid place-items-center mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>
+                    </div>
+                    <p class="text-[#4b4b4b] font-bold">سيتم إضافة المشاريع قريباً</p>
+                </div>
+            @endif
         </div>
     </section>
 
@@ -87,13 +97,11 @@
         
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
-                @foreach ($stats->whereIn('id', [5, 4, 7, 8]) as $stat)
-                    @if($stat)
-                        <div class="reveal">
-                            <div class="text-4xl sm:text-5xl font-black text-brand mb-2">{{ $stat->value }}</div>
-                            <div class="text-white/70 text-sm font-medium">{{ $stat->label }}</div>
-                        </div>
-                    @endif
+                @foreach ($stats->take(4) as $stat)
+                    <div class="reveal">
+                        <div class="text-4xl sm:text-5xl font-black text-brand mb-2">{{ $stat->value }}</div>
+                        <div class="text-white/70 text-sm font-medium">{{ $stat->label }}</div>
+                    </div>
                 @endforeach
             </div>
         </div>

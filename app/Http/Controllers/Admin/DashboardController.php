@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\ContactMessage;
+use App\Models\JobApplication;
 use App\Models\News;
 use App\Models\Project;
-use App\Models\Service;
-use Illuminate\Http\Request;
+use App\Models\Sector;
+use App\Models\WholesaleRequest;
 
 class DashboardController extends Controller
 {
@@ -16,19 +18,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $servicesCount = Service::count();
-        $projectsCount = Project::count();
-        $newsCount = News::count();
-        $unreadMessagesCount = ContactMessage::where('is_read', false)->count();
+        return view('admin.dashboard', [
+            'sectorsCount' => Sector::count(),
+            'brandsCount' => Brand::count(),
+            'projectsCount' => Project::count(),
+            'newsCount' => News::count(),
 
-        $recentMessages = ContactMessage::orderBy('created_at', 'desc')->take(5)->get();
+            'unreadMessagesCount' => ContactMessage::where('is_read', false)->count(),
+            'unreadWholesaleCount' => WholesaleRequest::where('is_read', false)->count(),
+            'unreadApplicationsCount' => JobApplication::where('is_read', false)->count(),
 
-        return view('admin.dashboard', compact(
-            'servicesCount',
-            'projectsCount',
-            'newsCount',
-            'unreadMessagesCount',
-            'recentMessages'
-        ));
+            'recentMessages' => ContactMessage::orderBy('created_at', 'desc')->take(5)->get(),
+        ]);
     }
 }

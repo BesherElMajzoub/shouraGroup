@@ -35,7 +35,12 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 font-bold text-gray-900">{{ $service->title }}</td>
-                            <td class="px-6 py-4 text-gray-600 font-medium">{{ $service->dept }}</td>
+                            <td class="px-6 py-4 text-gray-600 font-medium">
+                                {{ $service->dept }}
+                                <span class="block mt-1 text-[10px] font-bold {{ $service->group === 'home' ? 'text-blue-600' : 'text-gray-400' }}">
+                                    {{ $service->group === 'home' ? 'الصفحة الرئيسية' : 'صفحة الخدمات' }}
+                                </span>
+                            </td>
                             <td class="px-6 py-4 text-gray-500 font-semibold">{{ $service->order }}</td>
                             <td class="px-6 py-4 text-xs font-bold text-gray-600">
                                 {{ is_array($service->features) ? count($service->features) : 0 }} ميزات مضافة

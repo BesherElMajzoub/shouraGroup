@@ -30,6 +30,16 @@
                 </div>
             </div>
 
+            <!-- Group -->
+            <div>
+                <label for="group" class="block text-xs font-bold text-gray-700 mb-2">مكان عرض الخدمة</label>
+                <select id="group" name="group" required
+                        class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
+                    <option value="pillar" {{ old('group') === 'pillar' ? 'selected' : '' }}>خدمة تفصيلية في صفحة «خدماتنا وحلولنا»</option>
+                    <option value="home" {{ old('group') === 'home' ? 'selected' : '' }}>بطاقة مختصرة في قسم «الخدمات والحلول» بالصفحة الرئيسية</option>
+                </select>
+            </div>
+
             <!-- Description -->
             <div>
                 <label for="description" class="block text-xs font-bold text-gray-700 mb-2">شرح / وصف الخدمة بالتفصيل</label>

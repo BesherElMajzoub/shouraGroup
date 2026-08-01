@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- ملاحظة: استبدل النطاق shora-group.sy بالنطاق الرسمي النهائي قبل النشر. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shora-group.sy/</loc>
@@ -6,12 +7,37 @@
     <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://shora-group.sy/story</loc>
+    <loc>https://shora-group.sy/about</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shora-group.sy/companies</loc>
+    <loc>https://shora-group.sy/sectors</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://shora-group.sy/sectors/water-pumps</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://shora-group.sy/sectors/power-generation</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://shora-group.sy/sectors/air-compressors</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://shora-group.sy/sectors/medical-gases</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://shora-group.sy/sectors/industrial-tools</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -21,9 +47,9 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shora-group.sy/products</loc>
+    <loc>https://shora-group.sy/brands</loc>
     <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shora-group.sy/projects</loc>
@@ -31,14 +57,19 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://shora-group.sy/branches</loc>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://shora-group.sy/news</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://shora-group.sy/wholesale</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://shora-group.sy/careers</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shora-group.sy/contact</loc>

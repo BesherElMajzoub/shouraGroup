@@ -20,7 +20,8 @@ class Client extends Model
             get: function () {
                 $path = $this->logo;
                 if (empty($path)) {
-                    return asset('images/shora-logo.svg');
+                    // Null lets views fall back to a text card instead of showing Shora's own logo.
+                    return null;
                 }
                 if (str_starts_with($path, 'images/') || str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
                     return asset($path);

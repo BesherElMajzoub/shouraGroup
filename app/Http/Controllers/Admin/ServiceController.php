@@ -34,6 +34,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'dept' => ['required', 'string', 'max:255'],
+            'group' => ['required', 'in:home,pillar'],
             'description' => ['nullable', 'string'],
             'icon' => ['nullable', 'string'], // SVG Path
             'image' => ['nullable', 'image', 'max:2048'],
@@ -78,6 +79,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'dept' => ['required', 'string', 'max:255'],
+            'group' => ['required', 'in:home,pillar'],
             'description' => ['nullable', 'string'],
             'icon' => ['nullable', 'string'], // SVG Path
             'image' => ['nullable', 'image', 'max:2048'],

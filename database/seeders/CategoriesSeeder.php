@@ -9,18 +9,23 @@ class CategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * Project categories mirror the five business sectors so a project can be
+     * filed under the sector that delivered it.
      */
     public function run(): void
     {
         $categories = [
-            // Project categories
-            ['type' => 'project', 'name' => 'محطات وأنظمة المياه', 'slug' => 'water', 'order' => 1],
-            ['type' => 'project', 'name' => 'المسابح والبحيرات', 'slug' => 'pools', 'order' => 2],
-            ['type' => 'project', 'name' => 'المقاولات العامة والإنشاءات', 'slug' => 'contracting', 'order' => 3],
+            // Project categories — تطابق القطاعات
+            ['type' => 'project', 'name' => 'مجموعات التوليد والطاقة', 'slug' => 'power-generation', 'order' => 1],
+            ['type' => 'project', 'name' => 'مضخات المياه وحلول الضخ', 'slug' => 'water-pumps', 'order' => 2],
+            ['type' => 'project', 'name' => 'ضواغط الهواء والغازات الصناعية', 'slug' => 'air-compressors', 'order' => 3],
+            ['type' => 'project', 'name' => 'تجهيزات المشافي والغازات الطبية', 'slug' => 'medical-gases', 'order' => 4],
+            ['type' => 'project', 'name' => 'المعدات والعدد الصناعية', 'slug' => 'industrial-tools', 'order' => 5],
 
             // News categories
-            ['type' => 'news', 'name' => 'أخبار المشاريع', 'slug' => 'projects', 'order' => 1],
-            ['type' => 'news', 'name' => 'شراكات وتوريد', 'slug' => 'partnerships', 'order' => 2],
+            ['type' => 'news', 'name' => 'أخبار الوكالات والمنتجات', 'slug' => 'agencies', 'order' => 1],
+            ['type' => 'news', 'name' => 'أخبار المشاريع', 'slug' => 'projects', 'order' => 2],
             ['type' => 'news', 'name' => 'إنجازات وفعاليات', 'slug' => 'achievements', 'order' => 3],
         ];
 

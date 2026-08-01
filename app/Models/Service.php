@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Service extends Model
 {
-    protected $fillable = ['title', 'dept', 'description', 'icon', 'image', 'features', 'order', 'is_active'];
+    protected $fillable = ['title', 'dept', 'group', 'description', 'icon', 'image', 'features', 'order', 'is_active'];
 
     protected $casts = [
         'features' => 'array',

@@ -15,7 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        // The public forms post via fetch(); without expectsJson() here a failed
+        // validation returns an HTML redirect and the form can only show a
+        // generic error instead of naming the offending field.
         $exceptions->shouldRenderJsonWhen(
-            fn (Request $request) => $request->is('api/*'),
+            fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
     })->create();

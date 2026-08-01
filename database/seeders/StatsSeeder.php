@@ -13,14 +13,12 @@ class StatsSeeder extends Seeder
     public function run(): void
     {
         $stats = [
-            ['value' => '+45', 'label' => 'عاماً من الخبرة', 'order' => 1, 'is_active' => true],
-            ['value' => '15+', 'label' => 'شراكة عالمية', 'order' => 2, 'is_active' => true],
-            ['value' => '+5', 'label' => 'أقسام متخصصة', 'order' => 3, 'is_active' => true],
-            ['value' => '+15', 'label' => 'سنة خبرة', 'order' => 4, 'is_active' => true],
-            ['value' => '+50', 'label' => 'مشروع منجز', 'order' => 5, 'is_active' => true],
-            ['value' => '+1000', 'label' => 'عميل سعيد', 'order' => 6, 'is_active' => true],
-            ['value' => '100%', 'label' => 'نسبة رضا عملائنا', 'order' => 7, 'is_active' => true],
-            ['value' => '+10M', 'label' => 'لتر مياه معالج يومياً', 'order' => 8, 'is_active' => true],
+            ['value' => '+47', 'label' => 'عاماً من الخبرة', 'order' => 1, 'is_active' => true],
+            ['value' => '+20', 'label' => 'وكالة وعلامة عالمية', 'order' => 2, 'is_active' => true],
+            ['value' => '5', 'label' => 'قطاعات متخصصة', 'order' => 3, 'is_active' => true],
+            ['value' => '3', 'label' => 'فروع وصالات عرض', 'order' => 4, 'is_active' => true],
+            ['value' => '+1000', 'label' => 'عميل وشريك', 'order' => 5, 'is_active' => true],
+            ['value' => '100%', 'label' => 'التزام بالجودة', 'order' => 6, 'is_active' => true],
         ];
 
         foreach ($stats as $s) {

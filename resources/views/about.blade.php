@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'قصة شورى | مجموعة شورى')
-@section('description', 'قصة مجموعة شورى — مسيرة من النمو والريادة في مجال المياه والمسابح والمقاولات في سوريا.')
+@section('title', 'من نحن | شورى إخوان')
+@section('description', 'قصة شورى إخوان منذ تأسيسها في دمشق عام 1978 وحتى تحوّلها إلى مجموعة قطاعات هندسية متخصصة.')
 
 @section('content')
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'قصتنا',
-        'eyebrow' => 'مسيرتنا منذ الانطلاقة',
-        'title'   => 'قصة شورى',
-        'desc'    => 'من فكرة طموحة إلى مجموعة شركات رائدة؛ هذه رحلة شورى في بناء الثقة وتقديم الحلول المتكاملة لخدمة سوريا وأهلها.',
+        'current' => 'من نحن',
+        'eyebrow' => 'مسيرتنا منذ عام 1978',
+        'title'   => 'من نحن',
+        'desc'    => $about_subtitle,
     ])
 
     {{-- ===== OVERVIEW ===== --}}
@@ -29,7 +29,8 @@
             <div class="reveal" style="transition-delay:.15s">
                 <div class="relative">
                     <div class="absolute -inset-3 rounded-[2rem] bg-brand/10 blur-2xl"></div>
-                    <img src="{{ str_starts_with($story_overview_image, 'images/') ? asset($story_overview_image) : asset('storage/' . $story_overview_image) }}" alt="مجموعة شورى"
+                    <img src="{{ str_starts_with($story_overview_image, 'images/') ? asset($story_overview_image) : asset('storage/' . $story_overview_image) }}"
+                         alt="شورى إخوان"
                          class="relative w-full h-[360px] lg:h-[440px] object-cover rounded-[2rem] shadow-2xl">
                 </div>
             </div>
@@ -44,7 +45,7 @@
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-16 reveal">
                 <span class="inline-block text-brand font-bold text-sm mb-3">محطات في الطريق</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">خط زمن المجموعة</h2>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">خط زمن شورى إخوان</h2>
             </div>
 
             <div class="relative max-w-5xl mx-auto">
@@ -80,10 +81,10 @@
     {{-- ===== VALUES ===== --}}
     @php
         $values = [
-            ['title' => 'الجودة', 'desc' => 'نلتزم بأعلى المعايير في كل تفصيل من عملنا.', 'icon' => 'M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
-            ['title' => 'الثقة', 'desc' => 'نبني علاقات طويلة الأمد قائمة على الصدق والوفاء.', 'icon' => 'M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z'],
-            ['title' => 'الاحترافية', 'desc' => 'فريق مؤهّل يعمل بانضباط والتزام بالمواعيد.', 'icon' => 'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1'],
-            ['title' => 'الاستدامة', 'desc' => 'نمو مسؤول يراعي البيئة ومستقبل المجتمع.', 'icon' => 'M12 3c-3.5 4-6 7.2-6 10.5a6 6 0 0 0 12 0C18 10.2 15.5 7 12 3Z'],
+            ['title' => 'الجودة', 'desc' => 'منتجات عالمية الجودة من وكالات معتمدة، لا نساوم عليها في أي مشروع.', 'icon' => 'M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
+            ['title' => 'الموثوقية', 'desc' => 'ضمان حقيقي مدعوم بقطع الغيار الأصلية وخدمات ما بعد البيع.', 'icon' => 'M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z'],
+            ['title' => 'الخبرة الهندسية', 'desc' => 'فريق مهندسين متخصص في دراسة أعقد دفاتر الشروط والمناقصات.', 'icon' => 'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1'],
+            ['title' => 'الاستمرارية', 'desc' => 'حلول تضمن استمرارية عمل عملائنا في أقسى الظروف التشغيلية.', 'icon' => 'M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
         ];
     @endphp
     <section class="py-20 lg:py-28 bg-white">
@@ -112,13 +113,11 @@
         <div class="pointer-events-none absolute inset-0 opacity-[0.05]"
              style="background-image:url('{{ asset('images/pattern.svg') }}'); background-size:120px;"></div>
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            @foreach ($stats->whereIn('id', [4, 5, 3, 6]) as $stat)
-                @if($stat)
-                    <div class="reveal">
-                        <div class="text-4xl sm:text-5xl font-black text-brand mb-2">{{ $stat->value }}</div>
-                        <div class="text-white/70 text-sm">{{ $stat->label }}</div>
-                    </div>
-                @endif
+            @foreach ($stats->take(4) as $stat)
+                <div class="reveal">
+                    <div class="text-4xl sm:text-5xl font-black text-brand mb-2">{{ $stat->value }}</div>
+                    <div class="text-white/70 text-sm">{{ $stat->label }}</div>
+                </div>
             @endforeach
         </div>
     </section>
@@ -127,14 +126,14 @@
     <section class="py-20 bg-white">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center reveal">
             <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-4">هل تريد أن تكون جزءاً من قصتنا القادمة؟</h2>
-            <p class="text-[#4b4b4b] mb-8">تواصل مع فريق مجموعة شورى لنبدأ مشروعك القادم معاً.</p>
+            <p class="text-[#4b4b4b] mb-8">تواصل مع فريق شورى إخوان لنبدأ مشروعك القادم معاً.</p>
             <div class="flex flex-wrap items-center justify-center gap-4">
-                <a href="{{ url('/') }}#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-lg font-bold transition-colors">
+                <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-lg font-bold transition-colors">
                     تواصل معنا
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
-                <a href="{{ url('/') }}#companies" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-lg font-bold transition-colors">
-                    تعرّف على شركاتنا
+                <a href="{{ url('/sectors') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-lg font-bold transition-colors">
+                    تعرّف على قطاعاتنا
                 </a>
             </div>
         </div>

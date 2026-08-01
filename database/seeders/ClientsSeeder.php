@@ -20,6 +20,8 @@ class ClientsSeeder extends Seeder
             ['name' => 'الصندوق السيادي السوري', 'logo' => 'images/clients/sovereign-fund.png', 'order' => 5, 'is_active' => true],
             ['name' => 'المؤسسة السورية للمخابز', 'logo' => 'images/clients/bakeries.jpg', 'order' => 6, 'is_active' => true],
             ['name' => 'مؤسسة مياه درعا', 'logo' => 'images/clients/daraa-water.jpg', 'order' => 7, 'is_active' => true],
+            // شعار غير متوفر بعد — يُعرض كبطاقة نصية حتى رفع الشعار من لوحة الإدارة
+            ['name' => 'المؤسسة العامة للكهرباء', 'logo' => null, 'order' => 8, 'is_active' => true],
         ];
 
         foreach ($clients as $c) {

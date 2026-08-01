@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $article->title . ' | مجموعة شورى')
+@section('title', $article->title . ' | شورى إخوان')
 @section('description', $article->excerpt)
 
 @section('content')

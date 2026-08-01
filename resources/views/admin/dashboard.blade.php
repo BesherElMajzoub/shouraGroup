@@ -7,16 +7,27 @@
 
     <!-- Metrics Cards Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <!-- services count card -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-black/5 flex items-center justify-between">
+        <!-- sectors count card -->
+        <a href="{{ route('admin.sectors.index') }}" class="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-black/5 flex items-center justify-between hover:shadow-md transition-shadow">
             <div>
-                <span class="text-xs font-bold text-gray-500 block mb-1">الخدمات النشطة</span>
-                <span class="text-2xl font-black text-gray-900">{{ $servicesCount }}</span>
+                <span class="text-xs font-bold text-gray-500 block mb-1">قطاعات العمل</span>
+                <span class="text-2xl font-black text-gray-900">{{ $sectorsCount }}</span>
             </div>
             <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl grid place-items-center">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 0V21m0-4.5h4.5m10.5-3V3.75m0 13.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 0V21m0-4.5H12m0-3V3.75m0 10.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 0V21m0-4.5h4.5M3 7.5h18"/></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25Z"/></svg>
             </div>
-        </div>
+        </a>
+
+        <!-- brands count card -->
+        <a href="{{ route('admin.brands.index') }}" class="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-black/5 flex items-center justify-between hover:shadow-md transition-shadow">
+            <div>
+                <span class="text-xs font-bold text-gray-500 block mb-1">العلامات التجارية</span>
+                <span class="text-2xl font-black text-gray-900">{{ $brandsCount }}</span>
+            </div>
+            <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl grid place-items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581a1.44 1.44 0 0 0 2.037 0l4.318-4.318a1.44 1.44 0 0 0 0-2.037L11.159 3.659A2.25 2.25 0 0 0 9.568 3Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 7.5h.008v.008H6V7.5Z"/></svg>
+            </div>
+        </a>
 
         <!-- projects count card -->
         <div class="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-black/5 flex items-center justify-between">
@@ -41,7 +52,7 @@
         </div>
 
         <!-- unread messages count card -->
-        <div class="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-black/5 flex items-center justify-between">
+        <a href="{{ route('admin.messages.index') }}" class="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-black/5 flex items-center justify-between hover:shadow-md transition-shadow">
             <div>
                 <span class="text-xs font-bold text-gray-500 block mb-1">رسائل جديدة</span>
                 <span class="text-2xl font-black text-brand">{{ $unreadMessagesCount }}</span>
@@ -49,7 +60,30 @@
             <div class="w-12 h-12 bg-red-50 text-[#e11d26] rounded-xl grid place-items-center">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
             </div>
-        </div>
+        </a>
+    </div>
+
+    <!-- Inbox shortcuts -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+        <a href="{{ route('admin.wholesale.index') }}" class="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-black/5 flex items-center justify-between hover:shadow-md transition-shadow">
+            <div>
+                <span class="text-xs font-bold text-gray-500 block mb-1">طلبات مبيعات الجملة الجديدة</span>
+                <span class="text-2xl font-black {{ $unreadWholesaleCount ? 'text-brand' : 'text-gray-900' }}">{{ $unreadWholesaleCount }}</span>
+            </div>
+            <div class="w-12 h-12 bg-green-50 text-green-600 rounded-xl grid place-items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9l1.5-4.5A1 1 0 0 1 5.45 4h13.1a1 1 0 0 1 .95.5L21 9M3 9h18M3 9v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9M9 13h6"/></svg>
+            </div>
+        </a>
+
+        <a href="{{ route('admin.applications.index') }}" class="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-black/5 flex items-center justify-between hover:shadow-md transition-shadow">
+            <div>
+                <span class="text-xs font-bold text-gray-500 block mb-1">طلبات التوظيف الجديدة</span>
+                <span class="text-2xl font-black {{ $unreadApplicationsCount ? 'text-brand' : 'text-gray-900' }}">{{ $unreadApplicationsCount }}</span>
+            </div>
+            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl grid place-items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a7.5 7.5 0 0 1 15 0M18 13.5v4.5m2.25-2.25h-4.5"/></svg>
+            </div>
+        </a>
     </div>
 
     <!-- Recent Messages Table -->

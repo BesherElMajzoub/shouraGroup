@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
             ServicesSeeder::class,
             ClientsSeeder::class,
             TimelineNodesSeeder::class,
+            BranchesSeeder::class,
+            SectorsSeeder::class,
+            BrandsSeeder::class, // must run after SectorsSeeder — links brands to sectors
             CategoriesSeeder::class,
             ProjectsSeeder::class,
             NewsSeeder::class,
