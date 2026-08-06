@@ -7,15 +7,24 @@
     {{-- ============ HERO ============ --}}
     @php
         $chips = [
-            ['label' => 'مجموعات التوليد',   'top' => 6,  'left' => 10, 'size' => 5.5, 'r' => -8, 'd' => 0.0],
-            ['label' => 'مضخات المياه',      'top' => 14, 'left' => 78, 'size' => 6,   'r' => 6,  'd' => 0.6],
-            ['label' => 'ضواغط الهواء',      'top' => 2,  'left' => 44, 'size' => 4.5, 'r' => 4,  'd' => 1.2],
-            ['label' => 'غازات طبية',        'top' => 40, 'left' => 4,  'size' => 5,   'r' => 10, 'd' => 0.3],
-            ['label' => 'تجهيزات كهربائية',  'top' => 46, 'left' => 88, 'size' => 4.5, 'r' => -6, 'd' => 0.9],
-            ['label' => 'عُدد صناعية',       'top' => 70, 'left' => 14, 'size' => 4,   'r' => -12,'d' => 1.5],
-            ['label' => 'تطوير عقاري',       'top' => 76, 'left' => 70, 'size' => 5,   'r' => 8,  'd' => 0.4],
-            ['label' => 'قطاع عام',          'top' => 24, 'left' => 26, 'size' => 4,   'r' => 12, 'd' => 1.1],
-            ['label' => 'منذ عام 1978',      'top' => 30, 'left' => 62, 'size' => 4.5, 'r' => -10,'d' => 0.7],
+            ['label' => 'مجموعات التوليد',   'top' => 6,  'left' => 10, 'size' => 6,   'r' => -8, 'd' => 0.0,
+                'image' => 'images/hero/Shora Generators Services.PNG'],
+            ['label' => 'مضخات المياه',      'top' => 14, 'left' => 78, 'size' => 6.5, 'r' => 6,  'd' => 0.6,
+                'image' => 'images/hero/Shora Water pumps.PNG'],
+            ['label' => 'ضواغط الهواء',      'top' => 2,  'left' => 44, 'size' => 5.5, 'r' => 4,  'd' => 1.2,
+                'image' => 'images/hero/compressors.png'],
+            ['label' => 'غازات طبية',        'top' => 40, 'left' => 4,  'size' => 5.5, 'r' => 10, 'd' => 0.3,
+                'image' => 'images/hero/shora_medical.png'],
+            ['label' => 'تجهيزات كهربائية',  'top' => 46, 'left' => 88, 'size' => 5,   'r' => -6, 'd' => 0.9,
+                'image' => 'images/brands/bbc.svg'],
+            ['label' => 'عُدد صناعية',       'top' => 70, 'left' => 14, 'size' => 4.5, 'r' => -12,'d' => 1.5,
+                'image' => 'images/brands/keyang.svg'],
+            ['label' => 'تطوير عقاري',       'top' => 76, 'left' => 70, 'size' => 5,   'r' => 8,  'd' => 0.4,
+                'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M5.25 21V7.5l6.75-4.5 6.75 4.5V21M9.75 21v-5.25h4.5V21M9.75 11.25h.008M14.25 11.25h.008M9.75 14.25h.008M14.25 14.25h.008"/>'],
+            ['label' => 'وكالات عالمية',      'top' => 24, 'left' => 26, 'size' => 5,   'r' => 12, 'd' => 1.1,
+                'image' => 'images/brands/FPT_Logo_Red.png'],
+            ['label' => 'منذ عام 1978',      'top' => 30, 'left' => 62, 'size' => 5,   'r' => -10,'d' => 0.7,
+                'image' => 'images/hero/Shora Group Logo Offical Without BG.png'],
         ];
     @endphp
     <section id="hero" class="relative overflow-hidden bg-gradient-to-b from-brand-light/60 to-white scroll-mt-24">
@@ -24,15 +33,22 @@
 
         <div class="hidden lg:block absolute inset-0 pointer-events-none">
             @foreach ($chips as $c)
-                <div class="absolute anim-float"
+                <div class="absolute anim-float pointer-events-auto"
                      style="top:{{ $c['top'] }}%; left:{{ $c['left'] }}%; --r:{{ $c['r'] }}deg;
                             width:{{ $c['size'] }}rem; height:{{ $c['size'] }}rem;
                             animation-delay:{{ $c['d'] }}s; transform:rotate({{ $c['r'] }}deg);">
-                    <div class="w-full h-full rounded-2xl bg-white shadow-lg ring-1 ring-black/5 grid place-items-center
-                                grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition">
-                        <span class="grid place-items-center w-2/3 h-2/3 rounded-full bg-brand-light text-brand font-black text-xl">ش</span>
+                    <div class="w-full h-full rounded-2xl bg-white shadow-xl ring-1 ring-black/5 p-3.5 grid place-items-center
+                                opacity-90 hover:opacity-100 hover:scale-110 hover:shadow-2xl transition-all duration-300">
+                        @if (!empty($c['image']))
+                            <img src="{{ asset($c['image']) }}" alt="{{ $c['label'] }}"
+                                 class="max-h-full max-w-full object-contain">
+                        @else
+                            <span class="grid place-items-center w-full h-full rounded-full bg-brand-light text-brand">
+                                <svg class="w-2/3 h-2/3" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">{!! $c['icon'] !!}</svg>
+                            </span>
+                        @endif
                     </div>
-                    <span class="block mt-1 text-center text-[10px] font-bold text-[#141414]/40">{{ $c['label'] }}</span>
+                    <span class="block mt-1.5 text-center text-[11px] font-extrabold text-[#141414]/70 bg-white/80 backdrop-blur-sm rounded-full px-2 py-0.5 shadow-sm mx-auto w-fit">{{ $c['label'] }}</span>
                 </div>
             @endforeach
         </div>
@@ -41,7 +57,7 @@
             <div class="flex flex-col items-center text-center">
                 <div class="relative mb-8 anim-pop">
                     <div class="absolute -inset-8 rounded-full bg-brand/20 blur-3xl anim-glow"></div>
-                    <img src="{{ asset('images/shora-logo.svg') }}" alt="شورى إخوان"
+                    <img src="{{ asset('images/hero/Shora Group Logo Offical Without BG.png') }}" alt="شورى إخوان"
                          class="relative h-28 sm:h-40 w-auto drop-shadow-sm anim-float">
                 </div>
 
@@ -66,8 +82,14 @@
             <div class="lg:hidden flex flex-wrap items-center justify-center gap-3 mt-12">
                 @foreach ($chips as $c)
                     <div class="flex items-center gap-2 bg-white rounded-xl shadow-sm ring-1 ring-black/5 px-3 py-2">
-                        <span class="grid place-items-center w-7 h-7 rounded-full bg-brand-light text-brand font-black text-xs">ش</span>
-                        <span class="text-xs font-bold text-[#141414]/60">{{ $c['label'] }}</span>
+                        @if (!empty($c['image']))
+                            <img src="{{ asset($c['image']) }}" alt="{{ $c['label'] }}" class="w-7 h-7 object-contain">
+                        @else
+                            <span class="grid place-items-center w-7 h-7 rounded-full bg-brand-light text-brand">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">{!! $c['icon'] !!}</svg>
+                            </span>
+                        @endif
+                        <span class="text-xs font-bold text-[#141414]/70">{{ $c['label'] }}</span>
                     </div>
                 @endforeach
             </div>
@@ -275,16 +297,15 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                     @foreach ($brands as $b)
                         <a href="{{ url('/brands') }}#{{ $b->slug }}"
-                           class="group h-24 rounded-2xl bg-white/[0.06] ring-1 ring-white/10 hover:bg-white hover:ring-white
+                           class="group h-24 rounded-2xl bg-white shadow-md ring-1 ring-black/5 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02]
                                   grid place-items-center px-4 transition-all duration-300" title="{{ $b->name }}">
                             @if ($b->logo_url)
                                 <img src="{{ $b->logo_url }}" alt="{{ $b->name }}"
                                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                     class="max-h-12 max-w-[80%] object-contain brightness-0 invert opacity-70
-                                            group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition">
-                                <span style="display:none" class="items-center justify-center text-center font-black text-sm text-white/70 group-hover:text-[#141414] transition-colors">{{ $b->name }}</span>
+                                     class="max-h-12 max-w-[82%] object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300">
+                                <span style="display:none" class="items-center justify-center text-center font-black text-sm text-[#141414] group-hover:text-brand transition-colors">{{ $b->name }}</span>
                             @else
-                                <span class="flex items-center justify-center text-center font-black text-sm text-white/70 group-hover:text-[#141414] transition-colors">{{ $b->name }}</span>
+                                <span class="flex items-center justify-center text-center font-black text-sm text-[#141414] group-hover:text-brand transition-colors">{{ $b->name }}</span>
                             @endif
                         </a>
                     @endforeach
@@ -331,7 +352,7 @@
 
                 <div class="lg:col-span-8 reveal">
                     <div id="clientsTrack" class="clients-track flex gap-5 pb-2" style="overflow-x:auto; scroll-behavior:smooth;">
-                        @foreach ($clients as $c)
+                        @foreach ($clients->concat($clients) as $c)
                             <div class="group shrink-0 w-40 sm:w-48 bg-white rounded-2xl ring-1 ring-black/5 shadow-sm
                                         hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                 <div class="relative h-32 flex items-center justify-center px-5">
@@ -468,10 +489,38 @@
     (function () {
         const track = document.getElementById('clientsTrack');
         if (!track) return;
-        const step = 250;
-        // في RTL نعكس اتجاه الأسهم لتطابق الشكل البصري
-        document.getElementById('clientsPrev')?.addEventListener('click', () => track.scrollBy({ left: step, behavior: 'smooth' }));
-        document.getElementById('clientsNext')?.addEventListener('click', () => track.scrollBy({ left: -step, behavior: 'smooth' }));
+
+        let isHovered = false;
+        let animId = null;
+        const speed = 0.8;
+
+        function autoScroll() {
+            if (!isHovered) {
+                // In RTL mode, scrollLeft can be negative or decreasing
+                const maxScroll = (track.scrollWidth / 2);
+                if (Math.abs(track.scrollLeft) >= maxScroll - 5) {
+                    track.scrollLeft = 0;
+                } else {
+                    track.scrollLeft -= speed;
+                }
+            }
+            animId = requestAnimationFrame(autoScroll);
+        }
+
+        track.addEventListener('mouseenter', () => { isHovered = true; });
+        track.addEventListener('mouseleave', () => { isHovered = false; });
+        track.addEventListener('touchstart', () => { isHovered = true; }, { passive: true });
+        track.addEventListener('touchend', () => { isHovered = false; }, { passive: true });
+
+        const manualStep = 240;
+        document.getElementById('clientsPrev')?.addEventListener('click', () => {
+            track.scrollBy({ left: manualStep, behavior: 'smooth' });
+        });
+        document.getElementById('clientsNext')?.addEventListener('click', () => {
+            track.scrollBy({ left: -manualStep, behavior: 'smooth' });
+        });
+
+        animId = requestAnimationFrame(autoScroll);
     })();
 </script>
 @endpush

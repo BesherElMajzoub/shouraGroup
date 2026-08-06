@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100" width="320" height="100">
+  <rect width="100%" height="100%" fill="none"/>
+  <g transform="translate(15, 20)">
+    <!-- Water impeller / pump icon -->
+    <circle cx="35" cy="30" r="24" fill="#00529b"/>
+    <path d="M35 12 C45 20 40 30 35 30 C30 30 25 20 35 12 Z" fill="#ffffff"/>
+    <path d="M35 48 C25 40 30 30 35 30 C40 30 45 40 35 48 Z" fill="#ffffff"/>
+    <path d="M17 30 C25 20 35 25 35 30 C35 35 25 40 17 30 Z" fill="#ffffff"/>
+    <path d="M53 30 C45 40 35 35 35 30 C35 25 45 20 53 30 Z" fill="#ffffff"/>
+    <circle cx="35" cy="30" r="6" fill="#00529b"/>
+    
+    <!-- PANELLI text -->
+    <text x="75" y="42" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="34" fill="#00529b" letter-spacing="2">PANELLI</text>
+    <text x="76" y="58" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="11" fill="#4b4b4b" letter-spacing="4">WATER PUMPS</text>
+  </g>
+</svg>
