@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect root to public/
+    RewriteRule ^$ public/index.php [L]
+
+    # Rewrite all requests to public/ folder if not already there
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Protect sensitive files from being accessed directly
+<FilesMatch "^(\.env|\.git|composer\.(json|lock)|artisan)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
