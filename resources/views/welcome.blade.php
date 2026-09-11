@@ -123,8 +123,10 @@
 
             <div class="reveal" style="transition-delay:.15s">
                 <div class="grid grid-cols-2 gap-4">
-                    <img src="{{ asset('images/about_skyscrapers.png') }}" alt="" class="col-span-2 w-full h-56 object-cover rounded-2xl shadow-lg">
-                    <img src="{{ asset('images/industrial_bg.png') }}" alt="" class="w-full h-40 object-cover rounded-2xl shadow-lg">
+                    <img src="{{ str_starts_with($home_about_main_image, 'images/') ? asset($home_about_main_image) : asset('storage/' . $home_about_main_image) }}"
+                         alt="مجموعة شورى إخوان" class="col-span-2 w-full h-56 object-cover rounded-2xl shadow-lg">
+                    <img src="{{ str_starts_with($home_about_secondary_image, 'images/') ? asset($home_about_secondary_image) : asset('storage/' . $home_about_secondary_image) }}"
+                         alt="أعمال مجموعة شورى إخوان" class="w-full h-40 object-cover rounded-2xl shadow-lg">
                     <div class="w-full h-40 rounded-2xl bg-brand grid place-items-center shadow-lg">
                         <img src="{{ asset('images/shora-logo.svg') }}" alt="شورى إخوان" class="h-16 w-auto brightness-0 invert">
                     </div>

@@ -25,6 +25,16 @@ class SettingsSeeder extends Seeder
                 'group' => 'home',
             ],
             [
+                'key' => 'home_about_main_image',
+                'value' => 'images/about_skyscrapers.png',
+                'group' => 'home',
+            ],
+            [
+                'key' => 'home_about_secondary_image',
+                'value' => 'images/industrial_bg.png',
+                'group' => 'home',
+            ],
+            [
                 'key' => 'vision_text',
                 'value' => "تحقيق الريادة في تقديم حلول هندسية متكاملة في قطاعات الطاقة والمياه على مستوى سوريا والمنطقة.",
                 'group' => 'home',

@@ -23,6 +23,8 @@ class PageController extends Controller
         return view('welcome', [
             'about_subtitle' => setting('about_subtitle'),
             'about_body' => setting('about_body'),
+            'home_about_main_image' => setting('home_about_main_image', 'images/about_skyscrapers.png'),
+            'home_about_secondary_image' => setting('home_about_secondary_image', 'images/industrial_bg.png'),
             'vision_text' => setting('vision_text'),
             'mission_text' => setting('mission_text'),
             'partners_intro' => setting('partners_intro'),

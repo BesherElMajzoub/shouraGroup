@@ -9,6 +9,10 @@
         $field = 'w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all';
         $label = 'block text-xs font-bold text-gray-700 mb-2';
         $card = 'bg-white rounded-2xl shadow-sm ring-1 ring-black/5 p-6 md:p-8 space-y-6 text-right';
+        $homeAboutImages = [
+            ['home_about_main_image', 'الصورة الكبيرة لقسم «من نحن»', 'images/about_skyscrapers.png'],
+            ['home_about_secondary_image', 'الصورة الصغيرة لقسم «من نحن»', 'images/industrial_bg.png'],
+        ];
     @endphp
 
     <div class="max-w-4xl mx-auto">
@@ -30,6 +34,22 @@
                     <textarea id="about_body" name="about_body" rows="7" required class="{{ $field }} resize-none">{{ old('about_body', $settings['about_body'] ?? '') }}</textarea>
                     <p class="text-[11px] text-gray-400 mt-1.5">افصل بين كل فقرة والأخرى بسطر فارغ.</p>
                 </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    @foreach ($homeAboutImages as [$key, $imageLabel, $defaultImage])
+                        @php($imagePath = $settings[$key] ?? $defaultImage)
+                        <div>
+                            <label for="{{ $key }}" class="{{ $label }}">{{ $imageLabel }}</label>
+                            <div class="h-32 w-full rounded-xl overflow-hidden shadow-sm ring-1 ring-black/5 bg-gray-50 mb-3">
+                                <img src="{{ str_starts_with($imagePath, 'images/') ? asset($imagePath) : asset('storage/' . $imagePath) }}"
+                                     alt="" class="w-full h-full object-cover">
+                            </div>
+                            <input type="file" id="{{ $key }}" name="{{ $key }}" accept="image/*"
+                                   class="w-full text-xs text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
+                        </div>
+                    @endforeach
+                </div>
+                <p class="text-[10px] text-gray-400 -mt-3">الصيغ المدعومة: PNG, JPG, JPEG, GIF — بحد أقصى 2 ميغابايت لكل صورة.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>

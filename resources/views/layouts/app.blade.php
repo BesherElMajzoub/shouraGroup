@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,14 +60,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
-            body { font-family: "Tajawal", system-ui, sans-serif; }
+            body { font-family: {{ app()->getLocale() === 'ar' ? '"Tajawal"' : '"Inter"' }}, system-ui, sans-serif; }
             .text-brand { color:#e11d26 } .bg-brand{ background-color:#e11d26 }
             .bg-brand-dark{ background-color:#b3141b } .border-brand{ border-color:#e11d26 }
             .from-brand-light\/60 { --tw-gradient-from:#fbe9ea99 }
@@ -128,7 +128,7 @@
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 flex items-center justify-between h-20">
             <a href="{{ $home }}" class="flex items-center shrink-0">
-                <img src="{{ asset('images/shora-logo.svg') }}" alt="شورى إخوان" class="h-12 w-auto">
+                <img src="{{ asset('images/shora-logo.png') }}" alt="شورى إخوان" class="h-12 w-auto">
             </a>
 
             <ul class="hidden lg:flex items-center gap-4 xl:gap-6 text-[13.5px] xl:text-[15px] font-medium text-[#141414] whitespace-nowrap">
@@ -138,6 +138,12 @@
             </ul>
 
             <div class="flex items-center gap-3">
+                <a href="{{ route('language.switch', app()->getLocale() === 'ar' ? 'en' : 'ar') }}"
+                   class="inline-flex items-center justify-center min-w-11 h-9 px-3 rounded-full border border-gray-200 text-xs font-black text-[#141414] hover:border-brand hover:text-brand transition-colors"
+                   aria-label="{{ app()->getLocale() === 'ar' ? 'Switch to English' : 'التبديل إلى العربية' }}"
+                   lang="{{ app()->getLocale() === 'ar' ? 'en' : 'ar' }}" dir="{{ app()->getLocale() === 'ar' ? 'ltr' : 'rtl' }}">
+                    {{ app()->getLocale() === 'ar' ? 'EN' : 'العربية' }}
+                </a>
                 <button id="menuBtn" class="lg:hidden p-2 -mr-2 text-[#141414]" aria-label="القائمة">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
                 </button>
@@ -152,6 +158,11 @@
                 <a href="{{ url('/wholesale') }}" class="block py-2 {{ request()->is('wholesale') ? 'text-brand' : '' }}">مبيعات الجملة</a>
             </li>
             <li><a href="{{ url('/careers') }}" class="block py-2 {{ request()->is('careers') ? 'text-brand' : '' }}">انضم إلى فريقنا</a></li>
+            <li class="pt-2 mt-1 border-t border-gray-100">
+                <a href="{{ route('language.switch', app()->getLocale() === 'ar' ? 'en' : 'ar') }}" class="block py-2 font-black" lang="{{ app()->getLocale() === 'ar' ? 'en' : 'ar' }}">
+                    {{ app()->getLocale() === 'ar' ? 'English' : 'العربية' }}
+                </a>
+            </li>
         </ul>
     </header>
 
@@ -182,7 +193,7 @@
 
     {{-- ============ FOOTER ============ --}}
     <footer id="contact" class="scroll-mt-24 bg-[#141414] text-white relative overflow-hidden">
-        <img src="{{ asset('images/shora-logo.svg') }}" alt=""
+        <img src="{{ asset('images/shora-logo.png') }}" alt=""
              class="pointer-events-none absolute -left-20 -top-16 w-[28rem] opacity-[0.04] brightness-0 invert">
 
         <div class="relative border-b border-white/10">
@@ -219,7 +230,7 @@
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <div class="lg:col-span-1">
-                <img src="{{ asset('images/shora-logo.svg') }}" alt="شورى إخوان" class="h-14 w-auto brightness-0 invert mb-5">
+                <img src="{{ asset('images/shora-logo.png') }}" alt="شورى إخوان" class="h-14 w-auto brightness-0 invert mb-5">
                 <p class="text-white/60 text-sm leading-relaxed mb-5">
                     الشركة الرائدة في التوريدات الهندسية في سوريا منذ عام 1978 — حلول متكاملة في ضخ المياه، توليد الكهرباء، ضواغط الهواء، الغازات الطبية، والعدد الصناعية.
                 </p>

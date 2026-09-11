@@ -26,11 +26,21 @@ class HomeContentController extends Controller
     ];
 
     /**
+     * Image settings and their storage directories.
+     */
+    private const IMAGE_FIELDS = [
+        'home_about_main_image' => ['directory' => 'uploads/home/about', 'group' => 'home'],
+        'home_about_secondary_image' => ['directory' => 'uploads/home/about', 'group' => 'home'],
+        'story_overview_image' => ['directory' => 'uploads/story', 'group' => 'story'],
+    ];
+
+    /**
      * Display settings form.
      */
     public function index()
     {
         $settings = Setting::all()->pluck('value', 'key');
+
         return view('admin.settings.index', compact('settings'));
     }
 
@@ -42,6 +52,8 @@ class HomeContentController extends Controller
         $request->validate([
             'about_subtitle' => ['required', 'string', 'max:255'],
             'about_body' => ['required', 'string'],
+            'home_about_main_image' => ['nullable', 'image', 'max:2048'],
+            'home_about_secondary_image' => ['nullable', 'image', 'max:2048'],
             'vision_text' => ['required', 'string'],
             'mission_text' => ['required', 'string'],
             'partners_intro' => ['required', 'string'],
@@ -69,19 +81,27 @@ class HomeContentController extends Controller
             Setting::updateOrCreate(['key' => $key], ['value' => $request->input($key)]);
         }
 
-        if ($request->hasFile('story_overview_image')) {
-            // Delete old file if it exists and is not the seeded public image
-            $oldSetting = Setting::where('key', 'story_overview_image')->first();
-            if ($oldSetting && $oldSetting->value && ! str_starts_with($oldSetting->value, 'images/')) {
-                Storage::disk('public')->delete($oldSetting->value);
+        foreach (self::IMAGE_FIELDS as $key => $config) {
+            if (! $request->hasFile($key)) {
+                continue;
             }
 
-            $path = $request->file('story_overview_image')->store('uploads/story', 'public');
-            Setting::updateOrCreate(['key' => 'story_overview_image'], ['value' => $path]);
+            $oldPath = Setting::where('key', $key)->value('value');
+            $path = $request->file($key)->store($config['directory'], 'public');
+
+            Setting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $path, 'group' => $config['group']],
+            );
+
+            // Seeded images live under public/images and must not be deleted.
+            if ($oldPath && ! str_starts_with($oldPath, 'images/')) {
+                Storage::disk('public')->delete($oldPath);
+            }
         }
 
         // setting() caches forever, so the edited values need their entries dropped.
-        foreach ([...self::TEXT_KEYS, 'story_overview_image'] as $key) {
+        foreach ([...self::TEXT_KEYS, ...array_keys(self::IMAGE_FIELDS)] as $key) {
             Cache::forget("setting.{$key}");
         }
 

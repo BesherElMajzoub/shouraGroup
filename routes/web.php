@@ -7,6 +7,14 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\WholesaleController;
 
+Route::get('/language/{locale}', function (string $locale) {
+    abort_unless(in_array($locale, ['ar', 'en'], true), 404);
+
+    session(['locale' => $locale]);
+
+    return redirect()->back();
+})->name('language.switch');
+
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/sectors', [PageController::class, 'sectors'])->name('sectors');
