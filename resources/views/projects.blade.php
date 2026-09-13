@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'مشاريعنا | شورى إخوان')
-@section('description', 'سجل إنجازات شورى إخوان مع القطاعين العام والخاص والمنظمات الدولية — مجموعات التوليد، محطات الضخ، شبكات الغازات الطبية، والمعدات الصناعية.')
+@section('title', __('projects.meta_title'))
+@section('description', __('projects.meta_description'))
 
 @section('content')
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'مشاريعنا',
-        'eyebrow' => 'سجل حافل بالإنجازات',
-        'title'   => 'شركاء في بناء وتطوير البنية التحتية',
+        'current' => __('ui.nav.projects'),
+        'eyebrow' => __('projects.header_eyebrow'),
+        'title'   => __('projects.header_title'),
         'desc'    => $projects_intro,
     ])
 
@@ -22,7 +22,7 @@
                 <button type="button" 
                         onclick="filterProjects('all', this)" 
                         class="proj-btn px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-brand text-white shadow-lg shadow-brand/20">
-                    كل المشاريع
+                    {{ __('projects.filter_all') }}
                 </button>
                 {{-- التصنيفات الفارغة لا تُعرض حتى لا يصل الزائر إلى شبكة خالية --}}
                 @foreach ($categories->filter(fn ($c) => $projects->contains('category_id', $c->id)) as $f)
@@ -63,14 +63,14 @@
 
                         {{-- Details --}}
                         <div class="p-6">
-                            <div class="text-[11px] font-bold text-brand mb-1">الجهة المستفيدة: {{ $p->client }}</div>
+                            <div class="text-[11px] font-bold text-brand mb-1">{{ __('projects.client_label') }}: {{ $p->client }}</div>
                             <h3 class="text-xl font-bold text-[#141414] mb-3 leading-snug group-hover:text-brand transition-colors">{{ $p->title }}</h3>
                             <p class="text-[#4b4b4b] text-sm leading-relaxed mb-4 h-24 overflow-hidden line-clamp-4">{{ $p->description }}</p>
                             
                             <div class="border-t border-gray-100 pt-4 flex items-center justify-between">
                                 <a href="{{ url('/contact') }}?project={{ urlencode($p->title) }}" 
                                    class="inline-flex items-center gap-1 text-brand font-bold text-sm hover:gap-2 transition-all">
-                                    استفسر عن تفاصيل المشروع
+                                    {{ __('projects.inquire_link') }}
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                                 </a>
                             </div>
@@ -84,7 +84,7 @@
                     <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-light text-brand grid place-items-center mb-4">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>
                     </div>
-                    <p class="text-[#4b4b4b] font-bold">سيتم إضافة المشاريع قريباً</p>
+                    <p class="text-[#4b4b4b] font-bold">{{ __('projects.empty_state') }}</p>
                 </div>
             @endif
         </div>
@@ -110,15 +110,15 @@
     {{-- ===== CTA SECTION ===== --}}
     <section class="py-20 bg-white">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center reveal">
-            <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-4">هل ترغب في التعاون لتنفيذ مشروعك القادم؟</h2>
-            <p class="text-[#4b4b4b] mb-8 max-w-xl mx-auto">نحن نلتزم بتقديم دراسة هندسية وافية وحلول تمويلية وتنفيذية تضمن تحقيق أهدافك على أكمل وجه وبأفضل ميزانية.</p>
+            <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-4">{{ __('projects.cta.heading') }}</h2>
+            <p class="text-[#4b4b4b] mb-8 max-w-xl mx-auto">{{ __('projects.cta.paragraph') }}</p>
             <div class="flex flex-wrap items-center justify-center gap-4">
                 <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3.5 rounded-lg font-bold transition-colors">
-                    ابدأ مشروعك معنا
+                    {{ __('projects.cta.start_btn') }}
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
                 <a href="{{ url('/services') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-lg font-bold transition-colors">
-                    اطلع على كامل خدماتنا
+                    {{ __('projects.cta.services_btn') }}
                 </a>
             </div>
         </div>

@@ -16,13 +16,22 @@
             @method('PUT')
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Title -->
+                <!-- Title (Arabic) -->
                 <div>
-                    <label for="title" class="block text-xs font-bold text-gray-700 mb-2">عنوان الخبر</label>
-                    <input type="text" id="title" name="title" value="{{ old('title', $news->title) }}" required
+                    <label for="title_ar" class="block text-xs font-bold text-gray-700 mb-2">عنوان الخبر (عربي)</label>
+                    <input type="text" id="title_ar" name="title_ar" value="{{ old('title_ar', $news->title_ar) }}" required
                            class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
                 </div>
 
+                <!-- Title (English) -->
+                <div>
+                    <label for="title_en" class="block text-xs font-bold text-gray-700 mb-2">عنوان الخبر (إنجليزي — اختياري)</label>
+                    <input type="text" id="title_en" name="title_en" value="{{ old('title_en', $news->title_en) }}" dir="ltr"
+                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all text-left">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Category -->
                 <div>
                     <label for="category_id" class="block text-xs font-bold text-gray-700 mb-2">تصنيف الخبر</label>
@@ -36,36 +45,48 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Slug -->
                 <div>
                     <label for="slug" class="block text-xs font-bold text-gray-700 mb-2">الرابط الفريد (Slug - يترك فارغاً للتوليد التلقائي)</label>
                     <input type="text" id="slug" name="slug" value="{{ old('slug', $news->slug) }}" placeholder="news-slug-example"
                            class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all text-left" dir="ltr">
                 </div>
-
-                <!-- Published At -->
-                <div>
-                    <label for="published_at" class="block text-xs font-bold text-gray-700 mb-2">تاريخ النشر (اختياري)</label>
-                    <input type="date" id="published_at" name="published_at" value="{{ old('published_at', $news->published_at ? $news->published_at->format('Y-m-d') : '') }}"
-                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
-                </div>
             </div>
 
-            <!-- Excerpt -->
+            <!-- Published At -->
             <div>
-                <label for="excerpt" class="block text-xs font-bold text-gray-700 mb-2">ملخص الخبر (يظهر في القائمة العامة)</label>
-                <textarea id="excerpt" name="excerpt" rows="2" placeholder="اكتب ملخصاً قصيراً وجذاباً للخبر هنا..."
-                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-none">{{ old('excerpt', $news->excerpt) }}</textarea>
+                <label for="published_at" class="block text-xs font-bold text-gray-700 mb-2">تاريخ النشر (اختياري)</label>
+                <input type="date" id="published_at" name="published_at" value="{{ old('published_at', $news->published_at ? $news->published_at->format('Y-m-d') : '') }}"
+                       class="w-full md:w-1/2 bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
             </div>
 
-            <!-- Body -->
+            <!-- Excerpt (Arabic) -->
             <div>
-                <label for="body" class="block text-xs font-bold text-gray-700 mb-2">محتوى الخبر بالتفصيل</label>
-                <textarea id="body" name="body" rows="10" required placeholder="اكتب تفاصيل الخبر هنا، يمكنك استخدام الفقرات والسطور الجديدة..."
-                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-y">{{ old('body', $news->body) }}</textarea>
+                <label for="excerpt_ar" class="block text-xs font-bold text-gray-700 mb-2">ملخص الخبر (عربي — يظهر في القائمة العامة)</label>
+                <textarea id="excerpt_ar" name="excerpt_ar" rows="2" placeholder="اكتب ملخصاً قصيراً وجذاباً للخبر هنا..."
+                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-none">{{ old('excerpt_ar', $news->excerpt_ar) }}</textarea>
+            </div>
+
+            <!-- Excerpt (English) -->
+            <div>
+                <label for="excerpt_en" class="block text-xs font-bold text-gray-700 mb-2">ملخص الخبر (إنجليزي — اختياري)</label>
+                <textarea id="excerpt_en" name="excerpt_en" rows="2" dir="ltr" placeholder="Short, engaging summary in English..."
+                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-none text-left">{{ old('excerpt_en', $news->excerpt_en) }}</textarea>
+            </div>
+
+            <!-- Body (Arabic) -->
+            <div>
+                <label for="body_ar" class="block text-xs font-bold text-gray-700 mb-2">محتوى الخبر بالتفصيل (عربي)</label>
+                <textarea id="body_ar" name="body_ar" rows="10" required placeholder="اكتب تفاصيل الخبر هنا، يمكنك استخدام الفقرات والسطور الجديدة..."
+                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-y">{{ old('body_ar', $news->body_ar) }}</textarea>
+            </div>
+
+            <!-- Body (English) -->
+            <div>
+                <label for="body_en" class="block text-xs font-bold text-gray-700 mb-2">محتوى الخبر بالتفصيل (إنجليزي — اختياري)</label>
+                <textarea id="body_en" name="body_en" rows="10" dir="ltr" placeholder="Write the full article in English here..."
+                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-y text-left">{{ old('body_en', $news->body_en) }}</textarea>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'اتصل بنا | شورى إخوان')
-@section('description', 'تواصل مع شورى إخوان — فروع دمشق (المرجة والبرامكة) وحلب (باب النصر)، أرقام الهواتف، البريد الإلكتروني، ونموذج المراسلة المباشرة.')
+@section('title', __('contact.meta_title'))
+@section('description', __('contact.meta_description'))
 
 @section('content')
 
     @php
         // كل خدمة تحمل اسم قسمها المختص؛ نبني منها قائمة الأقسام دون تكرار
-        $departments = collect([['name' => 'استفسار عام', 'email' => $contact_email]])
+        $departments = collect([['name' => __('contact.general_inquiry'), 'email' => $contact_email]])
             ->merge(
                 $services->pluck('dept')->unique()->values()
                     ->map(fn ($dept) => ['name' => $dept, 'email' => $sales_email])
@@ -16,9 +16,9 @@
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'اتصل بنا',
-        'eyebrow' => 'نحن هنا لخدمتكم',
-        'title'   => 'تواصل معنا',
+        'current' => __('ui.nav.contact'),
+        'eyebrow' => __('contact.header.eyebrow'),
+        'title'   => __('contact.header.title'),
         'desc'    => $contact_intro,
     ])
 
@@ -26,8 +26,8 @@
     <section class="py-20 lg:py-24 bg-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">تواجدنا الجغرافي</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">فروعنا وصالات العرض</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('contact.branches.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">{{ __('contact.branches.heading') }}</h2>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -51,14 +51,14 @@
                             @if ($b->phone)
                                 <a href="tel:{{ preg_replace('/\s/', '', $b->phone) }}" class="flex items-center gap-2.5 text-[#4b4b4b] hover:text-brand transition-colors">
                                     <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
-                                    <span>هاتف: <span dir="ltr">{{ $b->phone }}</span></span>
+                                    <span>{{ __('contact.branches.phone_label') }}: <span dir="ltr">{{ $b->phone }}</span></span>
                                 </a>
                             @endif
 
                             @if ($b->mobile)
                                 <a href="tel:{{ preg_replace('/\s/', '', $b->mobile) }}" class="flex items-center gap-2.5 text-[#4b4b4b] hover:text-brand transition-colors">
                                     <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
-                                    <span>جوال: <span dir="ltr">{{ $b->mobile }}</span></span>
+                                    <span>{{ __('contact.branches.mobile_label') }}: <span dir="ltr">{{ $b->mobile }}</span></span>
                                 </a>
                             @endif
                         </div>
@@ -78,8 +78,8 @@
             {{-- معلومات التواصل المركزية --}}
             <div class="lg:col-span-5 space-y-6 text-right order-2 lg:order-1">
                 <div>
-                    <span class="inline-block text-brand font-bold text-sm mb-3">معلومات الاتصال المركزية</span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-[#141414]">لا تتردد في الاتصال بنا</h2>
+                    <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('contact.info.eyebrow') }}</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-[#141414]">{{ __('contact.info.heading') }}</h2>
                 </div>
 
                 <div class="flex items-start gap-4 p-5 rounded-2xl bg-white ring-1 ring-black/5">
@@ -87,7 +87,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
                     </span>
                     <div>
-                        <h3 class="text-base font-bold text-[#141414] mb-1">البريد الإلكتروني الرسمي</h3>
+                        <h3 class="text-base font-bold text-[#141414] mb-1">{{ __('contact.info.email_heading') }}</h3>
                         <a href="mailto:{{ $contact_email }}" class="text-sm text-[#4b4b4b] hover:text-brand transition-colors block" dir="ltr">{{ $contact_email }}</a>
                     </div>
                 </div>
@@ -97,10 +97,10 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-4.5A1 1 0 0 1 5.45 4h13.1a1 1 0 0 1 .95.5L21 9M3 9h18M3 9v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9"/></svg>
                     </span>
                     <div>
-                        <h3 class="text-base font-bold text-[#141414] mb-1">مبيعات الجملة والمشاريع</h3>
+                        <h3 class="text-base font-bold text-[#141414] mb-1">{{ __('contact.info.wholesale_heading') }}</h3>
                         <a href="mailto:{{ $sales_email }}" class="text-sm text-[#4b4b4b] hover:text-brand transition-colors block" dir="ltr">{{ $sales_email }}</a>
                         <a href="{{ url('/wholesale') }}" class="inline-flex items-center gap-1 text-sm text-brand font-bold mt-1.5 hover:gap-2 transition-all">
-                            صفحة مبيعات الجملة
+                            {{ __('contact.info.wholesale_link') }}
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                         </a>
                     </div>
@@ -111,7 +111,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
                     </span>
                     <div>
-                        <h3 class="text-base font-bold text-[#141414] mb-1">أوقات الدوام الرسمي</h3>
+                        <h3 class="text-base font-bold text-[#141414] mb-1">{{ __('contact.info.hours_heading') }}</h3>
                         <p class="text-sm text-[#4b4b4b]">{{ $working_hours }}</p>
                     </div>
                 </div>
@@ -119,15 +119,15 @@
 
             {{-- نموذج المراسلة --}}
             <div class="lg:col-span-7 order-1 lg:order-2 reveal bg-white p-7 sm:p-10 rounded-[2rem] shadow-lg ring-1 ring-black/5">
-                <span class="inline-block text-brand font-bold text-sm mb-3">راسلنا مباشرة</span>
-                <h2 class="text-2xl font-black text-[#141414] mb-8 text-right">أرسل رسالة سريعة</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('contact.form.eyebrow') }}</span>
+                <h2 class="text-2xl font-black text-[#141414] mb-8 text-right">{{ __('contact.form.heading') }}</h2>
 
                 <div id="formSuccess" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-right border border-green-200"></div>
                 <div id="formError" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-right border border-red-200"></div>
 
                 <form id="contactForm" class="space-y-6 text-right">
                     <div>
-                        <label for="department" class="block text-xs font-bold text-[#141414] mb-2">القسم المختص <span class="text-brand">*</span></label>
+                        <label for="department" class="block text-xs font-bold text-[#141414] mb-2">{{ __('contact.form.department_label') }} <span class="text-brand">*</span></label>
                         <div class="relative">
                             <select id="department" required
                                     style="-webkit-appearance:none; -moz-appearance:none; appearance:none;"
@@ -141,19 +141,19 @@
                         <div class="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-xl px-4 py-2.5 text-sm"
                              style="background:rgba(225,29,38,.05); border:1px solid rgba(225,29,38,.15);">
                             <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
-                            <span class="text-[#4b4b4b]">سيصل طلبك إلى بريد القسم:</span>
+                            <span class="text-[#4b4b4b]">{{ __('contact.form.department_note') }}</span>
                             <a id="deptEmailLink" href="#" class="font-bold text-brand hover:underline" dir="ltr"></a>
                         </div>
                     </div>
 
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-xs font-bold text-[#141414] mb-2">الاسم <span class="text-brand">*</span></label>
+                            <label for="name" class="block text-xs font-bold text-[#141414] mb-2">{{ __('contact.form.name_label') }} <span class="text-brand">*</span></label>
                             <input type="text" id="name" required
                                    class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                         </div>
                         <div>
-                            <label for="phone" class="block text-xs font-bold text-[#141414] mb-2">رقم الهاتف <span class="text-brand">*</span></label>
+                            <label for="phone" class="block text-xs font-bold text-[#141414] mb-2">{{ __('contact.form.phone_label') }} <span class="text-brand">*</span></label>
                             <input type="tel" id="phone" required placeholder="09xxxxxxxx" dir="ltr"
                                    class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] text-left focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                         </div>
@@ -161,19 +161,19 @@
 
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>
-                            <label for="email" class="block text-xs font-bold text-[#141414] mb-2">البريد الإلكتروني</label>
+                            <label for="email" class="block text-xs font-bold text-[#141414] mb-2">{{ __('contact.form.email_label') }}</label>
                             <input type="email" id="email" dir="ltr"
                                    class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] text-left focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                         </div>
                         <div>
-                            <label for="subject" class="block text-xs font-bold text-[#141414] mb-2">موضوع الرسالة <span class="text-brand">*</span></label>
+                            <label for="subject" class="block text-xs font-bold text-[#141414] mb-2">{{ __('contact.form.subject_label') }} <span class="text-brand">*</span></label>
                             <input type="text" id="subject" required
                                    class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                         </div>
                     </div>
 
                     <div>
-                        <label for="message" class="block text-xs font-bold text-[#141414] mb-2">نص الرسالة <span class="text-brand">*</span></label>
+                        <label for="message" class="block text-xs font-bold text-[#141414] mb-2">{{ __('contact.form.message_label') }} <span class="text-brand">*</span></label>
                         <textarea id="message" rows="5" required
                                   class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all resize-none"></textarea>
                     </div>
@@ -181,7 +181,7 @@
                     <div class="pt-2">
                         <button type="submit" id="submitBtn"
                                 class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
-                            إرسال الرسالة الآن
+                            {{ __('contact.form.submit_btn') }}
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                         </button>
                     </div>
@@ -194,8 +194,8 @@
     <section class="py-20 lg:py-24 bg-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">كيف تصل إلينا</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">مواقع فروعنا على الخريطة</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('contact.maps.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">{{ __('contact.maps.heading') }}</h2>
             </div>
 
             {{-- أزرار اختيار الفرع --}}
@@ -214,7 +214,7 @@
                     <iframe id="map-{{ $b->id }}"
                             class="map-frame w-full h-96 border-0 {{ $i === 0 ? '' : 'hidden' }}"
                             src="{{ $b->map_embed }}"
-                            title="خريطة {{ $b->name }}"
+                            title="{{ __('contact.maps.title', ['name' => $b->name]) }}"
                             allowfullscreen loading="lazy"></iframe>
                 @endforeach
             </div>
@@ -252,6 +252,15 @@
     const okBox    = document.getElementById('formSuccess');
     const errBox   = document.getElementById('formError');
     const original = btn.innerHTML;
+    const sendingText = @json(__('contact.js.sending'));
+    const serviceSubjectPrefix = @json(__('contact.js.service_subject_prefix'));
+    const serviceMessagePlaceholder = @json(__('contact.js.service_message_placeholder'));
+    const projectSubjectPrefix = @json(__('contact.js.project_subject_prefix'));
+    const projectMessagePlaceholder = @json(__('contact.js.project_message_placeholder'));
+    const successPrefix = @json(__('contact.js.success_prefix'));
+    const successSuffix = @json(__('contact.js.success_suffix'));
+    const errorDefault  = @json(__('contact.js.error_default'));
+    const mailBodyLabels = @json(__('contact.js.mail_body'));
 
     function updateDeptEmail() {
         deptLink.textContent = select.value;
@@ -277,11 +286,11 @@
         const subject = p.get('subject');
 
         if (service) {
-            subjectInput.value = 'استفسار حول خدمة: ' + service;
-            messageArea.placeholder = 'يرجى كتابة تفاصيل مشروعك أو الخدمة المطلوبة هنا...';
+            subjectInput.value = serviceSubjectPrefix + service;
+            messageArea.placeholder = serviceMessagePlaceholder;
         } else if (project) {
-            subjectInput.value = 'استعلام عن مشروع: ' + project;
-            messageArea.placeholder = 'أود معرفة تفاصيل فنية بخصوص هذا المشروع...';
+            subjectInput.value = projectSubjectPrefix + project;
+            messageArea.placeholder = projectMessagePlaceholder;
         } else if (subject) {
             subjectInput.value = subject;
         }
@@ -299,7 +308,7 @@
         const message = document.getElementById('message').value;
 
         btn.disabled = true;
-        btn.innerHTML = 'جاري الإرسال...';
+        btn.innerHTML = sendingText;
         errBox.classList.add('hidden');
 
         fetch('{{ route('contact.store') }}', {
@@ -323,16 +332,16 @@
             if (status === 422) throw new Error(firstError(body));
             if (!body.ok) throw new Error('');
 
-            okBox.innerHTML = 'شكراً لك! تم استلام رسالتك وتوجيهها إلى <span class="font-black">' + deptName + '</span>. سيقوم أحد مهندسينا بالتواصل معك في غضون 24 ساعة.';
+            okBox.innerHTML = successPrefix + '<span class="font-black">' + deptName + '</span>' + successSuffix;
             okBox.classList.remove('hidden');
             okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
             const body =
-                'الاسم: ' + name + '\n' +
-                'الهاتف: ' + phone + '\n' +
-                'البريد الإلكتروني: ' + (email || 'غير متوفر') + '\n' +
-                'القسم المختص: ' + deptName + '\n\n' +
-                'الرسالة:\n' + message;
+                mailBodyLabels.name + name + '\n' +
+                mailBodyLabels.phone + phone + '\n' +
+                mailBodyLabels.email + (email || mailBodyLabels.not_available) + '\n' +
+                mailBodyLabels.department + deptName + '\n\n' +
+                mailBodyLabels.message_heading + '\n' + message;
 
             window.location.href = 'mailto:' + deptEmail
                 + '?subject=' + encodeURIComponent(subject)
@@ -344,7 +353,7 @@
         .catch(err => {
             btn.disabled = false;
             btn.innerHTML = original;
-            errBox.textContent = err.message || 'عذراً، تعذّر إرسال الرسالة. يرجى المحاولة لاحقاً أو الاتصال بنا هاتفياً.';
+            errBox.textContent = err.message || errorDefault;
             errBox.classList.remove('hidden');
         });
     });

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $article->title . ' | شورى إخوان')
+@section('title', $article->title . ' | ' . __('ui.company.name'))
 @section('description', $article->excerpt)
 
 @section('content')
@@ -45,11 +45,11 @@
                 <div class="pt-8 border-t border-gray-100 flex flex-wrap gap-4 justify-between items-center">
                     <a href="{{ route('news') }}" class="inline-flex items-center gap-2 border-2 border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 px-6 py-2.5 rounded-xl font-bold transition-all text-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-                        العودة للأخبار
+                        {{ __('news_show.back_to_news') }}
                     </a>
 
-                    <a href="{{ url('/contact') }}?subject={{ urlencode('استفسار بخصوص خبر: ' . $article->title) }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-xl font-bold transition-all text-sm">
-                        تواصل معنا بخصوص هذا الخبر
+                    <a href="{{ url('/contact') }}?subject={{ urlencode(__('news_show.contact_subject_prefix') . $article->title) }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-xl font-bold transition-all text-sm">
+                        {{ __('news_show.contact_cta') }}
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                     </a>
                 </div>

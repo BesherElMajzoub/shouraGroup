@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'قطاعاتنا | شورى إخوان')
-@section('description', 'قطاعات العمل المتكاملة في شورى إخوان: مضخات المياه، مجموعات التوليد، ضواغط الهواء، الغازات الطبية، والعدد الصناعية.')
+@section('title', __('sectors_index.meta_title'))
+@section('description', __('sectors_index.meta_description'))
 
 @section('content')
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'قطاعاتنا',
-        'eyebrow' => 'خبرة هندسية وتجارية متخصصة',
-        'title'   => 'قطاعات العمل المتكاملة',
+        'current' => __('ui.nav.sectors'),
+        'eyebrow' => __('sectors_index.header_eyebrow'),
+        'title'   => __('sectors_index.header_title'),
         'desc'    => $sectors_intro,
     ])
 
@@ -33,7 +33,7 @@
                             </span>
 
                             @if ($s->is_coming_soon)
-                                <span class="absolute top-5 left-5 text-[11px] font-black text-[#141414] bg-white rounded-full px-3 py-1.5 shadow">قريباً</span>
+                                <span class="absolute top-5 left-5 text-[11px] font-black text-[#141414] bg-white rounded-full px-3 py-1.5 shadow">{{ __('ui.common.coming_soon') }}</span>
                             @endif
                         </div>
 
@@ -47,11 +47,11 @@
                             <p class="text-[#4b4b4b] text-sm leading-relaxed mb-5">{{ Str::limit($s->intro, 150) }}</p>
 
                             @if ($s->is_coming_soon)
-                                <span class="inline-flex items-center gap-1 text-[#9a9a9a] font-bold text-sm">قيد التأسيس</span>
+                                <span class="inline-flex items-center gap-1 text-[#9a9a9a] font-bold text-sm">{{ __('sectors_index.under_establishment') }}</span>
                             @else
                                 <a href="{{ route('sectors.show', $s->slug) }}"
                                    class="inline-flex items-center gap-1.5 text-brand font-bold text-sm group-hover:gap-3 transition-all">
-                                    تفاصيل القطاع
+                                    {{ __('sectors_index.details_link') }}
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                                 </a>
                             @endif
@@ -68,11 +68,11 @@
              style="background-image:url('{{ asset('images/pattern.svg') }}'); background-size:120px;"></div>
 
         <div class="relative mx-auto max-w-4xl px-4 sm:px-6 text-center">
-            <h2 class="text-2xl sm:text-3xl font-black mb-4">لست متأكداً أي قطاع يناسب مشروعك؟</h2>
-            <p class="text-white/70 mb-8 max-w-xl mx-auto">فريقنا الهندسي جاهز لدراسة متطلباتك واقتراح الحل الأنسب من بين قطاعاتنا ووكالاتنا العالمية.</p>
+            <h2 class="text-2xl sm:text-3xl font-black mb-4">{{ __('sectors_index.cta.heading') }}</h2>
+            <p class="text-white/70 mb-8 max-w-xl mx-auto">{{ __('sectors_index.cta.paragraph') }}</p>
             <a href="{{ url('/contact') }}"
                class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
-                اطلب استشارة هندسية
+                {{ __('sectors_index.cta.button') }}
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
             </a>
         </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class News extends Model
 {
-    protected $fillable = ['category_id', 'title', 'slug', 'excerpt', 'body', 'image', 'published_at', 'is_published', 'order'];
+    protected $fillable = ['category_id', 'title_ar', 'title_en', 'slug', 'excerpt_ar', 'excerpt_en', 'body_ar', 'body_en', 'image', 'published_at', 'is_published', 'order'];
 
     protected $casts = [
         'is_published' => 'boolean',
@@ -18,6 +18,36 @@ class News extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Locale-aware display value: the English column when the site is in
+     * English AND an English translation has been entered, Arabic otherwise.
+     * Lets every existing $news->title / ->excerpt / ->body call keep working
+     * unchanged while the admin form now captures both languages.
+     */
+    protected function title(): Attribute
+    {
+        return Attribute::make(get: fn () => $this->localized('title'));
+    }
+
+    protected function excerpt(): Attribute
+    {
+        return Attribute::make(get: fn () => $this->localized('excerpt'));
+    }
+
+    protected function body(): Attribute
+    {
+        return Attribute::make(get: fn () => $this->localized('body'));
+    }
+
+    private function localized(string $field): ?string
+    {
+        if (app()->getLocale() === 'en' && filled($this->attributes[$field.'_en'] ?? null)) {
+            return $this->attributes[$field.'_en'];
+        }
+
+        return $this->attributes[$field.'_ar'] ?? null;
     }
 
     protected function imageUrl(): Attribute

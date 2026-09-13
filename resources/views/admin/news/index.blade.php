@@ -35,8 +35,8 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 font-bold text-gray-900">
-                                <div class="line-clamp-1 max-w-xs">{{ $item->title }}</div>
-                                <div class="text-xs text-gray-400 font-normal line-clamp-1 mt-0.5">{{ $item->excerpt }}</div>
+                                <div class="line-clamp-1 max-w-xs">{{ $item->title_ar }}</div>
+                                <div class="text-xs text-gray-400 font-normal line-clamp-1 mt-0.5">{{ $item->excerpt_ar }}</div>
                             </td>
                             <td class="px-6 py-4">
                                 <span class="inline-flex items-center rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-bold text-purple-700 ring-1 ring-inset ring-purple-600/20">

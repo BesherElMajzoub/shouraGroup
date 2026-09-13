@@ -21,7 +21,7 @@
         <p class="text-[15px] font-bold text-[#141414] leading-snug">
             {{ $s->name }}
             @if ($s->is_coming_soon)
-                <span class="mr-1 text-[11px] font-bold text-brand bg-brand-light rounded-full px-2 py-0.5">قريباً</span>
+                <span class="mr-1 text-[11px] font-bold text-brand bg-brand-light rounded-full px-2 py-0.5">{{ __('ui.common.coming_soon') }}</span>
             @endif
         </p>
         @if ($s->tagline && ! $s->is_coming_soon)

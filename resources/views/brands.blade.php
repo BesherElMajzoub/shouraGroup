@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'العلامات التجارية ووكالاتنا الرسمية | شورى إخوان')
-@section('description', 'الوكالات العالمية المعتمدة لدى شورى إخوان: FORAS, PENTAX, STREAM, MARK, MMB, ESCO وغيرها من كبرى الشركات المصنعة.')
+@section('title', __('brands.meta_title'))
+@section('description', __('brands.meta_description'))
 
 @section('content')
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'العلامات التجارية',
-        'eyebrow' => 'وكلاء رسميون ومعتمدون',
-        'title'   => 'وكالاتنا العالمية المعتمدة',
+        'current' => __('ui.nav.brands'),
+        'eyebrow' => __('brands.header_eyebrow'),
+        'title'   => __('brands.header_title'),
         'desc'    => $brands_intro,
     ])
 
@@ -17,8 +17,8 @@
     <section class="py-20 lg:py-28 bg-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">شبكة الوكالات</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">وكالاتنا الرسمية</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('brands.agencies.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">{{ __('brands.agencies.heading') }}</h2>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -28,7 +28,7 @@
                                     shadow-sm ring-1 ring-black/5 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300"
                              style="transition-delay:{{ $i * 0.07 }}s">
 
-                        <span class="absolute top-5 left-5 z-10 text-[10px] font-black text-white bg-brand rounded-full px-3 py-1.5 shadow">وكالة رسمية</span>
+                        <span class="absolute top-5 left-5 z-10 text-[10px] font-black text-white bg-brand rounded-full px-3 py-1.5 shadow">{{ __('brands.agencies.badge') }}</span>
 
                         <div class="h-36 bg-[#f7f7f8] grid place-items-center px-8 border-b border-gray-100">
                             @if ($b->logo_url)
@@ -48,7 +48,7 @@
                                     <span class="text-xs font-bold text-brand bg-brand-light rounded-full px-3 py-1">{{ $b->country }}</span>
                                 @endif
                             </div>
-                            <p class="text-xs font-bold text-[#9a9a9a] mb-2">مجال المنتجات</p>
+                            <p class="text-xs font-bold text-[#9a9a9a] mb-2">{{ __('brands.agencies.products_label') }}</p>
                             <p class="text-[#4b4b4b] text-sm leading-relaxed">{{ $b->description }}</p>
 
                             @if ($b->sectors->isNotEmpty())
@@ -75,9 +75,9 @@
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">كل الشركاء</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-4">العلامات التجارية التي نمثّلها</h2>
-                <p class="text-[#4b4b4b] leading-relaxed">تشكيلة كاملة من العلامات العالمية التي نوفّرها عبر قطاعاتنا الخمسة وصالات العرض في دمشق وحلب.</p>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('brands.all.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-4">{{ __('brands.all.heading') }}</h2>
+                <p class="text-[#4b4b4b] leading-relaxed">{{ __('brands.all.description') }}</p>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -113,11 +113,11 @@
              style="background-image:url('{{ asset('images/pattern.svg') }}'); background-size:120px;"></div>
 
         <div class="relative mx-auto max-w-4xl px-4 sm:px-6 text-center">
-            <h2 class="text-2xl sm:text-3xl font-black mb-4">تبحث عن علامة تجارية بعينها؟</h2>
-            <p class="text-white/70 mb-8 max-w-xl mx-auto">تواصل معنا لمعرفة توفّر الموديلات والمواصفات الفنية وقطع الغيار الأصلية لأي من وكالاتنا.</p>
+            <h2 class="text-2xl sm:text-3xl font-black mb-4">{{ __('brands.cta.heading') }}</h2>
+            <p class="text-white/70 mb-8 max-w-xl mx-auto">{{ __('brands.cta.paragraph') }}</p>
             <a href="{{ url('/contact') }}"
                class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
-                استفسر عن وكالة
+                {{ __('brands.cta.button') }}
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
             </a>
         </div>

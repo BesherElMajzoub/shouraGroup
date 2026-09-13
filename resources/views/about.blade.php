@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'من نحن | شورى إخوان')
-@section('description', 'قصة شورى إخوان منذ تأسيسها في دمشق عام 1978 وحتى تحوّلها إلى مجموعة قطاعات هندسية متخصصة.')
+@section('title', __('ui.about.meta_title'))
+@section('description', __('ui.about.meta_description'))
 
 @section('content')
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'من نحن',
-        'eyebrow' => 'مسيرتنا منذ عام 1978',
-        'title'   => 'من نحن',
+        'current' => __('ui.nav.about'),
+        'eyebrow' => __('ui.about.header_eyebrow'),
+        'title'   => __('ui.nav.about'),
         'desc'    => $about_subtitle,
     ])
 
@@ -17,8 +17,8 @@
     <section class="py-20 lg:py-28 bg-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div class="reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">نظرة عامة</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-6">كيف بدأت الحكاية</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('ui.about.overview.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-6">{{ __('ui.about.overview.heading') }}</h2>
                 <div class="space-y-4 text-[#4b4b4b] leading-loose text-[15px]">
                     @foreach (explode("\n\n", $story_overview_body) as $para)
                         <p>{{ $para }}</p>
@@ -30,7 +30,7 @@
                 <div class="relative">
                     <div class="absolute -inset-3 rounded-[2rem] bg-brand/10 blur-2xl"></div>
                     <img src="{{ str_starts_with($story_overview_image, 'images/') ? asset($story_overview_image) : asset('storage/' . $story_overview_image) }}"
-                         alt="شورى إخوان"
+                         alt="{{ __('ui.company.name') }}"
                          class="relative w-full h-[360px] lg:h-[440px] object-cover rounded-[2rem] shadow-2xl">
                 </div>
             </div>
@@ -44,8 +44,8 @@
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">محطات في الطريق</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">خط زمن شورى إخوان</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('ui.about.timeline.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">{{ __('ui.about.timeline.heading') }}</h2>
             </div>
 
             <div class="relative max-w-5xl mx-auto">
@@ -81,17 +81,17 @@
     {{-- ===== VALUES ===== --}}
     @php
         $values = [
-            ['title' => 'الجودة', 'desc' => 'منتجات عالمية الجودة من وكالات معتمدة، لا نساوم عليها في أي مشروع.', 'icon' => 'M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
-            ['title' => 'الموثوقية', 'desc' => 'ضمان حقيقي مدعوم بقطع الغيار الأصلية وخدمات ما بعد البيع.', 'icon' => 'M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z'],
-            ['title' => 'الخبرة الهندسية', 'desc' => 'فريق مهندسين متخصص في دراسة أعقد دفاتر الشروط والمناقصات.', 'icon' => 'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1'],
-            ['title' => 'الاستمرارية', 'desc' => 'حلول تضمن استمرارية عمل عملائنا في أقسى الظروف التشغيلية.', 'icon' => 'M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
+            ['title' => __('ui.about.values.quality.title'), 'desc' => __('ui.about.values.quality.desc'), 'icon' => 'M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
+            ['title' => __('ui.about.values.reliability.title'), 'desc' => __('ui.about.values.reliability.desc'), 'icon' => 'M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z'],
+            ['title' => __('ui.about.values.engineering.title'), 'desc' => __('ui.about.values.engineering.desc'), 'icon' => 'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1'],
+            ['title' => __('ui.about.values.continuity.title'), 'desc' => __('ui.about.values.continuity.desc'), 'icon' => 'M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
         ];
     @endphp
     <section class="py-20 lg:py-28 bg-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">ما يحرّكنا</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">قيمنا</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('ui.about.values.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">{{ __('ui.about.values.heading') }}</h2>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($values as $i => $v)
@@ -125,15 +125,15 @@
     {{-- ===== CTA ===== --}}
     <section class="py-20 bg-white">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center reveal">
-            <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-4">هل تريد أن تكون جزءاً من قصتنا القادمة؟</h2>
-            <p class="text-[#4b4b4b] mb-8">تواصل مع فريق شورى إخوان لنبدأ مشروعك القادم معاً.</p>
+            <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-4">{{ __('ui.about.cta.heading') }}</h2>
+            <p class="text-[#4b4b4b] mb-8">{{ __('ui.about.cta.paragraph') }}</p>
             <div class="flex flex-wrap items-center justify-center gap-4">
                 <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-lg font-bold transition-colors">
-                    تواصل معنا
+                    {{ __('ui.about.cta.contact_btn') }}
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
                 <a href="{{ url('/sectors') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-lg font-bold transition-colors">
-                    تعرّف على قطاعاتنا
+                    {{ __('ui.about.cta.sectors_btn') }}
                 </a>
             </div>
         </div>

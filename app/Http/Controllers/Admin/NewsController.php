@@ -36,10 +36,13 @@ class NewsController extends Controller
     {
         $validated = $request->validate([
             'category_id' => ['required', 'exists:categories,id'],
-            'title' => ['required', 'string', 'max:255'],
+            'title_ar' => ['required', 'string', 'max:255'],
+            'title_en' => ['nullable', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255'],
-            'excerpt' => ['nullable', 'string'],
-            'body' => ['required', 'string'],
+            'excerpt_ar' => ['nullable', 'string'],
+            'excerpt_en' => ['nullable', 'string'],
+            'body_ar' => ['required', 'string'],
+            'body_en' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'max:2048'],
             'published_at' => ['nullable', 'date'],
             'is_published' => ['boolean'],
@@ -50,7 +53,7 @@ class NewsController extends Controller
         $validated['published_at'] = $validated['published_at'] ?? now();
 
         if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['title']) ?: urlencode($validated['title']);
+            $validated['slug'] = Str::slug($validated['title_ar']) ?: urlencode($validated['title_ar']);
         } else {
             $validated['slug'] = Str::slug($validated['slug']) ?: urlencode($validated['slug']);
         }
@@ -80,10 +83,13 @@ class NewsController extends Controller
     {
         $validated = $request->validate([
             'category_id' => ['required', 'exists:categories,id'],
-            'title' => ['required', 'string', 'max:255'],
+            'title_ar' => ['required', 'string', 'max:255'],
+            'title_en' => ['nullable', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255'],
-            'excerpt' => ['nullable', 'string'],
-            'body' => ['required', 'string'],
+            'excerpt_ar' => ['nullable', 'string'],
+            'excerpt_en' => ['nullable', 'string'],
+            'body_ar' => ['required', 'string'],
+            'body_en' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'max:2048'],
             'published_at' => ['nullable', 'date'],
             'is_published' => ['boolean'],
@@ -94,7 +100,7 @@ class NewsController extends Controller
         $validated['published_at'] = $validated['published_at'] ?? now();
 
         if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['title']) ?: urlencode($validated['title']);
+            $validated['slug'] = Str::slug($validated['title_ar']) ?: urlencode($validated['title_ar']);
         } else {
             $validated['slug'] = Str::slug($validated['slug']) ?: urlencode($validated['slug']);
         }

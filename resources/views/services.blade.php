@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'خدماتنا وحلولنا | شورى إخوان')
-@section('description', 'الاستشارات الهندسية ودراسة المناقصات، عقود التسليم مفتاح، الصيانة وخدمات ما بعد البيع، وشبكة التوزيع وصالات العرض.')
+@section('title', __('services_page.meta_title'))
+@section('description', __('services_page.meta_description'))
 
 @section('content')
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'خدماتنا وحلولنا',
-        'eyebrow' => 'شريك هندسي متكامل',
-        'title'   => 'حلول هندسية متكاملة لنجاح مشاريعكم',
+        'current' => __('ui.nav.services'),
+        'eyebrow' => __('services_page.header.eyebrow'),
+        'title'   => __('services_page.header.title'),
         'desc'    => $services_intro,
     ])
 
@@ -47,7 +47,7 @@
                         <div class="pt-4">
                             <a href="{{ url('/contact') }}?service={{ urlencode($s->title) }}&department={{ urlencode($s->dept) }}"
                                class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-lg font-bold text-sm transition-colors">
-                                اطلب الخدمة الآن
+                                {{ __('services_page.request_cta') }}
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                             </a>
                         </div>
@@ -75,20 +75,20 @@
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">مميزاتنا</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-4">لماذا تختار شورى إخوان؟</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('services_page.why_us.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-4">{{ __('services_page.why_us.heading') }}</h2>
                 <p class="text-[#4b4b4b] leading-relaxed">
-                    منذ عام 1978 ونحن الخيار الأول للمشاريع الاستراتيجية في السوق السورية، بخبرة تمتد لأكثر من أربعة عقود.
+                    {{ __('services_page.why_us.paragraph') }}
                 </p>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @php
                     $benefits = [
-                        ['title' => 'خبرة تمتد لأربعة عقود', 'desc' => 'منذ 1978 ونحن نبني الثقة مع القطاعين العام والخاص والمنظمات الدولية في سوريا.', 'icon' => 'M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
-                        ['title' => 'وكالات عالمية معتمدة', 'desc' => 'ممثلون رسميون لنخبة من كبرى الشركات المصنعة، بضمان حقيقي وقطع غيار أصلية.', 'icon' => 'M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
-                        ['title' => 'دقة في دفاتر الشروط', 'desc' => 'فريق هندسي متخصص في دراسة أعقد المناقصات الحكومية ومطابقة المواصفات الفنية.', 'icon' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z'],
-                        ['title' => 'دعم فني متواصل', 'desc' => 'مراكز صيانة وفرق فنية متنقلة للتدخل السريع وعقود صيانة دورية تضمن استمرارية عملكم.', 'icon' => 'M11.4 2.6a5 5 0 0 0 6 6L21 12l-2 2-3.4-3.4a5 5 0 0 1-6-6L7 1l4.4 1.6ZM3 17l6-6M3 17l3 3 6-6'],
+                        ['title' => __('services_page.benefits.experience.title'), 'desc' => __('services_page.benefits.experience.desc'), 'icon' => 'M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
+                        ['title' => __('services_page.benefits.agencies.title'), 'desc' => __('services_page.benefits.agencies.desc'), 'icon' => 'M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'],
+                        ['title' => __('services_page.benefits.tenders.title'), 'desc' => __('services_page.benefits.tenders.desc'), 'icon' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z'],
+                        ['title' => __('services_page.benefits.support.title'), 'desc' => __('services_page.benefits.support.desc'), 'icon' => 'M11.4 2.6a5 5 0 0 0 6 6L21 12l-2 2-3.4-3.4a5 5 0 0 1-6-6L7 1l4.4 1.6ZM3 17l6-6M3 17l3 3 6-6'],
                     ];
                 @endphp
 
@@ -111,15 +111,15 @@
     {{-- ===== CTA ===== --}}
     <section class="py-20 bg-white">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center reveal">
-            <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-4">هل لديك مشروع تود مناقشته مع خبرائنا؟</h2>
-            <p class="text-[#4b4b4b] mb-8 max-w-xl mx-auto">فريق شورى إخوان الهندسي جاهز لدراسة متطلبات مشروعك ودفتر الشروط الخاص به بكل دقة.</p>
+            <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-4">{{ __('services_page.cta.heading') }}</h2>
+            <p class="text-[#4b4b4b] mb-8 max-w-xl mx-auto">{{ __('services_page.cta.paragraph') }}</p>
             <div class="flex flex-wrap items-center justify-center gap-4">
                 <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-lg font-bold transition-colors">
-                    تواصل معنا الآن
+                    {{ __('services_page.cta.contact_btn') }}
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
                 <a href="{{ url('/sectors') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-lg font-bold transition-colors">
-                    تعرّف على قطاعاتنا
+                    {{ __('services_page.cta.sectors_btn') }}
                 </a>
             </div>
         </div>

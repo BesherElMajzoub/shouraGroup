@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'الأخبار | شورى إخوان')
-@section('description', 'تابع آخر مستجدات شورى إخوان: الوكالات والمنتجات الجديدة، المشاريع المنجزة، والفعاليات في مختلف قطاعاتنا الهندسية.')
+@section('title', __('news.meta_title'))
+@section('description', __('news.meta_description'))
 
 @section('content')
 
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
-        'current' => 'الأخبار',
-        'eyebrow' => 'كن على اطلاع بآخر مستجداتنا',
-        'title'   => 'المركز الإعلامي والأخبار',
-        'desc'    => 'نشارككم أحدث وكالاتنا ومنتجاتنا وإنجازاتنا خطوة بخطوة، ونستعرض معكم أهم الفعاليات والشراكات التي تساهم في تطوير وتوسيع خدماتنا في سوريا.',
+        'current' => __('ui.nav.news'),
+        'eyebrow' => __('news.header.eyebrow'),
+        'title'   => __('news.header.title'),
+        'desc'    => __('news.header.desc'),
     ])
 
     {{-- ===== NEWS INDEX SECTION WITH FILTER ===== --}}
@@ -23,7 +23,7 @@
                     <button type="button" 
                             onclick="filterNews('all', this)" 
                             class="news-cat-btn px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-brand text-white shadow-lg shadow-brand/20">
-                        كل الأخبار
+                        {{ __('news.filters.all') }}
                     </button>
                     @foreach ($categories as $cat)
                         <button type="button" 
@@ -35,7 +35,7 @@
                 </div>
                 
                 <div class="relative w-full max-w-xs shrink-0">
-                    <input type="text" id="newsSearchInput" onkeyup="searchNews()" placeholder="ابحث في الأخبار..." 
+                    <input type="text" id="newsSearchInput" onkeyup="searchNews()" placeholder="{{ __('news.filters.search_placeholder') }}"
                            class="w-full bg-[#f7f7f8] rounded-xl px-5 py-3 pr-11 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                     <svg class="absolute right-4 top-3.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.637 10.637Z"/></svg>
                 </div>
@@ -74,7 +74,7 @@
                             <div class="border-t border-gray-100 pt-4 flex items-center justify-between">
                                 <a href="{{ route('news.show', $n->slug) }}" 
                                    class="inline-flex items-center gap-1 text-brand font-bold text-sm hover:gap-2 transition-all">
-                                    اقرأ المزيد
+                                    {{ __('news.card.read_more') }}
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                                 </a>
                             </div>
@@ -96,19 +96,19 @@
              style="background-image:url('{{ asset('images/pattern.svg') }}'); background-size:120px;"></div>
         
         <div class="relative mx-auto max-w-4xl px-4 sm:px-6 text-center reveal">
-            <h2 class="text-2xl sm:text-3xl font-black mb-4">اشترك في نشرتنا البريدية</h2>
-            <p class="text-white/70 mb-8 max-w-lg mx-auto">كن أول من يعلم بالوكالات والمنتجات الجديدة، المشاريع المنجزة، والشراكات الحصرية لشورى إخوان في سوريا.</p>
-            
+            <h2 class="text-2xl sm:text-3xl font-black mb-4">{{ __('news.newsletter.heading') }}</h2>
+            <p class="text-white/70 mb-8 max-w-lg mx-auto">{{ __('news.newsletter.paragraph') }}</p>
+
             <div id="newsletterSuccess" class="hidden mb-6 p-4 rounded-xl bg-green-900/50 text-green-200 text-sm font-bold text-center border border-green-800 max-w-md mx-auto">
-                تهانينا! لقد تم تسجيل بريدك الإلكتروني بنجاح في قائمتنا الإخبارية.
+                {{ __('news.newsletter.success') }}
             </div>
 
             <form id="newsletterForm" onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input type="email" id="newsletterEmail" required placeholder="أدخل بريدك الإلكتروني..." 
+                <input type="email" id="newsletterEmail" required placeholder="{{ __('news.newsletter.email_placeholder') }}"
                        class="flex-1 bg-white/10 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white/20 transition-all text-right">
-                
+
                 <button type="submit" id="newsSubBtn" class="bg-brand hover:bg-brand-dark text-white px-7 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
-                    اشترك الآن
+                    {{ __('news.newsletter.submit_btn') }}
                 </button>
             </form>
         </div>
@@ -175,13 +175,13 @@
         const form = document.getElementById('newsletterForm');
         
         subBtn.disabled = true;
-        subBtn.textContent = 'جاري التسجيل...';
-        
+        subBtn.textContent = @json(__('news.newsletter.sending'));
+
         setTimeout(() => {
             successBox.classList.remove('hidden');
             form.reset();
             subBtn.disabled = false;
-            subBtn.textContent = 'اشترك الآن';
+            subBtn.textContent = @json(__('news.newsletter.submit_btn'));
         }, 1000);
     }
 </script>

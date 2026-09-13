@@ -6,13 +6,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @php
-        $siteDesc = 'شورى إخوان — الشركة الرائدة في التوريدات الهندسية في سوريا منذ 1978: مضخات المياه، مجموعات التوليد، ضواغط الهواء، الغازات الطبية، والعدد الصناعية.';
+        $siteTitle = __('ui.meta.title');
+        $siteDesc = __('ui.meta.description');
         $contactEmail = setting('contact_email', 'info@shorabrothers.com');
         $phoneMain = setting('phone_main', '011 2233743');
         $phoneTel = '+963' . ltrim(preg_replace('/\D/', '', $phoneMain), '0');
     @endphp
 
-    <title>@yield('title', 'شورى إخوان | التوريدات الهندسية في سوريا')</title>
+    <title>@yield('title', $siteTitle)</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/shora-logo.svg') }}">
     <meta name="description" content="@yield('description', $siteDesc)">
     <link rel="canonical" href="{{ url()->current() }}">
@@ -20,14 +21,14 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'شورى إخوان | التوريدات الهندسية في سوريا')">
+    <meta property="og:title" content="@yield('title', $siteTitle)">
     <meta property="og:description" content="@yield('description', $siteDesc)">
     <meta property="og:image" content="{{ asset('images/about_skyscrapers.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('title', 'شورى إخوان | التوريدات الهندسية في سوريا')">
+    <meta property="twitter:title" content="@yield('title', $siteTitle)">
     <meta property="twitter:description" content="@yield('description', $siteDesc)">
     <meta property="twitter:image" content="{{ asset('images/about_skyscrapers.png') }}">
 
@@ -36,7 +37,7 @@
     {
       "@@context": "https://schema.org",
       "@@type": "Corporation",
-      "name": "شورى إخوان",
+      "name": "{{ __('ui.company.name') }}",
       "alternateName": "Shora Brothers",
       "url": "{{ url('/') }}",
       "logo": "{{ asset('images/shora-logo.svg') }}",
@@ -102,7 +103,7 @@
                 <span class="w-px h-4 bg-white/20"></span>
                 <a href="{{ url('/wholesale') }}" class="flex items-center gap-1.5 font-bold hover:text-brand transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9l1.5-4.5A1 1 0 0 1 5.45 4h13.1a1 1 0 0 1 .95.5L21 9M3 9h18M3 9v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9"/></svg>
-                    مبيعات الجملة
+                    {{ __('ui.topbar.wholesale') }}
                 </a>
             </div>
         </div>
@@ -115,21 +116,21 @@
         $onHome = request()->is('/');
 
         $nav = [
-            ['href' => $home,            'label' => 'الرئيسية',        'active' => $onHome],
-            ['href' => url('/about'),    'label' => 'من نحن',          'active' => request()->is('about')],
-            ['href' => url('/sectors'),  'label' => 'قطاعاتنا',        'active' => request()->is('sectors*')],
-            ['href' => url('/services'), 'label' => 'خدماتنا وحلولنا', 'active' => request()->is('services')],
-            ['href' => url('/brands'),   'label' => 'العلامات التجارية','active' => request()->is('brands')],
-            ['href' => url('/projects'), 'label' => 'مشاريعنا',        'active' => request()->is('projects')],
-            ['href' => url('/news'),     'label' => 'الأخبار',         'active' => request()->is('news*')],
-            ['href' => url('/careers'),  'label' => 'انضم إلى فريقنا', 'active' => request()->is('careers')],
-            ['href' => url('/contact'),  'label' => 'اتصل بنا',        'active' => request()->is('contact')],
+            ['href' => $home,            'label' => __('ui.nav.home'),     'active' => $onHome],
+            ['href' => url('/about'),    'label' => __('ui.nav.about'),    'active' => request()->is('about')],
+            ['href' => url('/sectors'),  'label' => __('ui.nav.sectors'),  'active' => request()->is('sectors*')],
+            ['href' => url('/services'), 'label' => __('ui.nav.services'), 'active' => request()->is('services')],
+            ['href' => url('/brands'),   'label' => __('ui.nav.brands'),   'active' => request()->is('brands')],
+            ['href' => url('/projects'), 'label' => __('ui.nav.projects'), 'active' => request()->is('projects')],
+            ['href' => url('/news'),     'label' => __('ui.nav.news'),     'active' => request()->is('news*')],
+            ['href' => url('/careers'),  'label' => __('ui.nav.careers'),  'active' => request()->is('careers')],
+            ['href' => url('/contact'),  'label' => __('ui.nav.contact'),  'active' => request()->is('contact')],
         ];
     @endphp
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 flex items-center justify-between h-20">
             <a href="{{ $home }}" class="flex items-center shrink-0">
-                <img src="{{ asset('images/shora-logo.png') }}" alt="شورى إخوان" class="h-12 w-auto">
+                <img src="{{ asset('images/shora-logo.png') }}" alt="{{ __('ui.company.name') }}" class="h-12 w-auto">
             </a>
 
             <ul class="hidden lg:flex items-center gap-4 xl:gap-6 text-[13.5px] xl:text-[15px] font-medium text-[#141414] whitespace-nowrap">
@@ -141,11 +142,11 @@
             <div class="flex items-center gap-3">
                 <a href="{{ route('language.switch', app()->getLocale() === 'ar' ? 'en' : 'ar') }}"
                    class="inline-flex items-center justify-center min-w-11 h-9 px-3 rounded-full border border-gray-200 text-xs font-black text-[#141414] hover:border-brand hover:text-brand transition-colors"
-                   aria-label="{{ app()->getLocale() === 'ar' ? 'Switch to English' : 'التبديل إلى العربية' }}"
+                   aria-label="{{ __('ui.lang_switch.aria') }}"
                    lang="{{ app()->getLocale() === 'ar' ? 'en' : 'ar' }}" dir="{{ app()->getLocale() === 'ar' ? 'ltr' : 'rtl' }}">
-                    {{ app()->getLocale() === 'ar' ? 'EN' : 'العربية' }}
+                    {{ __('ui.lang_switch.short') }}
                 </a>
-                <button id="menuBtn" class="lg:hidden p-2 -mr-2 text-[#141414]" aria-label="القائمة">
+                <button id="menuBtn" class="lg:hidden p-2 -mr-2 text-[#141414]" aria-label="{{ __('ui.nav.menu_aria') }}">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
                 </button>
             </div>
@@ -156,11 +157,11 @@
                 <li><a href="{{ $item['href'] }}" class="block py-2 {{ $item['active'] ? 'text-brand' : '' }}">{{ $item['label'] }}</a></li>
             @endforeach
             <li class="pt-2 mt-1 border-t border-gray-100">
-                <a href="{{ url('/wholesale') }}" class="block py-2 {{ request()->is('wholesale') ? 'text-brand' : '' }}">مبيعات الجملة</a>
+                <a href="{{ url('/wholesale') }}" class="block py-2 {{ request()->is('wholesale') ? 'text-brand' : '' }}">{{ __('ui.topbar.wholesale') }}</a>
             </li>
             <li class="pt-2 mt-1 border-t border-gray-100">
                 <a href="{{ route('language.switch', app()->getLocale() === 'ar' ? 'en' : 'ar') }}" class="block py-2 font-black" lang="{{ app()->getLocale() === 'ar' ? 'en' : 'ar' }}">
-                    {{ app()->getLocale() === 'ar' ? 'English' : 'العربية' }}
+                    {{ __('ui.lang_switch.full') }}
                 </a>
             </li>
         </ul>
@@ -179,7 +180,7 @@
     </style>
 
     @unless (request()->is('wholesale'))
-    <a id="partnerBtn" href="{{ url('/wholesale') }}" aria-label="كن شريكاً — مبيعات الجملة"
+    <a id="partnerBtn" href="{{ url('/wholesale') }}" aria-label="{{ __('ui.partner_btn.aria') }}"
        class="group fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-[60] inline-flex items-center gap-2.5
               rounded-full bg-brand text-white
               px-5 sm:px-6 py-3.5 font-bold text-sm ring-1 ring-white/25
@@ -187,7 +188,7 @@
         <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0ZM6.94 15.52A5.995 5.995 0 0 1 12 12.75a5.995 5.995 0 0 1 5.06 2.77M2.26 18.2a3 3 0 0 1 4.68-2.72M21.74 18.2a3 3 0 0 0-4.68-2.72M17.06 18.72A11.94 11.94 0 0 1 12 21c-1.83 0-3.57-.41-5.06-1.14"/>
         </svg>
-        كن شريكاً
+        {{ __('ui.partner_btn.label') }}
     </a>
     @endunless
 
@@ -203,7 +204,7 @@
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
                     </span>
                     <div>
-                        <div class="text-xs text-white/50">اتصل بنا</div>
+                        <div class="text-xs text-white/50">{{ __('ui.footer.contact_label') }}</div>
                         <a href="tel:{{ $phoneTel }}" class="font-bold hover:text-brand transition-colors" dir="ltr">{{ $phoneMain }}</a>
                     </div>
                 </div>
@@ -212,7 +213,7 @@
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
                     </span>
                     <div>
-                        <div class="text-xs text-white/50">البريد الإلكتروني</div>
+                        <div class="text-xs text-white/50">{{ __('ui.footer.email_label') }}</div>
                         <a href="mailto:{{ $contactEmail }}" class="font-bold hover:text-brand transition-colors" dir="ltr">{{ $contactEmail }}</a>
                     </div>
                 </div>
@@ -221,8 +222,8 @@
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
                     </span>
                     <div>
-                        <div class="text-xs text-white/50">العنوان</div>
-                        <div class="font-bold">دمشق – المرجة، سوريا</div>
+                        <div class="text-xs text-white/50">{{ __('ui.footer.address_label') }}</div>
+                        <div class="font-bold">{{ __('ui.footer.address_value') }}</div>
                     </div>
                 </div>
             </div>
@@ -230,9 +231,9 @@
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <div class="lg:col-span-1">
-                <img src="{{ asset('images/shora-logo.png') }}" alt="شورى إخوان" class="h-14 w-auto brightness-0 invert mb-5">
+                <img src="{{ asset('images/shora-logo.png') }}" alt="{{ __('ui.company.name') }}" class="h-14 w-auto brightness-0 invert mb-5">
                 <p class="text-white/60 text-sm leading-relaxed mb-5">
-                    الشركة الرائدة في التوريدات الهندسية في سوريا منذ عام 1978 — حلول متكاملة في ضخ المياه، توليد الكهرباء، ضواغط الهواء، الغازات الطبية، والعدد الصناعية.
+                    {{ __('ui.footer.description') }}
                 </p>
                 <div class="flex items-center gap-3">
                     @foreach (['facebook','instagram','x'] as $s)
@@ -250,29 +251,29 @@
             </div>
 
             <div>
-                <h4 class="font-bold mb-5 relative inline-block">خريطة الموقع
+                <h4 class="font-bold mb-5 relative inline-block">{{ __('ui.footer.sitemap_heading') }}
                     <span class="absolute -bottom-2 right-0 w-8 h-0.5 bg-brand"></span>
                 </h4>
                 <ul class="space-y-3 text-sm text-white/60">
-                    @foreach ([[$home, 'الرئيسية'], [url('/about'), 'من نحن'], [url('/sectors'), 'قطاعاتنا'], [url('/services'), 'خدماتنا وحلولنا'], [url('/brands'), 'العلامات التجارية']] as [$href, $label])
+                    @foreach ([[$home, __('ui.nav.home')], [url('/about'), __('ui.nav.about')], [url('/sectors'), __('ui.nav.sectors')], [url('/services'), __('ui.nav.services')], [url('/brands'), __('ui.nav.brands')]] as [$href, $label])
                         <li><a href="{{ $href }}" class="hover:text-brand hover:pr-1 transition-all">{{ $label }}</a></li>
                     @endforeach
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-bold mb-5 relative inline-block">روابط سريعة
+                <h4 class="font-bold mb-5 relative inline-block">{{ __('ui.footer.quicklinks_heading') }}
                     <span class="absolute -bottom-2 right-0 w-8 h-0.5 bg-brand"></span>
                 </h4>
                 <ul class="space-y-3 text-sm text-white/60">
-                    @foreach ([[url('/projects'), 'مشاريعنا'], [url('/news'), 'الأخبار'], [url('/wholesale'), 'مبيعات الجملة'], [url('/careers'), 'انضم إلى فريقنا'], [url('/contact'), 'اتصل بنا']] as [$href, $label])
+                    @foreach ([[url('/projects'), __('ui.nav.projects')], [url('/news'), __('ui.nav.news')], [url('/wholesale'), __('ui.topbar.wholesale')], [url('/careers'), __('ui.nav.careers')], [url('/contact'), __('ui.nav.contact')]] as [$href, $label])
                         <li><a href="{{ $href }}" class="hover:text-brand hover:pr-1 transition-all">{{ $label }}</a></li>
                     @endforeach
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-bold mb-5 relative inline-block">فروعنا
+                <h4 class="font-bold mb-5 relative inline-block">{{ __('ui.footer.branches_heading') }}
                     <span class="absolute -bottom-2 right-0 w-8 h-0.5 bg-brand"></span>
                 </h4>
                 <ul class="space-y-4 text-sm text-white/60">
@@ -293,8 +294,8 @@
 
         <div class="relative border-t border-white/10">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/50">
-                <p>© {{ date('Y') }} جميع الحقوق محفوظة لمجموعة شورى إخوان.</p>
-                <p>صُمّم وطُوّر بكل احترافية.</p>
+                <p>{{ __('ui.footer.copyright', ['year' => date('Y')]) }}</p>
+                <p>{{ __('ui.footer.credit') }}</p>
             </div>
         </div>
     </footer>

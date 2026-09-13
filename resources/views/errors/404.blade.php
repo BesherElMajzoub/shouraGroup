@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'الصفحة غير موجودة | شورى إخوان')
-@section('description', 'عذراً، الصفحة التي تحاول الوصول إليها غير موجودة أو تم نقلها. يمكنك العودة للصفحة الرئيسية لشورى إخوان.')
+@section('title', __('errors_404.meta_title'))
+@section('description', __('errors_404.meta_description'))
 
 @section('content')
 
@@ -37,33 +37,33 @@
 
                 {{-- Message --}}
                 <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-4 anim-fade-up" style="animation-delay: 0.1s">
-                    عذراً، الصفحة غير موجودة!
+                    {{ __('errors_404.heading') }}
                 </h2>
                 <p class="max-w-md text-base text-[#4b4b4b] leading-relaxed mb-10 anim-fade-up" style="animation-delay: 0.2s">
-                    يبدو أن الصفحة التي تبحث عنها قد تم نقلها، أو حذفها، أو أن العنوان الذي أدخلته غير صحيح.
+                    {{ __('errors_404.paragraph') }}
                 </p>
 
                 {{-- Action Buttons --}}
                 <div class="flex flex-wrap items-center justify-center gap-4 anim-fade-up" style="animation-delay: 0.3s">
                     <a href="{{ url('/') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-xl font-bold transition-all shadow-md shadow-brand/15 hover:shadow-xl">
-                        العودة للرئيسية
+                        {{ __('errors_404.home_btn') }}
                         <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
                     </a>
-                    
+
                     <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-xl font-bold transition-colors">
-                        الإبلاغ عن مشكلة
+                        {{ __('errors_404.report_btn') }}
                     </a>
                 </div>
 
                 {{-- Quick Nav Suggestions --}}
                 <div class="mt-16 pt-8 border-t border-gray-100 w-full max-w-2xl anim-fade-up" style="animation-delay: 0.4s">
-                    <span class="block text-xs font-bold text-[#9a9a9a] uppercase tracking-wider mb-4">قد تبحث عن أحد هذه الأقسام:</span>
+                    <span class="block text-xs font-bold text-[#9a9a9a] uppercase tracking-wider mb-4">{{ __('errors_404.suggestions_label') }}</span>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         @foreach ([
-                            [url('/sectors'), 'قطاعاتنا'],
-                            [url('/brands'), 'العلامات التجارية'],
-                            [url('/projects'), 'مشاريعنا'],
-                            [url('/news'), 'أخبارنا']
+                            [url('/sectors'), __('ui.nav.sectors')],
+                            [url('/brands'), __('ui.nav.brands')],
+                            [url('/projects'), __('ui.nav.projects')],
+                            [url('/news'), __('errors_404.news_label')]
                         ] as [$href, $label])
                             <a href="{{ $href }}" class="p-3 bg-gray-50 hover:bg-brand-light hover:text-brand rounded-xl text-sm font-bold text-[#141414] transition-all ring-1 ring-black/5">
                                 {{ $label }}

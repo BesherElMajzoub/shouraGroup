@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $sector->name . ' | شورى إخوان')
+@section('title', $sector->name . ' | ' . __('ui.company.name'))
 @section('description', Str::limit($sector->intro, 160))
 
 @section('content')
@@ -8,8 +8,8 @@
     {{-- ===== PAGE HEADER ===== --}}
     @include('partials.page-header', [
         'current' => $sector->name,
-        'parent'  => ['label' => 'قطاعاتنا', 'href' => url('/sectors')],
-        'eyebrow' => $sector->tagline ?: 'قطاع متخصص',
+        'parent'  => ['label' => __('ui.nav.sectors'), 'href' => url('/sectors')],
+        'eyebrow' => $sector->tagline ?: __('sectors_show.default_eyebrow'),
         'title'   => $sector->name,
         'desc'    => $sector->intro,
     ])
@@ -19,8 +19,8 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
             <div class="lg:col-span-7 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">ماذا نوفّر</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-8">التخصصات والمعدات</h2>
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('sectors_show.specialties.eyebrow') }}</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-8">{{ __('sectors_show.specialties.heading') }}</h2>
 
                 <div class="space-y-4">
                     @forelse ($sector->specialties ?? [] as $i => $item)
@@ -32,19 +32,19 @@
                             <p class="flex-1 text-[15px] text-[#141414] font-medium leading-relaxed pt-1.5">{{ $item }}</p>
                         </div>
                     @empty
-                        <p class="text-[#9a9a9a]">سيتم إضافة تفاصيل التخصصات قريباً.</p>
+                        <p class="text-[#9a9a9a]">{{ __('sectors_show.specialties.empty') }}</p>
                     @endforelse
                 </div>
 
                 <div class="mt-10 flex flex-wrap gap-4">
-                    <a href="{{ url('/contact') }}?subject={{ urlencode('استفسار حول قطاع: ' . $sector->name) }}"
+                    <a href="{{ url('/contact') }}?subject={{ urlencode(__('sectors_show.inquiry_subject_prefix') . $sector->name) }}"
                        class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
-                        اطلب عرض سعر أو استشارة
+                        {{ __('sectors_show.quote_btn') }}
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                     </a>
                     <a href="{{ url('/wholesale') }}"
                        class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-xl font-bold text-sm transition-colors">
-                        طلبية جملة
+                        {{ __('sectors_show.wholesale_btn') }}
                     </a>
                 </div>
             </div>
@@ -75,8 +75,8 @@
 
             <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
                 <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-                    <span class="inline-block text-brand font-bold text-sm mb-3">وكالات وشراكات</span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">العلامات التجارية في هذا القطاع</h2>
+                    <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('sectors_show.brands.eyebrow') }}</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">{{ __('sectors_show.brands.heading') }}</h2>
                 </div>
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -99,7 +99,7 @@
                                     <span class="inline-block text-xs font-bold text-brand bg-brand-light rounded-full px-3 py-1 mt-2">{{ $b->country }}</span>
                                 @endif
                                 @if ($b->is_agency)
-                                    <span class="inline-block text-xs font-bold text-white bg-[#141414] rounded-full px-3 py-1 mt-2 mr-1">وكالة رسمية</span>
+                                    <span class="inline-block text-xs font-bold text-white bg-[#141414] rounded-full px-3 py-1 mt-2 mr-1">{{ __('sectors_show.brands.official_badge') }}</span>
                                 @endif
                                 <p class="text-[#4b4b4b] text-sm leading-relaxed mt-3">{{ $b->description }}</p>
                             </div>
@@ -113,7 +113,7 @@
     {{-- ===== OTHER SECTORS ===== --}}
     <section class="py-16 lg:py-20 bg-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6">
-            <h2 class="text-xl font-black text-[#141414] mb-8 reveal">قطاعات أخرى قد تهمّك</h2>
+            <h2 class="text-xl font-black text-[#141414] mb-8 reveal">{{ __('sectors_show.other_sectors.heading') }}</h2>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 @foreach ($other_sectors as $o)
