@@ -73,39 +73,40 @@
 
         <div class="relative mx-auto max-w-3xl px-4 sm:px-6">
             <div class="text-center mb-10 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">نموذج طلب التوظيف</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-3">قدّم طلبك الآن</h2>
-                <p class="text-[#4b4b4b] text-sm">يرجى تعبئة الحقول بدقة وإرفاق سيرتك الذاتية.</p>
+                <span class="inline-block text-brand font-bold text-sm mb-3">باب التقديم مفتوح دائمًا</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[#141414] mb-3">عرّفنا بنفسك</h2>
+                <p class="text-[#4b4b4b] text-sm">أرسل بياناتك وسيرتك الذاتية، وسيتواصل معك فريقنا عند توفر فرصة مناسبة.</p>
             </div>
 
             <div class="reveal bg-white p-7 sm:p-10 rounded-[2rem] shadow-lg ring-1 ring-black/5">
-                <div id="cvSuccess" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-right border border-green-200"></div>
-                <div id="cvError" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-right border border-red-200"></div>
+                <div id="cvSuccess" role="status" aria-live="polite" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-right border border-green-200"></div>
+                <div id="cvError" role="alert" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-right border border-red-200"></div>
 
-                <form id="cvForm" class="space-y-6 text-right">
+                <form id="cvForm" action="{{ route('careers.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6 text-right">
+                    @csrf
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>
                             <label for="c_name" class="block text-xs font-bold text-[#141414] mb-2">الاسم الثلاثي <span class="text-brand">*</span></label>
-                            <input type="text" id="c_name" required
+                            <input type="text" id="c_name" name="full_name" autocomplete="name" required
                                    class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                         </div>
                         <div>
                             <label for="c_phone" class="block text-xs font-bold text-[#141414] mb-2">رقم الهاتف المحمول <span class="text-brand">*</span></label>
-                            <input type="tel" id="c_phone" required placeholder="09xxxxxxxx" dir="ltr"
+                            <input type="tel" id="c_phone" name="phone" autocomplete="tel" required placeholder="09xxxxxxxx" dir="ltr"
                                    class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] text-left focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                         </div>
                     </div>
 
                     <div>
-                        <label for="c_email" class="block text-xs font-bold text-[#141414] mb-2">البريد الإلكتروني <span class="text-gray-400 font-normal">(اختياري)</span></label>
-                        <input type="email" id="c_email" dir="ltr"
+                        <label for="c_email" class="block text-xs font-bold text-[#141414] mb-2">البريد الإلكتروني <span class="text-brand">*</span></label>
+                        <input type="email" id="c_email" name="email" autocomplete="email" required dir="ltr"
                                class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] text-left focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                     </div>
 
                     <div>
-                        <label for="c_dept" class="block text-xs font-bold text-[#141414] mb-2">القسم أو المجال الوظيفي المفضل <span class="text-brand">*</span></label>
+                        <label for="c_dept" class="block text-xs font-bold text-[#141414] mb-2">القسم أو المجال الوظيفي المفضل <span class="text-gray-400 font-normal">(اختياري)</span></label>
                         <div class="relative">
-                            <select id="c_dept" required
+                            <select id="c_dept" name="department"
                                     style="-webkit-appearance:none; -moz-appearance:none; appearance:none;"
                                     class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 pl-10 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                                 <option value="" disabled selected>اختر المجال الوظيفي</option>
@@ -118,9 +119,9 @@
                     </div>
 
                     <div>
-                        <label for="c_branch" class="block text-xs font-bold text-[#141414] mb-2">فرع العمل المفضل <span class="text-brand">*</span></label>
+                        <label for="c_branch" class="block text-xs font-bold text-[#141414] mb-2">فرع العمل المفضل <span class="text-gray-400 font-normal">(اختياري)</span></label>
                         <div class="relative">
-                            <select id="c_branch" required
+                            <select id="c_branch" name="preferred_branch"
                                     style="-webkit-appearance:none; -moz-appearance:none; appearance:none;"
                                     class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 pl-10 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                                 <option value="" disabled selected>اختر الفرع</option>
@@ -135,7 +136,7 @@
 
                     <div>
                         <label for="c_letter" class="block text-xs font-bold text-[#141414] mb-2">نبذة قصيرة عن خبراتك (Cover Letter)</label>
-                        <textarea id="c_letter" rows="4" placeholder="اكتب باختصار أبرز مهاراتك أو سنوات خبرتك"
+                        <textarea id="c_letter" name="cover_letter" rows="4" placeholder="اكتب باختصار أبرز مهاراتك أو سنوات خبرتك"
                                   class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all resize-none"></textarea>
                     </div>
 
@@ -151,7 +152,7 @@
                             <span id="cvLabel" class="text-sm font-bold text-[#141414]">اضغط هنا لرفع الملف</span>
                             <span class="text-xs text-[#9a9a9a]">بصيغة PDF أو Word — بحد أقصى 5 ميغابايت</span>
                         </label>
-                        <input type="file" id="c_cv" required accept=".pdf,.doc,.docx" class="hidden">
+                        <input type="file" id="c_cv" name="cv" required accept=".pdf,.doc,.docx" class="hidden">
                     </div>
 
                     <div class="pt-2">
@@ -174,7 +175,6 @@
     const form = document.getElementById('cvForm');
     if (!form) return;
 
-    const hrEmail  = @json($hr_email);
     const fileIn   = document.getElementById('c_cv');
     const fileLbl  = document.getElementById('cvLabel');
     const btn      = document.getElementById('cvSubmit');
@@ -189,24 +189,11 @@
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const fd = new FormData();
-        const name   = document.getElementById('c_name').value;
-        const phone  = document.getElementById('c_phone').value;
-        const email  = document.getElementById('c_email').value;
-        const dept   = document.getElementById('c_dept').value;
-        const branch = document.getElementById('c_branch').value;
-        const letter = document.getElementById('c_letter').value;
-
-        fd.append('full_name', name);
-        fd.append('phone', phone);
-        fd.append('email', email);
-        fd.append('department', dept);
-        fd.append('preferred_branch', branch);
-        fd.append('cover_letter', letter);
-        fd.append('cv', fileIn.files[0]);
+        const fd = new FormData(form);
 
         btn.disabled = true;
         btn.innerHTML = 'جاري الإرسال...';
+        okBox.classList.add('hidden');
         errBox.classList.add('hidden');
 
         fetch('{{ route('careers.store') }}', {
@@ -219,7 +206,6 @@
         })
         .then(r => r.json().then(body => ({ status: r.status, body })))
         .then(({ status, body }) => {
-            const res = body;
             btn.disabled = false;
             btn.innerHTML = original;
 
@@ -230,21 +216,6 @@
             okBox.classList.remove('hidden');
             okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // mailto لا يدعم إرفاق الملفات، لذا نضع رابط تحميل السيرة الذاتية في نص الرسالة
-            const body =
-                'الاسم الثلاثي: ' + name + '\n' +
-                'رقم الهاتف: ' + phone + '\n' +
-                'البريد الإلكتروني: ' + (email || 'غير متوفر') + '\n' +
-                'المجال الوظيفي: ' + dept + '\n' +
-                'الفرع المفضل: ' + branch + '\n\n' +
-                'نبذة عن الخبرات:\n' + (letter || 'لا يوجد') + '\n\n' +
-                'رابط تحميل السيرة الذاتية:\n' + (res.cv_url || 'غير متوفر');
-
-            const subject = 'طلب توظيف جديد - ' + dept + ' - ' + branch;
-            window.location.href = 'mailto:' + hrEmail
-                + '?subject=' + encodeURIComponent(subject)
-                + '&body=' + encodeURIComponent(body);
-
             form.reset();
             fileLbl.textContent = 'اضغط هنا لرفع الملف';
         })
@@ -252,10 +223,15 @@
             btn.disabled = false;
             btn.innerHTML = original;
             errBox.textContent = err.message
-                || 'عذراً، تعذّر إرسال الطلب. تأكد من تعبئة كل الحقول وأن ملف السيرة الذاتية بصيغة PDF أو Word ولا يتجاوز 5 ميغابايت.';
+                || 'عذراً، تعذّر إرسال الطلب. تأكد من تعبئة الحقول المطلوبة وأن ملف السيرة الذاتية بصيغة PDF أو Word ولا يتجاوز 5 ميغابايت.';
             errBox.classList.remove('hidden');
         });
     });
+
+    function firstError(body) {
+        const errors = body && body.errors ? Object.values(body.errors).flat() : [];
+        return errors[0] || '';
+    }
 })();
 </script>
 @endpush

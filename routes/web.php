@@ -29,7 +29,7 @@ Route::get('/wholesale', [PageController::class, 'wholesale'])->name('wholesale'
 Route::post('/wholesale', [WholesaleController::class, 'store'])->name('wholesale.store');
 
 Route::get('/careers', [PageController::class, 'careers'])->name('careers');
-Route::post('/careers', [CareerController::class, 'store'])->name('careers.store');
+Route::post('/careers', [CareerController::class, 'store'])->middleware('throttle:6,1')->name('careers.store');
 
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
@@ -68,6 +68,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // Job Applications Inbox
     Route::get('/applications', [\App\Http\Controllers\Admin\JobApplicationController::class, 'index'])->name('applications.index');
     Route::get('/applications/{jobApplication}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'show'])->name('applications.show');
+    Route::get('/applications/{jobApplication}/cv', [\App\Http\Controllers\Admin\JobApplicationController::class, 'downloadCv'])->name('applications.cv');
     Route::post('/applications/{jobApplication}/read', [\App\Http\Controllers\Admin\JobApplicationController::class, 'markRead'])->name('applications.read');
     Route::delete('/applications/{jobApplication}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'destroy'])->name('applications.destroy');
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
 use App\Models\Branch;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\News;
@@ -160,7 +160,6 @@ class PageController extends Controller
     {
         return view('careers', [
             'careers_intro' => setting('careers_intro'),
-            'hr_email' => setting('hr_email'),
             'branches' => Branch::where('is_active', true)->orderBy('order')->get(),
         ]);
     }

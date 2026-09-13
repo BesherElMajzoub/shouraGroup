@@ -64,11 +64,346 @@ html[dir="ltr"] .hover\:pr-1:hover {
 .anim-glow       { animation: shora-pulse-glow 5s ease-in-out infinite; }
 .anim-fade-up    { animation: shora-fade-up .7s ease-out both; }
 
+/* ===== Connected hero network ===== */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 82% 48%, rgb(225 29 38 / 9%), transparent 31rem),
+        linear-gradient(145deg, #fff 0%, #fff 44%, #fdf5f5 100%);
+}
+
+.hero-grid-pattern {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .035;
+    background-image: radial-gradient(#141414 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.hero-ambient {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(2px);
+}
+
+.hero-ambient-one {
+    width: 17rem;
+    height: 17rem;
+    top: -8rem;
+    right: -5rem;
+    border: 1px solid rgb(225 29 38 / 14%);
+}
+
+.hero-ambient-two {
+    width: 9rem;
+    height: 9rem;
+    bottom: -5rem;
+    left: 8%;
+    background: rgb(225 29 38 / 5%);
+}
+
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    border: 1px solid rgb(225 29 38 / 15%);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 82%);
+    padding: .55rem .9rem;
+    color: #b3141b;
+    font-size: .82rem;
+    font-weight: 800;
+    box-shadow: 0 10px 30px rgb(20 20 20 / 5%);
+    backdrop-filter: blur(10px);
+}
+
+.hero-eyebrow-dot {
+    width: .48rem;
+    height: .48rem;
+    border-radius: 999px;
+    background: #e11d26;
+    box-shadow: 0 0 0 .28rem rgb(225 29 38 / 12%);
+    animation: shora-eyebrow-pulse 2s ease-in-out infinite;
+}
+
+.hero-network {
+    --branch-length: 40%;
+    position: relative;
+    width: min(100%, 38rem);
+    aspect-ratio: 1;
+    margin-inline: auto;
+    isolation: isolate;
+}
+
+.hero-orbit {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+.hero-orbit-outer {
+    inset: 9%;
+    border: 1px dashed rgb(225 29 38 / 18%);
+    animation: shora-orbit-spin 36s linear infinite;
+}
+
+.hero-orbit-inner {
+    inset: 28%;
+    border: 1px solid rgb(20 20 20 / 6%);
+}
+
+.hero-branch {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: var(--branch-length);
+    height: 1px;
+    transform: rotate(var(--angle));
+    transform-origin: left center;
+}
+
+.hero-connector {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgb(225 29 38 / 65%), rgb(225 29 38 / 18%));
+    transition: height .25s ease, box-shadow .25s ease;
+}
+
+.hero-connector::before {
+    content: "";
+    position: absolute;
+    inset: -2px 0;
+    background: repeating-linear-gradient(90deg, transparent 0 9px, rgb(255 255 255 / 80%) 9px 13px);
+    opacity: .36;
+}
+
+.hero-signal {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 5%;
+    width: .45rem;
+    height: .45rem;
+    border-radius: 999px;
+    background: #e11d26;
+    box-shadow: 0 0 0 .25rem rgb(225 29 38 / 12%), 0 0 12px rgb(225 29 38 / 70%);
+    transform: translate(-50%, -50%);
+    animation: shora-signal-travel 2.8s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.hero-satellite {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .45rem;
+    color: #141414;
+    text-decoration: none;
+    transform: translate(-50%, -50%) rotate(var(--counter-angle));
+}
+
+.hero-satellite-card {
+    display: grid;
+    width: 5.2rem;
+    height: 5.2rem;
+    place-items: center;
+    border: 1px solid rgb(20 20 20 / 7%);
+    border-radius: 1.35rem;
+    background: rgb(255 255 255 / 94%);
+    padding: .8rem;
+    box-shadow: 0 14px 40px rgb(20 20 20 / 10%);
+    animation: shora-node-float 4.6s ease-in-out infinite;
+    animation-delay: var(--delay);
+    transition: border-color .3s ease, box-shadow .3s ease, scale .3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.hero-satellite:hover .hero-satellite-card,
+.hero-satellite:focus-visible .hero-satellite-card {
+    border-color: rgb(225 29 38 / 38%);
+    box-shadow: 0 18px 44px rgb(225 29 38 / 18%);
+    scale: 1.1;
+}
+
+.hero-branch:has(.hero-satellite:hover) .hero-connector,
+.hero-branch:has(.hero-satellite:focus-visible) .hero-connector {
+    height: 2px;
+    box-shadow: 0 0 14px rgb(225 29 38 / 35%);
+}
+
+.hero-satellite:focus-visible {
+    border-radius: 1.4rem;
+    outline: 3px solid rgb(225 29 38 / 28%);
+    outline-offset: 5px;
+}
+
+.hero-satellite-image,
+.hero-satellite-icon,
+.hero-satellite-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-satellite-image {
+    object-fit: contain;
+}
+
+.hero-satellite-icon {
+    display: grid;
+    place-items: center;
+    border-radius: .9rem;
+    background: #fbe9ea;
+    color: #e11d26;
+    padding: .55rem;
+}
+
+.hero-satellite-label {
+    width: max-content;
+    max-width: 7.5rem;
+    border: 1px solid rgb(20 20 20 / 5%);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 90%);
+    padding: .22rem .55rem;
+    color: rgb(20 20 20 / 72%);
+    font-size: .7rem;
+    font-weight: 800;
+    line-height: 1.25;
+    text-align: center;
+    box-shadow: 0 5px 16px rgb(20 20 20 / 6%);
+    backdrop-filter: blur(8px);
+}
+
+.hero-hub {
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    width: 29%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+}
+
+.hero-hub-pulse,
+.hero-hub-ring,
+.hero-hub-core {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+}
+
+.hero-hub-pulse {
+    border: 1px solid rgb(225 29 38 / 35%);
+    animation: shora-hub-pulse 2.6s ease-out infinite;
+}
+
+.hero-hub-ring {
+    inset: -8%;
+    border: 1px dashed rgb(225 29 38 / 35%);
+    animation: shora-orbit-spin 16s linear infinite reverse;
+}
+
+.hero-hub-core {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgb(225 29 38 / 14%);
+    background: linear-gradient(145deg, #fff, #fdf5f5);
+    box-shadow: 0 24px 65px rgb(20 20 20 / 14%), 0 0 0 .55rem rgb(255 255 255 / 70%);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.hero-hub:hover .hero-hub-core {
+    transform: scale(1.04);
+    box-shadow: 0 28px 72px rgb(225 29 38 / 18%), 0 0 0 .55rem rgb(255 255 255 / 80%);
+}
+
+.hero-hub-logo {
+    width: 82%;
+    height: 58%;
+    object-fit: contain;
+}
+
+.hero-hub-year {
+    margin-top: -.35rem;
+    border-radius: 999px;
+    background: #141414;
+    padding: .2rem .6rem;
+    color: white;
+    font-size: .65rem;
+    font-weight: 800;
+}
+
+@keyframes shora-orbit-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes shora-signal-travel {
+    0% { left: 5%; opacity: 0; }
+    18%, 78% { opacity: 1; }
+    100% { left: 96%; opacity: 0; }
+}
+
+@keyframes shora-node-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+@keyframes shora-hub-pulse {
+    0% { transform: scale(.9); opacity: .7; }
+    100% { transform: scale(1.34); opacity: 0; }
+}
+
+@keyframes shora-eyebrow-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.28); }
+}
+
+@media (max-width: 639px) {
+    .hero-network {
+        --branch-length: 38%;
+        width: min(100%, 24rem);
+    }
+
+    .hero-satellite-card {
+        width: 3.7rem;
+        height: 3.7rem;
+        border-radius: 1rem;
+        padding: .55rem;
+    }
+
+    .hero-satellite-label {
+        max-width: 5.2rem;
+        padding: .18rem .38rem;
+        font-size: .56rem;
+    }
+
+    .hero-hub {
+        width: 31%;
+    }
+
+    .hero-hub-year {
+        padding: .15rem .4rem;
+        font-size: .52rem;
+    }
+}
+
 /* Scroll reveal (driven by IntersectionObserver -> .in-view) */
 .reveal { opacity: 0; transform: translateY(36px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.in-view { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-    .anim-float, .anim-pop, .anim-glow, .anim-fade-up { animation: none; }
+    .anim-float, .anim-pop, .anim-glow, .anim-fade-up,
+    .hero-eyebrow-dot, .hero-orbit, .hero-signal, .hero-satellite-card,
+    .hero-hub-pulse, .hero-hub-ring { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
 }

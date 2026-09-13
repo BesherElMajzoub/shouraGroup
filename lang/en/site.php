@@ -339,6 +339,9 @@ return [
     'نموذج طلب التوظيف' => 'Job Application Form',
     'قدّم طلبك الآن' => 'Apply Now',
     'يرجى تعبئة الحقول بدقة وإرفاق سيرتك الذاتية.' => 'Please complete all fields carefully and attach your résumé.',
+    'باب التقديم مفتوح دائمًا' => 'Applications Are Always Open',
+    'عرّفنا بنفسك' => 'Tell Us About Yourself',
+    'أرسل بياناتك وسيرتك الذاتية، وسيتواصل معك فريقنا عند توفر فرصة مناسبة.' => 'Send us your details and résumé. Our team will contact you when a suitable opportunity becomes available.',
     'الاسم الثلاثي' => 'Full Name',
     'رقم الهاتف المحمول' => 'Mobile Number',
     '(اختياري)' => '(Optional)',
@@ -366,6 +369,7 @@ return [
     'لا يوجد' => 'None',
     'طلب توظيف جديد - ' => 'New Job Application - ',
     'عذراً، تعذّر إرسال الطلب. تأكد من تعبئة كل الحقول وأن ملف السيرة الذاتية بصيغة PDF أو Word ولا يتجاوز 5 ميغابايت.' => 'We could not submit your application. Please complete all required fields and ensure your résumé is a PDF or Word file under 5 MB.',
+    'عذراً، تعذّر إرسال الطلب. تأكد من تعبئة الحقول المطلوبة وأن ملف السيرة الذاتية بصيغة PDF أو Word ولا يتجاوز 5 ميغابايت.' => 'We could not submit your application. Please complete the required fields and ensure your résumé is a PDF or Word file under 5 MB.',
 
     // Contact
     'اتصل بنا | شورى إخوان' => 'Contact Us | Shora Brothers',

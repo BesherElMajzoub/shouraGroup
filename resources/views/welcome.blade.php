@@ -6,92 +6,83 @@
 
     {{-- ============ HERO ============ --}}
     @php
-        $chips = [
-            ['label' => 'مجموعات التوليد',   'top' => 6,  'left' => 10, 'size' => 6,   'r' => -8, 'd' => 0.0,
-                'image' => 'images/hero/Shora Generators Services.PNG'],
-            ['label' => 'مضخات المياه',      'top' => 14, 'left' => 78, 'size' => 6.5, 'r' => 6,  'd' => 0.6,
-                'image' => 'images/hero/Shora Water pumps.PNG'],
-            ['label' => 'ضواغط الهواء',      'top' => 2,  'left' => 44, 'size' => 5.5, 'r' => 4,  'd' => 1.2,
-                'image' => 'images/hero/compressors.png'],
-            ['label' => 'غازات طبية',        'top' => 40, 'left' => 4,  'size' => 5.5, 'r' => 10, 'd' => 0.3,
-                'image' => 'images/hero/shora_medical.png'],
-            ['label' => 'تجهيزات كهربائية',  'top' => 46, 'left' => 88, 'size' => 5,   'r' => -6, 'd' => 0.9,
-                'image' => 'images/brands/bbc.svg'],
-            ['label' => 'عُدد صناعية',       'top' => 70, 'left' => 14, 'size' => 4.5, 'r' => -12,'d' => 1.5,
-                'image' => 'images/brands/keyang.svg'],
-            ['label' => 'تطوير عقاري',       'top' => 76, 'left' => 70, 'size' => 5,   'r' => 8,  'd' => 0.4,
+        $heroBranches = [
+            ['label' => 'مجموعات التوليد',  'angle' => -90,  'delay' => 0.0, 'href' => '/sectors/power-generation', 'image' => 'images/hero/Shora Generators Services.PNG'],
+            ['label' => 'مضخات المياه',     'angle' => -45,  'delay' => 0.2, 'href' => '/sectors/water-pumps', 'image' => 'images/hero/Shora Water pumps.PNG'],
+            ['label' => 'ضواغط الهواء',     'angle' => 0,    'delay' => 0.4, 'href' => '/sectors/air-compressors', 'image' => 'images/hero/compressors.png'],
+            ['label' => 'غازات طبية',       'angle' => 45,   'delay' => 0.6, 'href' => '/sectors/medical-gases', 'image' => 'images/hero/shora_medical.png'],
+            ['label' => 'تجهيزات كهربائية', 'angle' => 90,   'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image' => 'images/brands/bbc.svg'],
+            ['label' => 'عُدد صناعية',      'angle' => 135,  'delay' => 1.0, 'href' => '/sectors/industrial-tools', 'image' => 'images/brands/keyang.svg'],
+            ['label' => 'تطوير عقاري',      'angle' => 180,  'delay' => 1.2, 'href' => '/sectors/real-estate',
                 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M5.25 21V7.5l6.75-4.5 6.75 4.5V21M9.75 21v-5.25h4.5V21M9.75 11.25h.008M14.25 11.25h.008M9.75 14.25h.008M14.25 14.25h.008"/>'],
-            ['label' => 'وكالات عالمية',      'top' => 24, 'left' => 26, 'size' => 5,   'r' => 12, 'd' => 1.1,
-                'image' => 'images/brands/FPT_Logo_Red.png'],
-            ['label' => 'منذ عام 1978',      'top' => 30, 'left' => 62, 'size' => 5,   'r' => -10,'d' => 0.7,
-                'image' => 'images/hero/Shora Group Logo Offical Without BG.png'],
+            ['label' => 'وكالات عالمية',    'angle' => 225,  'delay' => 1.4, 'href' => '/brands', 'image' => 'images/brands/FPT_Logo_Red.png'],
         ];
     @endphp
-    <section id="hero" class="relative overflow-hidden bg-gradient-to-b from-brand-light/60 to-white scroll-mt-24">
-        <div class="pointer-events-none absolute inset-0 opacity-[0.04]"
-             style="background-image:radial-gradient(#141414 1px, transparent 1px); background-size:22px 22px;"></div>
+    <section id="hero" class="hero-section scroll-mt-24">
+        <div class="hero-grid-pattern" aria-hidden="true"></div>
+        <div class="hero-ambient hero-ambient-one" aria-hidden="true"></div>
+        <div class="hero-ambient hero-ambient-two" aria-hidden="true"></div>
 
-        <div class="hidden lg:block absolute inset-0 pointer-events-none">
-            @foreach ($chips as $c)
-                <div class="absolute anim-float pointer-events-auto"
-                     style="top:{{ $c['top'] }}%; left:{{ $c['left'] }}%; --r:{{ $c['r'] }}deg;
-                            width:{{ $c['size'] }}rem; height:{{ $c['size'] }}rem;
-                            animation-delay:{{ $c['d'] }}s; transform:rotate({{ $c['r'] }}deg);">
-                    <div class="w-full h-full rounded-2xl bg-white shadow-xl ring-1 ring-black/5 p-3.5 grid place-items-center
-                                opacity-90 hover:opacity-100 hover:scale-110 hover:shadow-2xl transition-all duration-300">
-                        @if (!empty($c['image']))
-                            <img src="{{ asset($c['image']) }}" alt="{{ $c['label'] }}"
-                                 class="max-h-full max-w-full object-contain">
-                        @else
-                            <span class="grid place-items-center w-full h-full rounded-full bg-brand-light text-brand">
-                                <svg class="w-2/3 h-2/3" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">{!! $c['icon'] !!}</svg>
-                            </span>
-                        @endif
+        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-16 lg:py-20">
+            <div class="grid lg:grid-cols-[0.9fr_1.1fr] items-center gap-12 lg:gap-4">
+                <div class="relative z-10 text-center lg:text-right">
+                    <div class="hero-eyebrow anim-fade-up">
+                        <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+                        حلول هندسية متكاملة منذ 1978
                     </div>
-                    <span class="block mt-1.5 text-center text-[11px] font-extrabold text-[#141414]/70 bg-white/80 backdrop-blur-sm rounded-full px-2 py-0.5 shadow-sm mx-auto w-fit">{{ $c['label'] }}</span>
-                </div>
-            @endforeach
-        </div>
 
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 py-16 lg:py-28">
-            <div class="flex flex-col items-center text-center">
-                <div class="relative mb-8 anim-pop">
-                    <div class="absolute -inset-8 rounded-full bg-brand/20 blur-3xl anim-glow"></div>
-                    <img src="{{ asset('images/hero/Shora Group Logo Offical Without BG.png') }}" alt="شورى إخوان"
-                         class="relative h-28 sm:h-40 w-auto drop-shadow-sm anim-float">
-                </div>
+                    <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-black text-[#141414] leading-[1.15] anim-fade-up" style="animation-delay:.12s">
+                        خبرة تربط <span class="text-brand">كل قطاعاتنا</span><br class="hidden sm:block"> بحلٍّ واحد
+                    </h1>
+                    <p class="mt-5 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg text-[#4b4b4b] leading-relaxed anim-fade-up" style="animation-delay:.24s">
+                        من توليد الكهرباء وضخ المياه إلى ضواغط الهواء والغازات الطبية — نضع خبرة شورى إخوان وشبكة وكالاتها العالمية في خدمة مشروعك.
+                    </p>
 
-                <h1 class="text-3xl sm:text-5xl font-black text-[#141414] leading-tight anim-fade-up" style="animation-delay:.15s">
-                    شورى <span class="text-brand">إخوان</span>
-                </h1>
-                <p class="mt-4 max-w-2xl text-base sm:text-lg text-[#4b4b4b] leading-relaxed anim-fade-up" style="animation-delay:.3s">
-                    الشركة الرائدة في التوريدات الهندسية في سوريا منذ عام 1978 — حلول متكاملة في توليد الكهرباء، ضخ المياه، ضواغط الهواء، الغازات الطبية، والتجهيزات الكهربائية.
-                </p>
-
-                <div class="mt-8 flex flex-wrap items-center justify-center gap-4 anim-fade-up" style="animation-delay:.45s">
-                    <a href="{{ url('/sectors') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-lg font-bold transition-colors">
-                        تصفّح قطاعاتنا
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
-                    </a>
-                    <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-lg font-bold transition-colors">
-                        تواصل معنا
-                    </a>
-                </div>
-            </div>
-
-            <div class="lg:hidden flex flex-wrap items-center justify-center gap-3 mt-12">
-                @foreach ($chips as $c)
-                    <div class="flex items-center gap-2 bg-white rounded-xl shadow-sm ring-1 ring-black/5 px-3 py-2">
-                        @if (!empty($c['image']))
-                            <img src="{{ asset($c['image']) }}" alt="{{ $c['label'] }}" class="w-7 h-7 object-contain">
-                        @else
-                            <span class="grid place-items-center w-7 h-7 rounded-full bg-brand-light text-brand">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">{!! $c['icon'] !!}</svg>
-                            </span>
-                        @endif
-                        <span class="text-xs font-bold text-[#141414]/70">{{ $c['label'] }}</span>
+                    <div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4 anim-fade-up" style="animation-delay:.36s">
+                        <a href="{{ url('/sectors') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3.5 rounded-xl font-bold transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/20">
+                            استكشف قطاعاتنا
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                        </a>
+                        <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-xl font-bold transition-all hover:-translate-y-0.5">
+                            تحدّث مع فريقنا
+                        </a>
                     </div>
-                @endforeach
+                </div>
+
+                <div class="hero-network anim-pop" aria-label="قطاعات شورى إخوان المترابطة">
+                    <div class="hero-orbit hero-orbit-outer" aria-hidden="true"></div>
+                    <div class="hero-orbit hero-orbit-inner" aria-hidden="true"></div>
+
+                    @foreach ($heroBranches as $branch)
+                        <div class="hero-branch"
+                             style="--angle: {{ $branch['angle'] }}deg; --counter-angle: {{ -$branch['angle'] }}deg; --delay: {{ $branch['delay'] }}s;">
+                            <span class="hero-connector" aria-hidden="true">
+                                <span class="hero-signal"></span>
+                            </span>
+                            <a href="{{ url($branch['href']) }}" class="hero-satellite" aria-label="{{ $branch['label'] }}">
+                                <span class="hero-satellite-card">
+                                    @if (!empty($branch['image']))
+                                        <img src="{{ asset($branch['image']) }}" alt="" class="hero-satellite-image">
+                                    @else
+                                        <span class="hero-satellite-icon">
+                                            <svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">{!! $branch['icon'] !!}</svg>
+                                        </span>
+                                    @endif
+                                </span>
+                                <span class="hero-satellite-label">{{ $branch['label'] }}</span>
+                            </a>
+                        </div>
+                    @endforeach
+
+                    <div class="hero-hub">
+                        <span class="hero-hub-pulse" aria-hidden="true"></span>
+                        <span class="hero-hub-ring" aria-hidden="true"></span>
+                        <div class="hero-hub-core">
+                            <img src="{{ asset('images/hero/Shora Group Logo Offical Without BG.png') }}" alt="شورى إخوان" class="hero-hub-logo">
+                            <span class="hero-hub-year">منذ 1978</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

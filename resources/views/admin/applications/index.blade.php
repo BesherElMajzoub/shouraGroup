@@ -40,8 +40,8 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4 text-center flex items-center justify-center gap-2">
-                                @if ($app->cv_url)
-                                    <a href="{{ $app->cv_url }}" target="_blank" class="inline-flex items-center gap-1 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg px-3 py-1.5 text-xs font-bold transition-all">
+                                @if ($app->cv_path)
+                                    <a href="{{ route('admin.applications.cv', $app) }}" class="inline-flex items-center gap-1 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg px-3 py-1.5 text-xs font-bold transition-all">
                                         السيرة الذاتية
                                     </a>
                                 @endif

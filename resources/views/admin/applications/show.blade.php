@@ -17,8 +17,8 @@
                     <h3 class="font-black text-gray-900 text-lg">{{ $application->full_name }}</h3>
                     <p class="text-xs text-gray-400 mt-1">{{ $application->created_at->translatedFormat('j F Y — H:i') }}</p>
                 </div>
-                @if ($application->cv_url)
-                    <a href="{{ $application->cv_url }}" target="_blank"
+                @if ($application->cv_path)
+                    <a href="{{ route('admin.applications.cv', $application) }}"
                        class="shrink-0 inline-flex items-center gap-2 bg-brand hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-xl text-sm shadow-md shadow-brand/20 transition-all">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-4-4m4 4 4-4M4 20h16"/></svg>
                         تحميل السيرة الذاتية

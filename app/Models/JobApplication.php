@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class JobApplication extends Model
 {
@@ -15,11 +14,4 @@ class JobApplication extends Model
     protected $casts = [
         'is_read' => 'boolean',
     ];
-
-    protected function cvUrl(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->cv_path ? asset('storage/' . $this->cv_path) : null
-        );
-    }
 }

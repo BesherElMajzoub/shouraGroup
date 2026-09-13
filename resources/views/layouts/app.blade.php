@@ -122,6 +122,7 @@
             ['href' => url('/brands'),   'label' => 'العلامات التجارية','active' => request()->is('brands')],
             ['href' => url('/projects'), 'label' => 'مشاريعنا',        'active' => request()->is('projects')],
             ['href' => url('/news'),     'label' => 'الأخبار',         'active' => request()->is('news*')],
+            ['href' => url('/careers'),  'label' => 'انضم إلى فريقنا', 'active' => request()->is('careers')],
             ['href' => url('/contact'),  'label' => 'اتصل بنا',        'active' => request()->is('contact')],
         ];
     @endphp
@@ -157,7 +158,6 @@
             <li class="pt-2 mt-1 border-t border-gray-100">
                 <a href="{{ url('/wholesale') }}" class="block py-2 {{ request()->is('wholesale') ? 'text-brand' : '' }}">مبيعات الجملة</a>
             </li>
-            <li><a href="{{ url('/careers') }}" class="block py-2 {{ request()->is('careers') ? 'text-brand' : '' }}">انضم إلى فريقنا</a></li>
             <li class="pt-2 mt-1 border-t border-gray-100">
                 <a href="{{ route('language.switch', app()->getLocale() === 'ar' ? 'en' : 'ar') }}" class="block py-2 font-black" lang="{{ app()->getLocale() === 'ar' ? 'en' : 'ar' }}">
                     {{ app()->getLocale() === 'ar' ? 'English' : 'العربية' }}
