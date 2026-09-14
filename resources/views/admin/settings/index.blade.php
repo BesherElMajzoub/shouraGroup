@@ -41,7 +41,7 @@
                         <div>
                             <label for="{{ $key }}" class="{{ $label }}">{{ $imageLabel }}</label>
                             <div class="h-32 w-full rounded-xl overflow-hidden shadow-sm ring-1 ring-black/5 bg-gray-50 mb-3">
-                                <img src="{{ str_starts_with($imagePath, 'images/') ? asset($imagePath) : asset('storage/' . $imagePath) }}"
+                                <img src="{{ str_starts_with($imagePath, 'images/') ? asset($imagePath) : public_media_url($imagePath) }}"
                                      alt="" class="w-full h-full object-cover">
                             </div>
                             <input type="file" id="{{ $key }}" name="{{ $key }}" accept="image/*"
@@ -55,7 +55,7 @@
                 <div>
                     <label for="home_about_logo" class="{{ $label }}">شعار البطاقة الحمراء في قسم «من نحن»</label>
                     <div class="h-32 w-full rounded-xl overflow-hidden shadow-sm ring-1 ring-black/5 bg-brand grid place-items-center mb-3">
-                        <img src="{{ str_starts_with($homeAboutLogo, 'images/') ? asset($homeAboutLogo) : asset('storage/' . $homeAboutLogo) }}"
+                        <img src="{{ str_starts_with($homeAboutLogo, 'images/') ? asset($homeAboutLogo) : public_media_url($homeAboutLogo) }}"
                              alt="" class="h-16 w-auto max-w-[80%] brightness-0 invert">
                     </div>
                     <input type="file" id="home_about_logo" name="home_about_logo" accept=".png,.jpg,.jpeg,.webp,.svg,image/*"
@@ -100,7 +100,7 @@
                     <div class="flex items-center gap-4 flex-wrap">
                         @isset($settings['story_overview_image'])
                             <div class="h-24 w-40 rounded-xl overflow-hidden shadow-sm ring-1 ring-black/5 bg-gray-50">
-                                <img src="{{ str_starts_with($settings['story_overview_image'], 'images/') ? asset($settings['story_overview_image']) : asset('storage/' . $settings['story_overview_image']) }}" alt="" class="w-full h-full object-cover">
+                                <img src="{{ str_starts_with($settings['story_overview_image'], 'images/') ? asset($settings['story_overview_image']) : public_media_url($settings['story_overview_image']) }}" alt="" class="w-full h-full object-cover">
                             </div>
                         @endisset
                         <div class="flex-1 min-w-[200px]">

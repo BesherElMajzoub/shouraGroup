@@ -114,12 +114,12 @@
 
             <div class="reveal" style="transition-delay:.15s">
                 <div class="grid grid-cols-2 gap-4">
-                    <img src="{{ str_starts_with($home_about_main_image, 'images/') ? asset($home_about_main_image) : asset('storage/' . $home_about_main_image) }}"
+                    <img src="{{ str_starts_with($home_about_main_image, 'images/') ? asset($home_about_main_image) : public_media_url($home_about_main_image) }}"
                          alt="{{ __('ui.welcome.about.main_image_alt') }}" class="col-span-2 w-full h-56 object-cover rounded-2xl shadow-lg">
-                    <img src="{{ str_starts_with($home_about_secondary_image, 'images/') ? asset($home_about_secondary_image) : asset('storage/' . $home_about_secondary_image) }}"
+                    <img src="{{ str_starts_with($home_about_secondary_image, 'images/') ? asset($home_about_secondary_image) : public_media_url($home_about_secondary_image) }}"
                          alt="{{ __('ui.welcome.about.secondary_image_alt') }}" class="w-full h-40 object-cover rounded-2xl shadow-lg">
                     <div class="w-full h-40 rounded-2xl bg-brand grid place-items-center shadow-lg">
-                        <img src="{{ str_starts_with($home_about_logo, 'images/') ? asset($home_about_logo) : asset('storage/' . $home_about_logo) }}"
+                        <img src="{{ str_starts_with($home_about_logo, 'images/') ? asset($home_about_logo) : public_media_url($home_about_logo) }}"
                              alt="{{ __('ui.company.name') }}" class="h-16 w-auto max-w-[80%] brightness-0 invert">
                     </div>
                 </div>

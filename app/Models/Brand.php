@@ -38,7 +38,7 @@ class Brand extends Model
                 if (str_starts_with($path, 'images/') || str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
                     return asset($path);
                 }
-                return asset('storage/' . $path);
+                return public_media_url($path);
             }
         );
     }

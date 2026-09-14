@@ -5,7 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PublicMediaController;
 use App\Http\Controllers\WholesaleController;
+
+// Do not rely on public/storage being a usable symlink: many shared hosts
+// disable following symlinks and answer those image requests with HTTP 403.
+Route::get('/media/{path}', PublicMediaController::class)
+    ->where('path', '.*')
+    ->name('media.show');
 
 Route::get('/language/{locale}', function (string $locale) {
     abort_unless(in_array($locale, ['ar', 'en'], true), 404);

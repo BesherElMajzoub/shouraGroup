@@ -29,7 +29,7 @@
             <div class="reveal" style="transition-delay:.15s">
                 <div class="relative">
                     <div class="absolute -inset-3 rounded-[2rem] bg-brand/10 blur-2xl"></div>
-                    <img src="{{ str_starts_with($story_overview_image, 'images/') ? asset($story_overview_image) : asset('storage/' . $story_overview_image) }}"
+                    <img src="{{ str_starts_with($story_overview_image, 'images/') ? asset($story_overview_image) : public_media_url($story_overview_image) }}"
                          alt="{{ __('ui.company.name') }}"
                          class="relative w-full h-[360px] lg:h-[440px] object-cover rounded-[2rem] shadow-2xl">
                 </div>

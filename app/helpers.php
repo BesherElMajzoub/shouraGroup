@@ -3,6 +3,16 @@
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 
+if (! function_exists('public_media_url')) {
+    /**
+     * Build a URL for an uploaded file stored on the public disk.
+     */
+    function public_media_url(string $path): string
+    {
+        return route('media.show', ['path' => ltrim($path, '/')]);
+    }
+}
+
 if (! function_exists('setting')) {
     /**
      * Get a setting value by key.
