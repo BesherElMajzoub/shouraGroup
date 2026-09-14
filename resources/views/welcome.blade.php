@@ -15,7 +15,7 @@
             ['label' => __('ui.welcome.hero.branches.industrial_tools'),      'angle' => 135,  'delay' => 1.0, 'href' => '/sectors/industrial-tools', 'image' => 'images/brands/keyang.svg'],
             ['label' => __('ui.welcome.hero.branches.real_estate'),      'angle' => 180,  'delay' => 1.2, 'href' => '/sectors/real-estate',
                 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M5.25 21V7.5l6.75-4.5 6.75 4.5V21M9.75 21v-5.25h4.5V21M9.75 11.25h.008M14.25 11.25h.008M9.75 14.25h.008M14.25 14.25h.008"/>'],
-            ['label' => __('ui.welcome.hero.branches.global_agencies'),    'angle' => 225,  'delay' => 1.4, 'href' => '/brands', 'image' => 'images/brands/FPT_Logo_Red.png'],
+            ['label' => __('ui.welcome.hero.branches.global_agencies'),    'angle' => 225,  'delay' => 1.4, 'href' => '/brands', 'image' => 'images/brands/mmb.png'],
         ];
     @endphp
     <section id="hero" class="hero-section scroll-mt-24">
@@ -119,7 +119,8 @@
                     <img src="{{ str_starts_with($home_about_secondary_image, 'images/') ? asset($home_about_secondary_image) : asset('storage/' . $home_about_secondary_image) }}"
                          alt="{{ __('ui.welcome.about.secondary_image_alt') }}" class="w-full h-40 object-cover rounded-2xl shadow-lg">
                     <div class="w-full h-40 rounded-2xl bg-brand grid place-items-center shadow-lg">
-                        <img src="{{ asset('images/shora-logo.svg') }}" alt="{{ __('ui.company.name') }}" class="h-16 w-auto brightness-0 invert">
+                        <img src="{{ str_starts_with($home_about_logo, 'images/') ? asset($home_about_logo) : asset('storage/' . $home_about_logo) }}"
+                             alt="{{ __('ui.company.name') }}" class="h-16 w-auto max-w-[80%] brightness-0 invert">
                     </div>
                 </div>
             </div>
@@ -204,7 +205,7 @@
                             <div class="text-center px-8">
                                 <div class="text-sm font-bold text-[#4b4b4b] mb-1">{{ __('ui.welcome.sectors.since_year_label') }}</div>
                                 <div class="text-6xl font-black text-brand leading-none mb-4">1978</div>
-                                <img src="{{ asset('images/shora-logo.svg') }}" alt="{{ __('ui.company.name') }}" class="h-14 w-auto mx-auto">
+                                <img src="{{ asset('images/shora-logo.png') }}" alt="{{ __('ui.company.name') }}" class="h-12 w-auto mx-auto">
                             </div>
                         </div>
                     </div>

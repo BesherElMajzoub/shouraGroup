@@ -31,6 +31,7 @@ class HomeContentController extends Controller
     private const IMAGE_FIELDS = [
         'home_about_main_image' => ['directory' => 'uploads/home/about', 'group' => 'home'],
         'home_about_secondary_image' => ['directory' => 'uploads/home/about', 'group' => 'home'],
+        'home_about_logo' => ['directory' => 'uploads/home/about', 'group' => 'home'],
         'story_overview_image' => ['directory' => 'uploads/story', 'group' => 'story'],
     ];
 
@@ -54,6 +55,7 @@ class HomeContentController extends Controller
             'about_body' => ['required', 'string'],
             'home_about_main_image' => ['nullable', 'image', 'max:2048'],
             'home_about_secondary_image' => ['nullable', 'image', 'max:2048'],
+            'home_about_logo' => ['nullable', 'file', 'mimes:png,jpg,jpeg,webp,svg', 'max:2048'],
             'vision_text' => ['required', 'string'],
             'mission_text' => ['required', 'string'],
             'partners_intro' => ['required', 'string'],

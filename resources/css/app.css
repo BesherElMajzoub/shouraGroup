@@ -132,7 +132,7 @@ html[dir="ltr"] .hover\:pr-1:hover {
 .hero-network {
     --branch-length: 40%;
     position: relative;
-    width: min(100%, 38rem);
+    width: min(100%, 40rem);
     aspect-ratio: 1;
     margin-inline: auto;
     isolation: isolate;
@@ -212,14 +212,14 @@ html[dir="ltr"] .hover\:pr-1:hover {
 
 .hero-satellite-card {
     display: grid;
-    width: 5.2rem;
-    height: 5.2rem;
+    width: 5.75rem;
+    height: 5.75rem;
     place-items: center;
-    border: 1px solid rgb(20 20 20 / 7%);
-    border-radius: 1.35rem;
-    background: rgb(255 255 255 / 94%);
-    padding: .8rem;
-    box-shadow: 0 14px 40px rgb(20 20 20 / 10%);
+    border: 1px solid rgb(225 29 38 / 15%);
+    border-radius: 1.45rem;
+    background: #fff;
+    padding: .55rem;
+    box-shadow: 0 16px 42px rgb(20 20 20 / 14%), inset 0 0 0 1px rgb(255 255 255 / 85%);
     animation: shora-node-float 4.6s ease-in-out infinite;
     animation-delay: var(--delay);
     transition: border-color .3s ease, box-shadow .3s ease, scale .3s ease;
@@ -254,6 +254,7 @@ html[dir="ltr"] .hover\:pr-1:hover {
 
 .hero-satellite-image {
     object-fit: contain;
+    filter: saturate(1.08) contrast(1.05);
 }
 
 .hero-satellite-icon {
@@ -375,10 +376,10 @@ html[dir="ltr"] .hover\:pr-1:hover {
     }
 
     .hero-satellite-card {
-        width: 3.7rem;
-        height: 3.7rem;
-        border-radius: 1rem;
-        padding: .55rem;
+        width: 4.05rem;
+        height: 4.05rem;
+        border-radius: 1.05rem;
+        padding: .4rem;
     }
 
     .hero-satellite-label {

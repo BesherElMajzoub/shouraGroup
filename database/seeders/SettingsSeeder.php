@@ -35,6 +35,11 @@ class SettingsSeeder extends Seeder
                 'group' => 'home',
             ],
             [
+                'key' => 'home_about_logo',
+                'value' => 'images/shora-logo.svg',
+                'group' => 'home',
+            ],
+            [
                 'key' => 'vision_text',
                 'value' => "تحقيق الريادة في تقديم حلول هندسية متكاملة في قطاعات الطاقة والمياه على مستوى سوريا والمنطقة.",
                 'group' => 'home',

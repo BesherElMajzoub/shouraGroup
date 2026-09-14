@@ -25,6 +25,7 @@ class PageController extends Controller
             'about_body' => setting('about_body'),
             'home_about_main_image' => setting('home_about_main_image', 'images/about_skyscrapers.png'),
             'home_about_secondary_image' => setting('home_about_secondary_image', 'images/industrial_bg.png'),
+            'home_about_logo' => setting('home_about_logo', 'images/shora-logo.svg'),
             'vision_text' => setting('vision_text'),
             'mission_text' => setting('mission_text'),
             'partners_intro' => setting('partners_intro'),

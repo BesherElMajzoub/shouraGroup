@@ -51,6 +51,18 @@
                 </div>
                 <p class="text-[10px] text-gray-400 -mt-3">الصيغ المدعومة: PNG, JPG, JPEG, GIF — بحد أقصى 2 ميغابايت لكل صورة.</p>
 
+                @php($homeAboutLogo = $settings['home_about_logo'] ?? 'images/shora-logo.svg')
+                <div>
+                    <label for="home_about_logo" class="{{ $label }}">شعار البطاقة الحمراء في قسم «من نحن»</label>
+                    <div class="h-32 w-full rounded-xl overflow-hidden shadow-sm ring-1 ring-black/5 bg-brand grid place-items-center mb-3">
+                        <img src="{{ str_starts_with($homeAboutLogo, 'images/') ? asset($homeAboutLogo) : asset('storage/' . $homeAboutLogo) }}"
+                             alt="" class="h-16 w-auto max-w-[80%] brightness-0 invert">
+                    </div>
+                    <input type="file" id="home_about_logo" name="home_about_logo" accept=".png,.jpg,.jpeg,.webp,.svg,image/*"
+                           class="w-full text-xs text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
+                    <p class="text-[10px] text-gray-400 mt-1.5">يفضّل شعار بخلفية شفافة. الصيغ المدعومة: PNG, JPG, JPEG, WEBP, SVG — بحد أقصى 2 ميغابايت.</p>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label for="vision_text" class="{{ $label }}">نص الرؤية</label>
