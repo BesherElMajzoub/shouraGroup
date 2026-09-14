@@ -337,10 +337,6 @@
                                 class="w-12 h-12 rounded-full bg-white ring-1 ring-black/5 shadow-sm grid place-items-center text-[#141414] hover:bg-brand hover:text-white transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                         </button>
-                        <button id="clientsNext" type="button" aria-label="{{ __('ui.common.next') }}"
-                                class="w-12 h-12 rounded-full bg-white ring-1 ring-black/5 shadow-sm grid place-items-center text-[#141414] hover:bg-brand hover:text-white transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg>
-                        </button>
                     </div>
                 </div>
 
@@ -510,10 +506,6 @@
         document.getElementById('clientsPrev')?.addEventListener('click', () => {
             track.scrollBy({ left: manualStep, behavior: 'smooth' });
         });
-        document.getElementById('clientsNext')?.addEventListener('click', () => {
-            track.scrollBy({ left: -manualStep, behavior: 'smooth' });
-        });
-
         animId = requestAnimationFrame(autoScroll);
     })();
 </script>

@@ -67,10 +67,10 @@ return [
 
         'hero' => [
             'eyebrow' => 'Integrated Engineering Solutions Since 1978',
-            'title_line1' => 'Expertise That Connects',
-            'title_highlight' => 'All Our Sectors',
-            'title_line2' => 'Into One Solution',
-            'paragraph' => "From power generation and water pumping to air compressors and medical gases — we put Shora Brothers' expertise and global agency network at the service of your project.",
+            'title_line1' => 'A Legacy of Trust',
+            'title_highlight' => 'and Engineering Excellence..',
+            'title_line2' => 'Driving Your Projects Toward Reliability',
+            'paragraph' => "Since its establishment, Shora Brothers has put decades of leadership, reliability, and a network of global agencies at your service—covering all your project's needs in power generation, water pumps, air compressors, medical gas networks, and industrial and agricultural tools.",
             'cta_sectors' => 'Explore Our Sectors',
             'cta_contact' => 'Talk to Our Team',
             'network_aria' => "Shora Brothers' Interconnected Sectors",
