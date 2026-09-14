@@ -117,10 +117,8 @@
                          alt="{{ __('ui.welcome.about.main_image_alt') }}" class="col-span-2 w-full h-56 object-cover rounded-2xl shadow-lg">
                     <img src="{{ str_starts_with($home_about_secondary_image, 'images/') ? asset($home_about_secondary_image) : public_media_url($home_about_secondary_image) }}"
                          alt="{{ __('ui.welcome.about.secondary_image_alt') }}" class="w-full h-40 object-cover rounded-2xl shadow-lg">
-                    <div class="w-full h-40 rounded-2xl bg-brand grid place-items-center shadow-lg">
-                        <img src="{{ str_starts_with($home_about_logo, 'images/') ? asset($home_about_logo) : public_media_url($home_about_logo) }}"
-                             alt="{{ __('ui.company.name') }}" class="h-16 w-auto max-w-[80%] brightness-0 invert">
-                    </div>
+                    <img src="{{ str_starts_with($home_about_logo, 'images/') ? asset($home_about_logo) : public_media_url($home_about_logo) }}"
+                         alt="{{ __('ui.company.name') }}" class="w-full h-40 object-contain rounded-2xl bg-white shadow-lg">
                 </div>
             </div>
         </div>
