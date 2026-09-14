@@ -7,15 +7,13 @@
     {{-- ============ HERO ============ --}}
     @php
         $heroBranches = [
-            ['label' => __('ui.welcome.hero.branches.power_generation'),  'angle' => -90,  'delay' => 0.0, 'href' => '/sectors/power-generation', 'image' => 'images/hero/Shora Generators Services.PNG'],
-            ['label' => __('ui.welcome.hero.branches.water_pumps'),     'angle' => -45,  'delay' => 0.2, 'href' => '/sectors/water-pumps', 'image' => 'images/hero/Shora Water pumps.PNG'],
-            ['label' => __('ui.welcome.hero.branches.air_compressors'),     'angle' => 0,    'delay' => 0.4, 'href' => '/sectors/air-compressors', 'image' => 'images/hero/compressors.png'],
-            ['label' => __('ui.welcome.hero.branches.medical_gases'),       'angle' => 45,   'delay' => 0.6, 'href' => '/sectors/medical-gases', 'image' => 'images/hero/shora_medical.png'],
-            ['label' => __('ui.welcome.hero.branches.electrical_equipment'), 'angle' => 90,   'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image' => 'images/brands/bbc.svg'],
-            ['label' => __('ui.welcome.hero.branches.industrial_tools'),      'angle' => 135,  'delay' => 1.0, 'href' => '/sectors/industrial-tools', 'image' => 'images/brands/keyang.svg'],
-            ['label' => __('ui.welcome.hero.branches.real_estate'),      'angle' => 180,  'delay' => 1.2, 'href' => '/sectors/real-estate',
-                'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M5.25 21V7.5l6.75-4.5 6.75 4.5V21M9.75 21v-5.25h4.5V21M9.75 11.25h.008M14.25 11.25h.008M9.75 14.25h.008M14.25 14.25h.008"/>'],
-            ['label' => __('ui.welcome.hero.branches.global_agencies'),    'angle' => 225,  'delay' => 1.4, 'href' => '/brands', 'image' => 'images/brands/mmb.png'],
+            ['label' => __('ui.welcome.hero.branches.power_generation'),   'angle' => -90,     'delay' => 0.0, 'href' => '/sectors/power-generation', 'image' => 'images/hero/Shora Generators Services.PNG', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.water_pumps'),         'angle' => -38.57,  'delay' => 0.2, 'href' => '/sectors/water-pumps', 'image' => 'images/hero/Shora Water pumps.PNG', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.air_compressors'),     'angle' => 12.86,   'delay' => 0.4, 'href' => '/sectors/air-compressors', 'image' => 'images/hero/compressors.png', 'logo_scale' => 1.08],
+            ['label' => __('ui.welcome.hero.branches.medical_gases'),       'angle' => 64.29,   'delay' => 0.6, 'href' => '/sectors/medical-gases', 'image' => 'images/hero/shora_medical.png', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.electrical_equipment'),'angle' => 115.71,  'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image' => 'images/brands/bbc.svg', 'logo_scale' => 1.14],
+            ['label' => __('ui.welcome.hero.branches.industrial_tools'),    'angle' => 167.14,  'delay' => 1.0, 'href' => '/sectors/industrial-tools', 'image' => 'images/brands/keyang.svg', 'logo_scale' => 1.14],
+            ['label' => __('ui.welcome.hero.branches.global_agencies'),    'angle' => 218.57,  'delay' => 1.2, 'href' => '/brands', 'image' => 'images/brands/mmb.png', 'logo_scale' => 1.14],
         ];
     @endphp
     <section id="hero" class="hero-section scroll-mt-24">
@@ -62,7 +60,8 @@
                             <a href="{{ url($branch['href']) }}" class="hero-satellite" aria-label="{{ $branch['label'] }}">
                                 <span class="hero-satellite-card">
                                     @if (!empty($branch['image']))
-                                        <img src="{{ asset($branch['image']) }}" alt="" class="hero-satellite-image">
+                                        <img src="{{ asset($branch['image']) }}" alt="" class="hero-satellite-image"
+                                             style="--logo-scale: {{ $branch['logo_scale'] ?? 1 }};">
                                     @else
                                         <span class="hero-satellite-icon">
                                             <svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">{!! $branch['icon'] !!}</svg>

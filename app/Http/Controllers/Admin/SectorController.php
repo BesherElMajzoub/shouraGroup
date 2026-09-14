@@ -93,7 +93,7 @@ class SectorController extends Controller
             'intro' => ['nullable', 'string'],
             'specialties' => ['nullable', 'string'],
             'icon' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:7168'],
             'is_coming_soon' => ['boolean'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],

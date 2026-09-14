@@ -54,20 +54,11 @@
                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-none">{{ old('features_text') }}</textarea>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Icon (SVG path) -->
-                <div>
-                    <label for="icon" class="block text-xs font-bold text-gray-700 mb-2">مسار أيقونة الـ SVG (الخاص بـ path d=)</label>
-                    <input type="text" id="icon" name="icon" value="{{ old('icon') }}" placeholder="M12 3..."
-                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all text-left" dir="ltr">
-                </div>
-
-                <!-- Order -->
-                <div>
-                    <label for="order" class="block text-xs font-bold text-gray-700 mb-2">الترتيب</label>
-                    <input type="number" id="order" name="order" value="{{ old('order', 0) }}" required
-                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
-                </div>
+            <!-- Order -->
+            <div>
+                <label for="order" class="block text-xs font-bold text-gray-700 mb-2">الترتيب</label>
+                <input type="number" id="order" name="order" value="{{ old('order', 0) }}" required
+                       class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">

@@ -100,7 +100,7 @@ class BrandController extends Controller
             'slug' => ['nullable', 'string', 'max:255', $slugRule],
             'country' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
-            'logo' => ['nullable', 'image', 'max:2048'],
+            'logo' => ['nullable', 'image', 'max:7168'],
             'is_agency' => ['boolean'],
             'show_on_home' => ['boolean'],
             'order' => ['required', 'integer'],

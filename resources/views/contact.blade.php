@@ -22,52 +22,6 @@
         'desc'    => $contact_intro,
     ])
 
-    {{-- ===== BRANCHES ===== --}}
-    <section class="py-20 lg:py-24 bg-white">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6">
-            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('contact.branches.eyebrow') }}</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">{{ __('contact.branches.heading') }}</h2>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach ($branches as $i => $b)
-                    <article class="reveal group bg-white rounded-[1.75rem] p-7 shadow-sm ring-1 ring-black/5
-                                    hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300"
-                             style="transition-delay:{{ $i * 0.08 }}s">
-                        <div class="w-14 h-14 rounded-2xl bg-brand text-white grid place-items-center mb-5 shadow-lg shadow-brand/25">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                        </div>
-
-                        <h3 class="text-xl font-black text-[#141414] mb-1">{{ $b->name }}</h3>
-                        <p class="text-sm font-bold text-brand mb-5">{{ $b->description }}</p>
-
-                        <div class="space-y-3 text-sm border-t border-gray-100 pt-5">
-                            <div class="flex items-start gap-2.5 text-[#4b4b4b]">
-                                <svg class="w-4 h-4 text-brand shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                                <span>{{ $b->address }}</span>
-                            </div>
-
-                            @if ($b->phone)
-                                <a href="tel:{{ preg_replace('/\s/', '', $b->phone) }}" class="flex items-center gap-2.5 text-[#4b4b4b] hover:text-brand transition-colors">
-                                    <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
-                                    <span>{{ __('contact.branches.phone_label') }}: <span dir="ltr">{{ $b->phone }}</span></span>
-                                </a>
-                            @endif
-
-                            @if ($b->mobile)
-                                <a href="tel:{{ preg_replace('/\s/', '', $b->mobile) }}" class="flex items-center gap-2.5 text-[#4b4b4b] hover:text-brand transition-colors">
-                                    <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
-                                    <span>{{ __('contact.branches.mobile_label') }}: <span dir="ltr">{{ $b->mobile }}</span></span>
-                                </a>
-                            @endif
-                        </div>
-                    </article>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
     {{-- ===== GENERAL CONTACT + FORM ===== --}}
     <section class="py-20 lg:py-24 bg-[#f7f7f8] relative overflow-hidden">
         <div class="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -186,6 +140,52 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    {{-- ===== BRANCHES ===== --}}
+    <section class="py-20 lg:py-24 bg-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('contact.branches.eyebrow') }}</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#141414]">{{ __('contact.branches.heading') }}</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($branches as $i => $b)
+                    <article class="reveal group bg-white rounded-[1.75rem] p-7 shadow-sm ring-1 ring-black/5
+                                    hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300"
+                             style="transition-delay:{{ $i * 0.08 }}s">
+                        <div class="w-14 h-14 rounded-2xl bg-brand text-white grid place-items-center mb-5 shadow-lg shadow-brand/25">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                        </div>
+
+                        <h3 class="text-xl font-black text-[#141414] mb-1">{{ $b->name }}</h3>
+                        <p class="text-sm font-bold text-brand mb-5">{{ $b->description }}</p>
+
+                        <div class="space-y-3 text-sm border-t border-gray-100 pt-5">
+                            <div class="flex items-start gap-2.5 text-[#4b4b4b]">
+                                <svg class="w-4 h-4 text-brand shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                                <span>{{ $b->address }}</span>
+                            </div>
+
+                            @if ($b->phone)
+                                <a href="tel:{{ preg_replace('/\s/', '', $b->phone) }}" class="flex items-center gap-2.5 text-[#4b4b4b] hover:text-brand transition-colors">
+                                    <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+                                    <span>{{ __('contact.branches.phone_label') }}: <span dir="ltr">{{ $b->phone }}</span></span>
+                                </a>
+                            @endif
+
+                            @if ($b->mobile)
+                                <a href="tel:{{ preg_replace('/\s/', '', $b->mobile) }}" class="flex items-center gap-2.5 text-[#4b4b4b] hover:text-brand transition-colors">
+                                    <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+                                    <span>{{ __('contact.branches.mobile_label') }}: <span dir="ltr">{{ $b->mobile }}</span></span>
+                                </a>
+                            @endif
+                        </div>
+                    </article>
+                @endforeach
             </div>
         </div>
     </section>

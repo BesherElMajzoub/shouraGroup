@@ -49,7 +49,7 @@
                         </div>
                     @endforeach
                 </div>
-                <p class="text-[10px] text-gray-400 -mt-3">الصيغ المدعومة: PNG, JPG, JPEG, GIF — بحد أقصى 2 ميغابايت لكل صورة.</p>
+                <p class="text-[10px] text-gray-400 -mt-3">الصيغ المدعومة: PNG, JPG, JPEG, GIF — بحد أقصى 7 ميغابايت لكل صورة.</p>
 
                 @php($homeAboutLogo = $settings['home_about_logo'] ?? 'images/shora-logo.svg')
                 <div>
@@ -60,7 +60,7 @@
                     </div>
                     <input type="file" id="home_about_logo" name="home_about_logo" accept=".png,.jpg,.jpeg,.webp,.svg,image/*"
                            class="w-full text-xs text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
-                    <p class="text-[10px] text-gray-400 mt-1.5">يفضّل شعار بخلفية شفافة. الصيغ المدعومة: PNG, JPG, JPEG, WEBP, SVG — بحد أقصى 2 ميغابايت.</p>
+                    <p class="text-[10px] text-gray-400 mt-1.5">يفضّل شعار بخلفية شفافة. الصيغ المدعومة: PNG, JPG, JPEG, WEBP, SVG — بحد أقصى 7 ميغابايت.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -106,7 +106,7 @@
                         <div class="flex-1 min-w-[200px]">
                             <input type="file" id="story_overview_image" name="story_overview_image" accept="image/*"
                                    class="w-full text-xs text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
-                            <span class="text-[10px] text-gray-400 block mt-1">الصيغ المدعومة: PNG, JPG, JPEG, GIF — بحد أقصى 2 ميغابايت.</span>
+                            <span class="text-[10px] text-gray-400 block mt-1">الصيغ المدعومة: PNG, JPG, JPEG, GIF — بحد أقصى 7 ميغابايت.</span>
                         </div>
                     </div>
                 </div>

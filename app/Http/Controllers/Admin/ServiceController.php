@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
+    private const DEFAULT_ICON = 'M11.4 2.6a5 5 0 0 0 6 6L21 12l-2 2-3.4-3.4a5 5 0 0 1-6-6L7 1l4.4 1.6ZM3 17l6-6M3 17l3 3 6-6';
+
     /**
      * Display a listing of the resource.
      */
@@ -36,14 +38,14 @@ class ServiceController extends Controller
             'dept' => ['required', 'string', 'max:255'],
             'group' => ['required', 'in:home,pillar'],
             'description' => ['nullable', 'string'],
-            'icon' => ['nullable', 'string'], // SVG Path
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:7168'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
             'features_text' => ['nullable', 'string'],
         ]);
 
         $validated['is_active'] = $request->has('is_active');
+        $validated['icon'] = self::DEFAULT_ICON;
         
         // Parse features line-by-line
         $features = [];
@@ -81,8 +83,7 @@ class ServiceController extends Controller
             'dept' => ['required', 'string', 'max:255'],
             'group' => ['required', 'in:home,pillar'],
             'description' => ['nullable', 'string'],
-            'icon' => ['nullable', 'string'], // SVG Path
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:7168'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
             'features_text' => ['nullable', 'string'],

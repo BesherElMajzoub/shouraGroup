@@ -40,7 +40,7 @@ class ProjectController extends Controller
             'location' => ['nullable', 'string', 'max:255'],
             'year' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:7168'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
         ]);
@@ -77,7 +77,7 @@ class ProjectController extends Controller
             'location' => ['nullable', 'string', 'max:255'],
             'year' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:7168'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
         ]);
