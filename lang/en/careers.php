@@ -43,7 +43,7 @@ return [
     ],
 
     'form' => [
-        'eyebrow' => 'Applications Always Open',
+        'eyebrow' => 'Applications Are Always Open',
         'heading' => 'Tell Us About Yourself',
         'paragraph' => 'Send us your details and CV, and our team will reach out when a suitable opportunity comes up.',
         'full_name_label' => 'Full Name',

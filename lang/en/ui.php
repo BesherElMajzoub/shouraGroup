@@ -68,9 +68,9 @@ return [
         'hero' => [
             'eyebrow' => 'Integrated Engineering Solutions Since 1978',
             'title_line1' => 'A Legacy of Trust',
-            'title_highlight' => 'and Engineering Excellence..',
-            'title_line2' => 'Driving Your Projects Toward Reliability',
-            'paragraph' => "Since its establishment, Shora Brothers has put decades of leadership, reliability, and a network of global agencies at your service—covering all your project's needs in power generation, water pumps, air compressors, medical gas networks, and industrial and agricultural tools.",
+            'title_highlight' => 'and Engineering Excellence',
+            'title_line2' => 'Driving Your Projects with Confidence',
+            'paragraph' => "Since 1978, Shora Brothers has brought decades of engineering expertise and a network of global partners to every project—covering power generation, water pumps, air compressors, medical-gas systems, and industrial and agricultural tools.",
             'cta_sectors' => 'Explore Our Sectors',
             'cta_contact' => 'Talk to Our Team',
             'network_aria' => "Shora Brothers' Interconnected Sectors",
@@ -102,7 +102,7 @@ return [
         'sectors' => [
             'eyebrow' => 'Our Fields of Work',
             'since_year_label' => 'Since',
-            'cta' => 'Details of All Sectors',
+            'cta' => 'Explore All Sectors',
         ],
 
         'services' => [
@@ -110,17 +110,17 @@ return [
             'heading' => 'Services & Solutions',
             'description' => "A complete suite of specialized engineering solutions — from supply and installation to after-sales support, we're with you every step of the way.",
             'request_cta' => 'Request This Service',
-            'all_cta' => 'All Our Engineering Services & Solutions',
+            'all_cta' => 'Explore All Engineering Services',
         ],
 
         'partners' => [
-            'eyebrow' => 'Technology You Can Trust',
+            'eyebrow' => 'Technology Backed by Trust',
             'heading' => 'Our Partners',
             'cta' => 'Our Official Agencies',
         ],
 
         'clients' => [
-            'eyebrow' => 'Renewed Trust',
+            'eyebrow' => 'Trust That Endures',
             'heading' => 'Our Clients',
         ],
 

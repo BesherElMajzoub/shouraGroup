@@ -11,7 +11,7 @@
             ['label' => __('ui.welcome.hero.branches.water_pumps'),         'angle' => -30,     'delay' => 0.2, 'href' => '/sectors/water-pumps', 'image' => 'images/hero/Shora Water pumps.PNG', 'logo_scale' => 1.42],
             ['label' => __('ui.welcome.hero.branches.air_compressors'),     'angle' => 30,      'delay' => 0.4, 'href' => '/sectors/air-compressors', 'image' => 'images/hero/compressors.png', 'logo_scale' => 1.08],
             ['label' => __('ui.welcome.hero.branches.medical_gases'),       'angle' => 90,      'delay' => 0.6, 'href' => '/sectors/medical-gases', 'image' => 'images/hero/shora_medical.png', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.industrial_tools'),    'angle' => 150,     'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image' => 'images/brands/keyang.svg', 'logo_scale' => 1.14],
+            ['label' => __('ui.welcome.hero.branches.industrial_tools'),    'angle' => 150,     'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image' => 'images/hero/image.png', 'logo_scale' => 1.42],
             ['label' => __('ui.welcome.hero.branches.global_agencies'),    'angle' => 210,     'delay' => 1.0, 'href' => '/brands', 'image' => 'images/brands/mmb.png', 'logo_scale' => 1.14],
         ];
     @endphp
@@ -38,7 +38,7 @@
                     <div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4 anim-fade-up" style="animation-delay:.36s">
                         <a href="{{ url('/sectors') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3.5 rounded-xl font-bold transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/20">
                             {{ __('ui.welcome.hero.cta_sectors') }}
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                            <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                         </a>
                         <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-xl font-bold transition-all hover:-translate-y-0.5">
                             {{ __('ui.welcome.hero.cta_contact') }}
@@ -106,7 +106,7 @@
                 </div>
                 <a href="{{ url('/about') }}" class="inline-flex items-center gap-2 mt-8 text-brand font-bold hover:gap-3 transition-all">
                     {{ __('ui.welcome.about.read_more') }}
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                    <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
             </div>
 
@@ -218,7 +218,7 @@
             <div class="text-center mt-12 reveal">
                 <a href="{{ url('/sectors') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
                     {{ __('ui.welcome.sectors.cta') }}
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                    <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
             </div>
         </div>
@@ -249,10 +249,10 @@
                         </div>
                         <h3 class="text-lg font-bold text-[#141414] mb-2 leading-snug">{{ $s->title }}</h3>
                         <p class="text-[#4b4b4b] text-sm leading-relaxed">{{ $s->description }}</p>
-                        <a href="{{ url('/contact') }}?service={{ urlencode($s->title) }}&department={{ urlencode($s->dept) }}"
+                        <a href="{{ url('/contact') }}?service={{ urlencode(localized_content($s->title)) }}&department={{ urlencode(localized_content($s->dept)) }}"
                            class="inline-flex items-center gap-1 mt-4 text-brand font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                             {{ __('ui.welcome.services.request_cta') }}
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                            <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                         </a>
                     </div>
                 @endforeach
@@ -261,7 +261,7 @@
             <div class="text-center mt-12 reveal">
                 <a href="{{ url('/services') }}" class="inline-flex items-center gap-2 text-brand font-bold hover:gap-3 transition-all">
                     {{ __('ui.welcome.services.all_cta') }}
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                    <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
             </div>
         </div>
@@ -279,7 +279,7 @@
                 <p class="text-white/70 leading-loose">{{ $partners_intro }}</p>
                 <a href="{{ url('/brands') }}" class="inline-flex items-center gap-2 mt-8 bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-xl font-bold text-sm transition-colors">
                     {{ __('ui.welcome.partners.cta') }}
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                    <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
             </div>
 
@@ -436,7 +436,7 @@
                 </div>
                 <a href="{{ route('news') }}" class="hidden sm:inline-flex items-center gap-2 text-brand font-bold text-sm hover:gap-3 transition-all">
                     {{ __('ui.welcome.news.all_cta') }}
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                    <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                 </a>
             </div>
 
@@ -459,7 +459,7 @@
                             <p class="text-[#4b4b4b] text-sm leading-relaxed mb-4">{{ $n->excerpt }}</p>
                             <a href="{{ route('news.show', $n->slug) }}" class="inline-flex items-center gap-1 text-brand font-bold text-sm">
                                 {{ __('ui.welcome.news.read_cta') }}
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                                <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                             </a>
                         </div>
                     </article>
@@ -479,6 +479,7 @@
         let isHovered = false;
         let animId = null;
         const speed = 0.8;
+        const isRtl = document.documentElement.dir === 'rtl';
 
         function autoScroll() {
             if (!isHovered) {
@@ -487,7 +488,7 @@
                 if (Math.abs(track.scrollLeft) >= maxScroll - 5) {
                     track.scrollLeft = 0;
                 } else {
-                    track.scrollLeft -= speed;
+                    track.scrollLeft += isRtl ? -speed : speed;
                 }
             }
             animId = requestAnimationFrame(autoScroll);
@@ -500,7 +501,7 @@
 
         const manualStep = 240;
         document.getElementById('clientsPrev')?.addEventListener('click', () => {
-            track.scrollBy({ left: manualStep, behavior: 'smooth' });
+            track.scrollBy({ left: isRtl ? manualStep : -manualStep, behavior: 'smooth' });
         });
         animId = requestAnimationFrame(autoScroll);
     })();
