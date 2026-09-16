@@ -24,7 +24,7 @@ class BranchesSeeder extends Seeder
                 'mobile' => '0932101176',
                 'map_top' => 78,
                 'map_left' => 9,
-                'map_embed' => 'https://www.openstreetmap.org/export/embed.html?bbox=36.2915%2C33.5103%2C36.3031%2C33.5182&layer=mapnik&marker=33.5142%2C36.2973',
+                'map_embed' => 'https://maps.google.com/maps?q=33.5142,36.2973&hl=ar&z=16&output=embed',
                 'order' => 1,
             ],
             [
@@ -37,7 +37,7 @@ class BranchesSeeder extends Seeder
                 'mobile' => '0932101178',
                 'map_top' => 71,
                 'map_left' => 14,
-                'map_embed' => 'https://www.openstreetmap.org/export/embed.html?bbox=36.2812%2C33.5051%2C36.2928%2C33.5130&layer=mapnik&marker=33.5090%2C36.2870',
+                'map_embed' => 'https://maps.google.com/maps?q=33.5090,36.2870&hl=ar&z=16&output=embed',
                 'order' => 2,
             ],
             [
@@ -49,7 +49,7 @@ class BranchesSeeder extends Seeder
                 'mobile' => null,
                 'map_top' => 28,
                 'map_left' => 28,
-                'map_embed' => 'https://www.openstreetmap.org/export/embed.html?bbox=37.1522%2C36.1981%2C37.1638%2C36.2060&layer=mapnik&marker=36.2020%2C37.1580',
+                'map_embed' => 'https://maps.google.com/maps?q=36.2020,37.1580&hl=ar&z=16&output=embed',
                 'order' => 3,
             ],
         ];
