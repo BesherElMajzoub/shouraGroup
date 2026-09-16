@@ -28,8 +28,8 @@ class CareerController extends Controller
 
         try {
             unset($validated['cv']);
-            $validated['department'] = ($validated['department'] ?? null) ?: 'تقديم مفتوح';
-            $validated['preferred_branch'] = ($validated['preferred_branch'] ?? null) ?: 'غير محدد';
+            $validated['department'] = ($validated['department'] ?? null) ?: 'Open Application';
+            $validated['preferred_branch'] = ($validated['preferred_branch'] ?? null) ?: 'Not Specified';
             $validated['cv_path'] = $cvPath;
 
             $application = JobApplication::create($validated);

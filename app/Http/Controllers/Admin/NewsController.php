@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
+use App\Rules\NoArabicCharacters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -37,12 +38,12 @@ class NewsController extends Controller
         $validated = $request->validate([
             'category_id' => ['required', 'exists:categories,id'],
             'title_ar' => ['required', 'string', 'max:255'],
-            'title_en' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'slug' => ['nullable', 'string', 'max:255'],
             'excerpt_ar' => ['nullable', 'string'],
-            'excerpt_en' => ['required_with:excerpt_ar', 'nullable', 'string'],
+            'excerpt_en' => ['required_with:excerpt_ar', 'nullable', 'string', new NoArabicCharacters],
             'body_ar' => ['required', 'string'],
-            'body_en' => ['required', 'string'],
+            'body_en' => ['required', 'string', new NoArabicCharacters],
             'image' => ['nullable', 'image', 'max:7168'],
             'published_at' => ['nullable', 'date'],
             'is_published' => ['boolean'],
@@ -84,12 +85,12 @@ class NewsController extends Controller
         $validated = $request->validate([
             'category_id' => ['required', 'exists:categories,id'],
             'title_ar' => ['required', 'string', 'max:255'],
-            'title_en' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'slug' => ['nullable', 'string', 'max:255'],
             'excerpt_ar' => ['nullable', 'string'],
-            'excerpt_en' => ['required_with:excerpt_ar', 'nullable', 'string'],
+            'excerpt_en' => ['required_with:excerpt_ar', 'nullable', 'string', new NoArabicCharacters],
             'body_ar' => ['required', 'string'],
-            'body_en' => ['required', 'string'],
+            'body_en' => ['required', 'string', new NoArabicCharacters],
             'image' => ['nullable', 'image', 'max:7168'],
             'published_at' => ['nullable', 'date'],
             'is_published' => ['boolean'],

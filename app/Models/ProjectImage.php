@@ -21,10 +21,11 @@ class ProjectImage extends Model
     protected function caption(): Attribute
     {
         return Attribute::make(get: function () {
-            $preferred = app()->getLocale() === 'en' ? 'caption_en' : 'caption_ar';
-            $fallback = app()->getLocale() === 'en' ? 'caption_ar' : 'caption_en';
+            if (app()->getLocale() === 'en') {
+                return $this->attributes['caption_en'] ?? null;
+            }
 
-            return $this->attributes[$preferred] ?: ($this->attributes[$fallback] ?? null);
+            return $this->attributes['caption_ar'] ?? ($this->attributes['caption_en'] ?? null);
         });
     }
 

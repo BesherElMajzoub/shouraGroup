@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="{{ $right ? 'lg:order-2' : 'lg:order-1' }}">
-                            <div class="relative bg-white rounded-2xl shadow-md ring-1 ring-black/5 p-6 text-right hover:shadow-xl transition-shadow">
+                            <div class="relative bg-white rounded-2xl shadow-md ring-1 ring-black/5 p-6 text-start hover:shadow-xl transition-shadow">
                                 <span class="hidden lg:block absolute top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white"
                                       style="{{ $right ? 'right:-6px' : 'left:-6px' }}"></span>
                                 <h3 class="text-lg font-bold text-brand mb-2">{{ $s->title }}</h3>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>تسجيل الدخول | لوحة تحكم شورى</title>
+    <title>تسجيل الدخول | لوحة تحكم شركة شورى</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/shora-logo.svg') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
         </div>
         
         <div class="flex flex-col items-center mb-8">
-            <img src="{{ asset('images/shora-logo.svg') }}" alt="شورى إخوان" class="h-16 w-auto mb-4">
+            <img src="{{ asset('images/shora-logo.svg') }}" alt="شركة شورى إخوان" class="h-16 w-auto mb-4">
             <h1 class="text-2xl font-black text-gray-900">لوحة التحكم</h1>
             <p class="text-sm text-gray-500 mt-1">سجل الدخول للمتابعة وإدارة محتوى الموقع</p>
         </div>

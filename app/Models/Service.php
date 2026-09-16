@@ -12,7 +12,7 @@ class Service extends Model
 
     protected array $localizedFields = ['title', 'dept', 'description', 'features'];
 
-    protected $fillable = ['title', 'title_en', 'dept', 'dept_en', 'group', 'description', 'description_en', 'icon', 'image', 'features', 'features_en', 'order', 'is_active'];
+    protected $fillable = ['title', 'title_en', 'dept', 'dept_en', 'whatsapp', 'group', 'description', 'description_en', 'icon', 'image', 'features', 'features_en', 'order', 'is_active'];
 
     protected $casts = [
         'features' => 'array',
@@ -20,6 +20,21 @@ class Service extends Model
         'is_active' => 'boolean',
         'order' => 'integer',
     ];
+
+    /**
+     * WhatsApp number for this service in wa.me format. A service without its
+     * own number uses the general contact number configured in the CMS.
+     */
+    protected function contactWhatsapp(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $number = preg_replace('/\D/', '', $this->whatsapp ?: (string) setting('contact_whatsapp'));
+
+                return $number ?: null;
+            }
+        );
+    }
 
     protected function imageUrl(): Attribute
     {

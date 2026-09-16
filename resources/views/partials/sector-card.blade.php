@@ -17,7 +17,7 @@
         </span>
     @endunless
 
-    <div class="flex-1 text-right">
+    <div class="flex-1 text-start">
         <p class="text-[15px] font-bold text-[#141414] leading-snug">
             {{ $s->name }}
             @if ($s->is_coming_soon)

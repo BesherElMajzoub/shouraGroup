@@ -47,7 +47,7 @@
                 <div class="flex flex-wrap items-center justify-center gap-4 anim-fade-up" style="animation-delay: 0.3s">
                     <a href="{{ url('/') }}" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-xl font-bold transition-all shadow-md shadow-brand/15 hover:shadow-xl">
                         {{ __('errors_404.home_btn') }}
-                        <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                        <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
                     </a>
 
                     <a href="{{ url('/contact') }}" class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-xl font-bold transition-colors">

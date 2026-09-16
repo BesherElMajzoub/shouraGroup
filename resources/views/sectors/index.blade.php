@@ -28,12 +28,12 @@
                                  class="w-full h-full object-cover opacity-45 group-hover:opacity-60 group-hover:scale-105 transition-all duration-500">
                             <div class="absolute inset-0" style="background-image:linear-gradient(to top,#141414 5%,transparent 70%);"></div>
 
-                            <span class="absolute top-5 right-5 w-14 h-14 rounded-2xl bg-brand text-white grid place-items-center shadow-lg shadow-black/30">
+                            <span class="absolute top-5 end-5 w-14 h-14 rounded-2xl bg-brand text-white grid place-items-center shadow-lg shadow-black/30">
                                 <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="{{ $s->icon }}"/></svg>
                             </span>
 
                             @if ($s->is_coming_soon)
-                                <span class="absolute top-5 left-5 text-[11px] font-black text-[#141414] bg-white rounded-full px-3 py-1.5 shadow">{{ __('ui.common.coming_soon') }}</span>
+                                <span class="absolute top-5 start-5 text-[11px] font-black text-[#141414] bg-white rounded-full px-3 py-1.5 shadow">{{ __('ui.common.coming_soon') }}</span>
                             @endif
                         </div>
 
@@ -52,7 +52,7 @@
                                 <a href="{{ route('sectors.show', $s->slug) }}"
                                    class="inline-flex items-center gap-1.5 text-brand font-bold text-sm group-hover:gap-3 transition-all">
                                     {{ __('sectors_index.details_link') }}
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                                    <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                                 </a>
                             @endif
                         </div>
@@ -73,7 +73,7 @@
             <a href="{{ url('/contact') }}"
                class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
                 {{ __('sectors_index.cta.button') }}
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
             </a>
         </div>
     </section>

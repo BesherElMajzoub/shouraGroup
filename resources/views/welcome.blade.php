@@ -22,7 +22,7 @@
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-16 lg:py-20">
             <div class="grid lg:grid-cols-[0.9fr_1.1fr] items-center gap-12 lg:gap-4">
-                <div class="relative z-10 text-center lg:text-right">
+                <div class="relative z-10 text-center lg:text-start">
                     <div class="hero-eyebrow anim-fade-up">
                         <span class="hero-eyebrow-dot" aria-hidden="true"></span>
                         {{ __('ui.welcome.hero.eyebrow') }}
@@ -275,7 +275,7 @@
              class="pointer-events-none absolute -left-20 -bottom-16 w-[30rem] opacity-[0.04] brightness-0 invert">
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <div class="lg:col-span-4 text-right reveal">
+            <div class="lg:col-span-4 text-start reveal">
                 <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('ui.welcome.partners.eyebrow') }}</span>
                 <h2 class="text-3xl sm:text-4xl font-black mb-4">{{ __('ui.welcome.partners.heading') }}</h2>
                 <p class="text-white/70 leading-loose">{{ $partners_intro }}</p>
@@ -313,7 +313,7 @@
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
             <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-                <div class="lg:col-span-4 text-right reveal">
+                <div class="lg:col-span-4 text-start reveal">
                     <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('ui.welcome.clients.eyebrow') }}</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-[#141414] mb-4">{{ __('ui.welcome.clients.heading') }}</h2>
                     <p class="text-[#4b4b4b] leading-loose">{{ $clients_intro }}</p>
@@ -450,7 +450,7 @@
                         <div class="relative h-52 overflow-hidden">
                             <img src="{{ $n->image_url }}" alt="{{ $n->title }}"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-4 right-4 bg-brand text-white text-xs font-bold rounded-full px-3 py-1">{{ $n->category->name }}</span>
+                            <span class="absolute top-4 end-4 bg-brand text-white text-xs font-bold rounded-full px-3 py-1">{{ $n->category->name }}</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-xs text-[#9a9a9a] mb-3">

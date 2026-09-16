@@ -21,8 +21,8 @@ class News extends Model
     }
 
     /**
-     * Locale-aware display value: the English column when the site is in
-     * English AND an English translation has been entered, Arabic otherwise.
+     * Locale-aware display value. English never falls back to Arabic; an empty
+     * optional translation remains empty so it cannot leak Arabic content.
      * Lets every existing $news->title / ->excerpt / ->body call keep working
      * unchanged while the admin form now captures both languages.
      */
@@ -43,11 +43,11 @@ class News extends Model
 
     private function localized(string $field): ?string
     {
-        if (app()->getLocale() === 'en' && filled($this->attributes[$field.'_en'] ?? null)) {
-            return $this->attributes[$field.'_en'];
+        if (app()->getLocale() === 'en') {
+            return $this->attributes[$field.'_en'] ?? null;
         }
 
-        return $this->attributes[$field.'_ar'] ?? null;
+        return $this->attributes[$field.'_ar'] ?? ($this->attributes[$field.'_en'] ?? null);
     }
 
     protected function imageUrl(): Attribute

@@ -79,10 +79,10 @@
             </div>
 
             <div class="reveal bg-white p-7 sm:p-10 rounded-[2rem] shadow-lg ring-1 ring-black/5">
-                <div id="cvSuccess" role="status" aria-live="polite" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-right border border-green-200"></div>
-                <div id="cvError" role="alert" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-right border border-red-200"></div>
+                <div id="cvSuccess" role="status" aria-live="polite" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-start border border-green-200"></div>
+                <div id="cvError" role="alert" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-start border border-red-200"></div>
 
-                <form id="cvForm" action="{{ route('careers.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6 text-right">
+                <form id="cvForm" action="{{ route('careers.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6 text-start">
                     @csrf
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>

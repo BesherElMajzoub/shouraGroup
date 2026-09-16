@@ -38,8 +38,8 @@
                 
                 <div class="relative w-full max-w-xs shrink-0">
                     <input type="text" id="newsSearchInput" onkeyup="searchNews()" placeholder="{{ __('news.filters.search_placeholder') }}"
-                           class="w-full bg-[#f7f7f8] rounded-xl px-5 py-3 pr-11 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
-                    <svg class="absolute right-4 top-3.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.637 10.637Z"/></svg>
+                           class="w-full bg-[#f7f7f8] rounded-xl px-5 py-3 ps-11 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
+                    <svg class="absolute start-4 top-3.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.637 10.637Z"/></svg>
                 </div>
             </div>
 
@@ -56,14 +56,14 @@
                         <div class="relative h-56 overflow-hidden">
                             <img src="{{ $n->image_url }}" alt="{{ $n->title }}" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-4 right-4 bg-brand text-white text-xs font-bold rounded-full px-3 py-1 shadow-md">
+                            <span class="absolute top-4 end-4 bg-brand text-white text-xs font-bold rounded-full px-3 py-1 shadow-md">
                                 {{ $n->category->name }}
                             </span>
                         </div>
 
                         {{-- Body --}}
-                        <div class="p-6 text-right">
-                            <div class="flex items-center gap-2 text-xs text-gray-400 mb-3 justify-start dir-rtl">
+                        <div class="p-6 text-start">
+                            <div class="flex items-center gap-2 text-xs text-gray-400 mb-3 justify-start">
                                 <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
                                 <span>{{ $n->published_at ? $n->published_at->translatedFormat('j F Y') : '' }}</span>
                             </div>
@@ -77,7 +77,7 @@
                                 <a href="{{ route('news.show', $n->slug) }}" 
                                    class="inline-flex items-center gap-1 text-brand font-bold text-sm hover:gap-2 transition-all">
                                     {{ __('news.card.read_more') }}
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                                    <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
 
             <form id="newsletterForm" onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                 <input type="email" id="newsletterEmail" required placeholder="{{ __('news.newsletter.email_placeholder') }}"
-                       class="flex-1 bg-white/10 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white/20 transition-all text-right">
+                       class="flex-1 bg-white/10 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white/20 transition-all text-start">
 
                 <button type="submit" id="newsSubBtn" class="bg-brand hover:bg-brand-dark text-white px-7 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
                     {{ __('news.newsletter.submit_btn') }}

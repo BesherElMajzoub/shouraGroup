@@ -52,7 +52,7 @@
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-12 lg:gap-16">
 
             {{-- معلومات التواصل المركزية --}}
-            <div class="lg:col-span-5 space-y-6 text-right order-2 lg:order-1">
+            <div class="lg:col-span-5 space-y-6 text-start order-2 lg:order-1">
                 <div>
                     <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('contact.info.eyebrow') }}</span>
                     <h2 class="text-2xl sm:text-3xl font-black text-[#141414]">{{ __('contact.info.heading') }}</h2>
@@ -96,12 +96,12 @@
             {{-- نموذج المراسلة --}}
             <div class="lg:col-span-7 order-1 lg:order-2 reveal bg-white p-7 sm:p-10 rounded-[2rem] shadow-lg ring-1 ring-black/5">
                 <span class="inline-block text-brand font-bold text-sm mb-3">{{ __('contact.form.eyebrow') }}</span>
-                <h2 class="text-2xl font-black text-[#141414] mb-8 text-right">{{ __('contact.form.heading') }}</h2>
+                <h2 class="text-2xl font-black text-[#141414] mb-8 text-start">{{ __('contact.form.heading') }}</h2>
 
-                <div id="formSuccess" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-right border border-green-200"></div>
-                <div id="formError" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-right border border-red-200"></div>
+                <div id="formSuccess" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-start border border-green-200"></div>
+                <div id="formError" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-start border border-red-200"></div>
 
-                <form id="contactForm" class="space-y-6 text-right">
+                <form id="contactForm" class="space-y-6 text-start">
                     <div>
                         <label for="department" class="block text-xs font-bold text-[#141414] mb-2">{{ __('contact.form.department_label') }} <span class="text-brand">*</span></label>
                         <div class="relative">

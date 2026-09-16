@@ -38,9 +38,9 @@ return [
     ],
 
     'lang_switch' => [
-        'short' => 'العربية',
-        'full' => 'العربية',
-        'aria' => 'التبديل إلى العربية',
+        'short' => 'AR',
+        'full' => 'Arabic',
+        'aria' => 'Switch to Arabic',
     ],
 
     'partner_btn' => [

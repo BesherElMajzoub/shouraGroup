@@ -41,8 +41,8 @@ class CareerApplicationTest extends TestCase
         ]);
 
         $application = JobApplication::sole();
-        $this->assertSame('تقديم مفتوح', $application->department);
-        $this->assertSame('غير محدد', $application->preferred_branch);
+        $this->assertSame('Open Application', $application->department);
+        $this->assertSame('Not Specified', $application->preferred_branch);
         Storage::disk('local')->assertExists($application->cv_path);
         Storage::disk('public')->assertMissing($application->cv_path);
 

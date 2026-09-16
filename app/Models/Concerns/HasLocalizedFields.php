@@ -17,11 +17,15 @@ trait HasLocalizedFields
             && ! request()->is('admin*')
             && ! str_ends_with($key, '_en')
             && in_array($key, $this->localizedFields ?? [], true)) {
-            $preferred = app()->getLocale() === 'en' ? $key.'_en' : $key;
-            $fallback = app()->getLocale() === 'en' ? $key : $key.'_en';
-            $value = parent::getAttribute($preferred);
+            if (app()->getLocale() === 'en') {
+                // English pages must never leak Arabic content. Optional empty
+                // translations stay empty and are handled by the view.
+                return parent::getAttribute($key.'_en');
+            }
 
-            return filled($value) ? $value : parent::getAttribute($fallback);
+            $value = parent::getAttribute($key);
+
+            return filled($value) ? $value : parent::getAttribute($key.'_en');
         }
 
         return parent::getAttribute($key);

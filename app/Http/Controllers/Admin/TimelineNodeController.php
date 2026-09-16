@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\TimelineNode;
+use App\Rules\NoArabicCharacters;
 use Illuminate\Http\Request;
 
 class TimelineNodeController extends Controller
@@ -33,9 +34,9 @@ class TimelineNodeController extends Controller
         $validated = $request->validate([
             'event_date' => ['required', 'string', 'max:100'],
             'title' => ['required', 'string', 'max:255'],
-            'title_en' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'description' => ['required', 'string'],
-            'description_en' => ['required', 'string'],
+            'description_en' => ['required', 'string', new NoArabicCharacters],
             'order' => ['required', 'integer'],
         ]);
 
@@ -60,9 +61,9 @@ class TimelineNodeController extends Controller
         $validated = $request->validate([
             'event_date' => ['required', 'string', 'max:100'],
             'title' => ['required', 'string', 'max:255'],
-            'title_en' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'description' => ['required', 'string'],
-            'description_en' => ['required', 'string'],
+            'description_en' => ['required', 'string', new NoArabicCharacters],
             'order' => ['required', 'integer'],
         ]);
 

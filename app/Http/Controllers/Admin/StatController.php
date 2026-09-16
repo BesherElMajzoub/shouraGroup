@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Stat;
+use App\Rules\NoArabicCharacters;
 use Illuminate\Http\Request;
 
 class StatController extends Controller
@@ -33,7 +34,7 @@ class StatController extends Controller
         $validated = $request->validate([
             'value' => ['required', 'string', 'max:255'],
             'label' => ['required', 'string', 'max:255'],
-            'label_en' => ['required', 'string', 'max:255'],
+            'label_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
         ]);
@@ -61,7 +62,7 @@ class StatController extends Controller
         $validated = $request->validate([
             'value' => ['required', 'string', 'max:255'],
             'label' => ['required', 'string', 'max:255'],
-            'label_en' => ['required', 'string', 'max:255'],
+            'label_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
         ]);

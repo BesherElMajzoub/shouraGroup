@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Rules\NoArabicCharacters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,7 +34,7 @@ class ClientController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'name_en' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'logo' => ['required', 'image', 'max:7168'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
@@ -65,7 +66,7 @@ class ClientController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'name_en' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'logo' => ['nullable', 'image', 'max:7168'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],

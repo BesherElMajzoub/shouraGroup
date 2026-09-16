@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Rules\NoArabicCharacters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,17 +36,18 @@ class ServiceController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'title_en' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'dept' => ['required', 'string', 'max:255'],
-            'dept_en' => ['required', 'string', 'max:255'],
+            'dept_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
+            'whatsapp' => ['nullable', 'string', 'max:30'],
             'group' => ['required', 'in:home,pillar'],
             'description' => ['nullable', 'string'],
-            'description_en' => ['required_with:description', 'nullable', 'string'],
+            'description_en' => ['required_with:description', 'nullable', 'string', new NoArabicCharacters],
             'image' => ['nullable', 'image', 'max:7168'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
             'features_text' => ['nullable', 'string'],
-            'features_text_en' => ['required_with:features_text', 'nullable', 'string'],
+            'features_text_en' => ['required_with:features_text', 'nullable', 'string', new NoArabicCharacters],
         ]);
 
         $validated['is_active'] = $request->has('is_active');
@@ -89,17 +91,18 @@ class ServiceController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'title_en' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'dept' => ['required', 'string', 'max:255'],
-            'dept_en' => ['required', 'string', 'max:255'],
+            'dept_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
+            'whatsapp' => ['nullable', 'string', 'max:30'],
             'group' => ['required', 'in:home,pillar'],
             'description' => ['nullable', 'string'],
-            'description_en' => ['required_with:description', 'nullable', 'string'],
+            'description_en' => ['required_with:description', 'nullable', 'string', new NoArabicCharacters],
             'image' => ['nullable', 'image', 'max:7168'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
             'features_text' => ['nullable', 'string'],
-            'features_text_en' => ['required_with:features_text', 'nullable', 'string'],
+            'features_text_en' => ['required_with:features_text', 'nullable', 'string', new NoArabicCharacters],
         ]);
 
         $validated['is_active'] = $request->has('is_active');

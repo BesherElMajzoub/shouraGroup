@@ -22,7 +22,7 @@ class NewJobApplication extends Mailable
     {
         return new Envelope(
             replyTo: [new Address($this->application->email, $this->application->full_name)],
-            subject: 'طلب توظيف جديد — '.$this->application->full_name,
+            subject: 'New Job Application — '.$this->application->full_name,
         );
     }
 

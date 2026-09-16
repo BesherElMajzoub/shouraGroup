@@ -94,10 +94,11 @@ class Project extends Model
 
     private function localized(string $field): ?string
     {
-        $preferred = app()->getLocale() === 'en' ? $field.'_en' : $field.'_ar';
-        $fallback = app()->getLocale() === 'en' ? $field.'_ar' : $field.'_en';
+        if (app()->getLocale() === 'en') {
+            return $this->attributes[$field.'_en'] ?? null;
+        }
 
-        return $this->attributes[$preferred] ?: ($this->attributes[$fallback] ?? null);
+        return $this->attributes[$field.'_ar'] ?? ($this->attributes[$field.'_en'] ?? null);
     }
 
     protected function imageUrl(): Attribute

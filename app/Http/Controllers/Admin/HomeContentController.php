@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Rules\NoArabicCharacters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -90,7 +91,7 @@ class HomeContentController extends Controller
         ];
 
         foreach (self::LOCALIZED_TEXT_KEYS as $key) {
-            $rules[$key.'_en'] = ['required', 'string', $key === 'about_subtitle' || $key === 'working_hours' ? 'max:255' : 'max:10000'];
+            $rules[$key.'_en'] = ['required', 'string', $key === 'about_subtitle' || $key === 'working_hours' ? 'max:255' : 'max:10000', new NoArabicCharacters];
         }
 
         $request->validate($rules);

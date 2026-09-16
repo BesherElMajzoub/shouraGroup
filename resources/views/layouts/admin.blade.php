@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'لوحة التحكم') | شورى إخوان</title>
+    <title>@yield('title', 'لوحة التحكم') | شركة شورى إخوان</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/shora-logo.svg') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-gray-900 text-gray-300 flex-shrink-0 hidden md:flex flex-col shadow-xl">
         <div class="p-6 border-b border-gray-800 flex items-center gap-3">
-            <img src="{{ asset('images/shora-logo.svg') }}" alt="شورى" class="h-10 w-auto brightness-0 invert">
+            <img src="{{ asset('images/shora-logo.svg') }}" alt="شركة شورى" class="h-10 w-auto brightness-0 invert">
             <span class="font-black text-lg text-white">لوحة الإدارة</span>
         </div>
 

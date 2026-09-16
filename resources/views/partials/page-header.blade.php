@@ -29,10 +29,10 @@
         {{-- breadcrumb --}}
         <nav class="text-sm text-[#888] mb-6 flex items-center gap-2">
             <a href="{{ url('/') }}" class="hover:text-brand transition-colors">{{ __('ui.nav.home') }}</a>
-            <svg class="w-3.5 h-3.5 text-[#ccc] rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            <svg class="w-3.5 h-3.5 text-[#ccc] @if(app()->getLocale() === 'ar') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             @isset ($parent)
                 <a href="{{ $parent['href'] }}" class="hover:text-brand transition-colors">{{ $parent['label'] }}</a>
-                <svg class="w-3.5 h-3.5 text-[#ccc] rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                <svg class="w-3.5 h-3.5 text-[#ccc] @if(app()->getLocale() === 'ar') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             @endisset
             <span class="text-[#141414] font-medium">{{ $current }}</span>
         </nav>

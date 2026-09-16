@@ -48,12 +48,12 @@
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             
                             {{-- Category Badge --}}
-                            <span class="absolute top-4 right-4 bg-brand text-white text-xs font-bold rounded-full px-3 py-1.5 shadow-md">
+                            <span class="absolute top-4 end-4 bg-brand text-white text-xs font-bold rounded-full px-3 py-1.5 shadow-md">
                                 {{ $p->category->name }}
                             </span>
 
                             {{-- Project Year & Location --}}
-                            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white bg-[#141414]/70 backdrop-blur-sm px-3.5 py-2.5 rounded-xl">
+                            <div class="absolute bottom-4 inset-x-4 flex items-center justify-between text-xs text-white bg-[#141414]/70 backdrop-blur-sm px-3.5 py-2.5 rounded-xl">
                                 <span class="flex items-center gap-1.5">
                                     <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
                                     {{ $p->location ?: '—' }}
@@ -71,7 +71,7 @@
                             <div class="mt-auto border-t border-gray-100 pt-4 flex items-center justify-between">
                                 <span class="inline-flex items-center gap-1 text-brand font-bold text-sm group-hover:gap-2 transition-all">
                                     {{ __('projects.view_details') }}
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                                    <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                                 </span>
                             </div>
                         </div>

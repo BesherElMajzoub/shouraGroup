@@ -252,7 +252,7 @@
 
             <div>
                 <h4 class="font-bold mb-5 relative inline-block">{{ __('ui.footer.sitemap_heading') }}
-                    <span class="absolute -bottom-2 right-0 w-8 h-0.5 bg-brand"></span>
+                    <span class="absolute -bottom-2 start-0 w-8 h-0.5 bg-brand"></span>
                 </h4>
                 <ul class="space-y-3 text-sm text-white/60">
                     @foreach ([[$home, __('ui.nav.home')], [url('/about'), __('ui.nav.about')], [url('/sectors'), __('ui.nav.sectors')], [url('/services'), __('ui.nav.services')], [url('/brands'), __('ui.nav.brands')]] as [$href, $label])
@@ -263,7 +263,7 @@
 
             <div>
                 <h4 class="font-bold mb-5 relative inline-block">{{ __('ui.footer.quicklinks_heading') }}
-                    <span class="absolute -bottom-2 right-0 w-8 h-0.5 bg-brand"></span>
+                    <span class="absolute -bottom-2 start-0 w-8 h-0.5 bg-brand"></span>
                 </h4>
                 <ul class="space-y-3 text-sm text-white/60">
                     @foreach ([[url('/projects'), __('ui.nav.projects')], [url('/news'), __('ui.nav.news')], [url('/wholesale'), __('ui.topbar.wholesale')], [url('/careers'), __('ui.nav.careers')], [url('/contact'), __('ui.nav.contact')]] as [$href, $label])
@@ -274,7 +274,7 @@
 
             <div>
                 <h4 class="font-bold mb-5 relative inline-block">{{ __('ui.footer.branches_heading') }}
-                    <span class="absolute -bottom-2 right-0 w-8 h-0.5 bg-brand"></span>
+                    <span class="absolute -bottom-2 start-0 w-8 h-0.5 bg-brand"></span>
                 </h4>
                 <ul class="space-y-4 text-sm text-white/60">
                     @foreach ($footerBranches as $b)

@@ -128,10 +128,10 @@
                 <h3 class="text-xl font-black text-[#141414] mb-2">{{ __('wholesale.form.heading') }}</h3>
                 <p class="text-[#9a9a9a] text-sm mb-8">{{ __('wholesale.form.required_prefix') }} <span class="text-brand">*</span> {{ __('wholesale.form.required_suffix') }}</p>
 
-                <div id="wsSuccess" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-right border border-green-200"></div>
-                <div id="wsError" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-right border border-red-200"></div>
+                <div id="wsSuccess" class="hidden mb-6 p-4 rounded-xl bg-green-50 text-green-800 text-sm font-bold text-start border border-green-200"></div>
+                <div id="wsError" class="hidden mb-6 p-4 rounded-xl bg-red-50 text-red-800 text-sm font-bold text-start border border-red-200"></div>
 
-                <form id="wsForm" class="space-y-6 text-right">
+                <form id="wsForm" class="space-y-6 text-start">
                     {{-- الاسم + الهاتف --}}
                     <div class="grid sm:grid-cols-2 gap-6">
                         <div>

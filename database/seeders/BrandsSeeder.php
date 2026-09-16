@@ -195,6 +195,7 @@ class BrandsSeeder extends Seeder
                 'name' => 'OSWAL Pumps & Motors',
                 'slug' => 'oswal',
                 'country' => 'الهند',
+                'country_en' => 'India',
                 'description' => 'مضخات ومحركات كهربائية للتطبيقات الزراعية والصناعية.',
                 'logo' => 'images/brands/oswal.jpg',
                 'show_on_home' => false,

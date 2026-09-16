@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Sector;
+use App\Rules\NoArabicCharacters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -97,12 +98,12 @@ class BrandController extends Controller
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'name_en' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'slug' => ['nullable', 'string', 'max:255', $slugRule],
             'country' => ['nullable', 'string', 'max:100'],
-            'country_en' => ['required_with:country', 'nullable', 'string', 'max:100'],
+            'country_en' => ['required_with:country', 'nullable', 'string', 'max:100', new NoArabicCharacters],
             'description' => ['nullable', 'string'],
-            'description_en' => ['required_with:description', 'nullable', 'string'],
+            'description_en' => ['required_with:description', 'nullable', 'string', new NoArabicCharacters],
             'logo' => ['nullable', 'image', 'max:7168'],
             'is_agency' => ['boolean'],
             'show_on_home' => ['boolean'],

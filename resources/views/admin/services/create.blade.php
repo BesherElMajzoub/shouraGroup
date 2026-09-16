@@ -43,6 +43,13 @@
                 </div>
             </div>
 
+            <div>
+                <label for="whatsapp" class="block text-xs font-bold text-gray-700 mb-2">رقم واتساب الخاص بالخدمة</label>
+                <input type="text" id="whatsapp" name="whatsapp" value="{{ old('whatsapp') }}" dir="ltr" placeholder="963932101176"
+                       class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 text-left focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
+                <p class="text-[11px] text-gray-400 mt-1.5">اكتب الرقم بالصيغة الدولية. إذا تركته فارغاً سيُستخدم رقم واتساب التواصل العام.</p>
+            </div>
+
             <!-- Group -->
             <div>
                 <label for="group" class="block text-xs font-bold text-gray-700 mb-2">مكان عرض الخدمة</label>

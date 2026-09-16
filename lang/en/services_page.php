@@ -15,6 +15,8 @@ return [
     ],
 
     'request_cta' => 'Request This Service',
+    'whatsapp_cta' => 'Message Us on WhatsApp',
+    'whatsapp_message' => 'Hello, I would like to inquire about the service: :service',
 
     'why_us' => [
         'eyebrow' => 'What Sets Us Apart',

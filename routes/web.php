@@ -41,7 +41,7 @@ Route::post('/careers', [CareerController::class, 'store'])->middleware('throttl
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-// Legacy URLs from the previous "مجموعة شورى" site structure
+// Legacy URLs from the previous "مجموعة شركة شورى" site structure
 Route::permanentRedirect('/story', '/about');
 Route::permanentRedirect('/products', '/sectors');
 Route::permanentRedirect('/companies', '/brands');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Sector;
+use App\Rules\NoArabicCharacters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -88,16 +89,16 @@ class SectorController extends Controller
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'name_en' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255', new NoArabicCharacters],
             'slug' => ['nullable', 'string', 'max:255', $slugRule],
             'email' => ['nullable', 'email', 'max:255'],
             'whatsapp' => ['nullable', 'string', 'max:30'],
             'tagline' => ['nullable', 'string', 'max:255'],
-            'tagline_en' => ['required_with:tagline', 'nullable', 'string', 'max:255'],
+            'tagline_en' => ['required_with:tagline', 'nullable', 'string', 'max:255', new NoArabicCharacters],
             'intro' => ['nullable', 'string'],
-            'intro_en' => ['required_with:intro', 'nullable', 'string'],
+            'intro_en' => ['required_with:intro', 'nullable', 'string', new NoArabicCharacters],
             'specialties' => ['nullable', 'string'],
-            'specialties_en' => ['required_with:specialties', 'nullable', 'string'],
+            'specialties_en' => ['required_with:specialties', 'nullable', 'string', new NoArabicCharacters],
             'icon' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'max:7168'],
             'is_coming_soon' => ['boolean'],
