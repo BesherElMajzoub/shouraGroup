@@ -132,6 +132,11 @@ class SettingsSeeder extends Seeder
                 'group' => 'contact',
             ],
             [
+                'key' => 'contact_whatsapp',
+                'value' => "963932101176",
+                'group' => 'contact',
+            ],
+            [
                 'key' => 'wholesale_whatsapp',
                 'value' => "963932101176",
                 'group' => 'contact',

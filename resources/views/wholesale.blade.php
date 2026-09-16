@@ -268,7 +268,7 @@
             okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
             // Pre-fill the mail client with the submitted form data
-            const body =
+            const details =
                 mailBodyLabels.name + data.name + '\n' +
                 mailBodyLabels.phone + data.phone + '\n' +
                 mailBodyLabels.product + data.product_interest + '\n' +
@@ -279,7 +279,7 @@
             const subject = mailSubjectPrefix + data.product_interest + ' - ' + data.governorate;
             window.location.href = 'mailto:' + salesEmail
                 + '?subject=' + encodeURIComponent(subject)
-                + '&body=' + encodeURIComponent(body);
+                + '&body=' + encodeURIComponent(details);
 
             form.reset();
         })

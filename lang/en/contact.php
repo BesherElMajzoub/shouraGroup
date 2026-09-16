@@ -27,7 +27,7 @@ return [
         'eyebrow' => 'Central Contact Information',
         'heading' => "Don't Hesitate to Reach Out",
         'email_heading' => 'Official Email',
-        'wholesale_heading' => 'Wholesale & Projects',
+        'wholesale_heading' => 'Wholesale Sales',
         'wholesale_link' => 'Wholesale Page',
         'hours_heading' => 'Official Working Hours',
     ],
@@ -43,6 +43,7 @@ return [
         'subject_label' => 'Subject',
         'message_label' => 'Message',
         'submit_btn' => 'Send Message',
+        'whatsapp_btn' => 'Send via WhatsApp',
     ],
 
     'maps' => [
@@ -61,6 +62,7 @@ return [
         'success_suffix' => '. One of our engineers will contact you within 24 hours.',
         'error_default' => 'Sorry, we could not send your message. Please try again later or call us.',
         'mail_body' => [
+            'subject' => 'Subject: ',
             'name' => 'Name: ',
             'phone' => 'Phone: ',
             'email' => 'Email: ',

@@ -204,11 +204,20 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
+                        <label for="contact_whatsapp" class="{{ $label }}">رقم واتساب التواصل العام</label>
+                        <input type="text" id="contact_whatsapp" name="contact_whatsapp" dir="ltr" placeholder="963932101176"
+                               value="{{ old('contact_whatsapp', $settings['contact_whatsapp'] ?? '') }}" class="{{ $field }} text-left">
+                        <p class="text-[11px] text-gray-400 mt-1.5">يُستخدم في صفحة التواصل ولكل قطاع لم يُحدَّد له رقم واتساب خاص. اتركه فارغاً لإخفاء زر الواتساب.</p>
+                    </div>
+                    <div>
                         <label for="wholesale_whatsapp" class="{{ $label }}">رقم واتساب مبيعات الجملة</label>
                         <input type="text" id="wholesale_whatsapp" name="wholesale_whatsapp" dir="ltr" placeholder="963932101176"
                                value="{{ old('wholesale_whatsapp', $settings['wholesale_whatsapp'] ?? '') }}" class="{{ $field }} text-left">
                         <p class="text-[11px] text-gray-400 mt-1.5">بالصيغة الدولية بدون علامة + أو أصفار بادئة. اتركه فارغاً لإخفاء زر الواتساب.</p>
                     </div>
+                </div>
+
+                <div>
                     <div>
                         <label for="working_hours" class="{{ $label }}">أوقات الدوام الرسمي — عربي</label>
                         <input type="text" id="working_hours" name="working_hours" required

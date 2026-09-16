@@ -13,7 +13,7 @@ class Sector extends Model
     protected array $localizedFields = ['name', 'tagline', 'intro', 'specialties'];
 
     protected $fillable = [
-        'name', 'name_en', 'slug', 'email', 'tagline', 'tagline_en', 'intro', 'intro_en', 'specialties', 'specialties_en',
+        'name', 'name_en', 'slug', 'email', 'whatsapp', 'tagline', 'tagline_en', 'intro', 'intro_en', 'specialties', 'specialties_en',
         'icon', 'image', 'is_coming_soon', 'order', 'is_active',
     ];
 
@@ -37,6 +37,21 @@ class Sector extends Model
     {
         return Attribute::make(
             get: fn () => $this->email ?: setting('contact_email')
+        );
+    }
+
+    /**
+     * WhatsApp number for this sector in wa.me form (digits only), falling back
+     * to the central number; null when neither is configured.
+     */
+    protected function contactWhatsapp(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $number = preg_replace('/\D/', '', $this->whatsapp ?: (string) setting('contact_whatsapp'));
+
+                return $number ?: null;
+            }
         );
     }
 

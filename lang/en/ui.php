@@ -168,8 +168,8 @@ return [
         ],
 
         'cta' => [
-            'heading' => 'Want to be part of our next chapter?',
-            'paragraph' => "Get in touch with the Shora Brothers team and let's start your next project together.",
+            'heading' => 'Years of Trust.. Let’s Build Your Next Project Together',
+            'paragraph' => 'With our integrated services from consultation through commissioning and maintenance, we ensure peace of mind and uninterrupted continuity for your facility.',
             'contact_btn' => 'Contact Us',
             'sectors_btn' => 'Discover Our Sectors',
         ],

@@ -187,6 +187,7 @@ class PageController extends Controller
             'contact_intro' => setting('contact_intro'),
             'contact_email' => setting('contact_email'),
             'sales_email' => setting('sales_email'),
+            'contact_whatsapp' => setting('contact_whatsapp'),
             'working_hours' => setting('working_hours'),
             'branches' => Branch::where('is_active', true)->orderBy('order')->get(),
             'services' => Service::where('is_active', true)->orderBy('order')->get(),

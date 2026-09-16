@@ -86,6 +86,7 @@ return [
         'sales_email' => 'بريد المبيعات',
         'hr_email' => 'بريد الموارد البشرية',
         'phone_main' => 'الهاتف الرئيسي',
+        'contact_whatsapp' => 'رقم واتساب التواصل',
         'wholesale_whatsapp' => 'رقم واتساب الجملة',
         'working_hours' => 'أوقات الدوام',
     ],

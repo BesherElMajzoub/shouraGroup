@@ -10,6 +10,7 @@ return [
     ],
 
     'contact_btn' => 'Contact Us',
+    'whatsapp_btn' => 'Message Us on WhatsApp',
     'inquiry_subject_prefix' => 'Inquiry about sector: ',
 
     'brands' => [

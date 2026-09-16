@@ -22,7 +22,7 @@ class HomeContentController extends Controller
         'sectors_intro', 'services_intro', 'brands_intro', 'projects_intro',
         'wholesale_intro', 'careers_intro', 'contact_intro',
         // بيانات التواصل
-        'contact_email', 'sales_email', 'hr_email', 'phone_main', 'wholesale_whatsapp', 'working_hours',
+        'contact_email', 'sales_email', 'hr_email', 'phone_main', 'contact_whatsapp', 'wholesale_whatsapp', 'working_hours',
     ];
 
     private const LOCALIZED_TEXT_KEYS = [
@@ -84,6 +84,7 @@ class HomeContentController extends Controller
             'sales_email' => ['required', 'email', 'max:255'],
             'hr_email' => ['required', 'email', 'max:255'],
             'phone_main' => ['required', 'string', 'max:50'],
+            'contact_whatsapp' => ['nullable', 'string', 'max:30'],
             'wholesale_whatsapp' => ['nullable', 'string', 'max:30'],
             'working_hours' => ['required', 'string', 'max:255'],
         ];

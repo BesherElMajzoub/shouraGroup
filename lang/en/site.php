@@ -224,6 +224,8 @@ return [
     'قيمنا' => 'Our Values',
     'هل تريد أن تكون جزءاً من قصتنا القادمة؟' => 'Would You Like to Be Part of Our Next Chapter?',
     'تواصل مع فريق شورى إخوان لنبدأ مشروعك القادم معاً.' => 'Contact the Shora Brothers team and let’s start your next project together.',
+    'عاماً من الثقة.. دعنا ننجز مشروعك القادم معاً' => 'Years of Trust.. Let’s Build Your Next Project Together',
+    'بفضل خدماتنا المتكاملة من الاستشارة وحتى التشغيل والصيانة، نضمن لك راحة البال واستمرارية عمل منشأتك دون انقطاع.' => 'With our integrated services from consultation through commissioning and maintenance, we ensure peace of mind and uninterrupted continuity for your facility.',
     'تعرّف على قطاعاتنا' => 'Explore Our Sectors',
 
     // Services page
@@ -234,6 +236,7 @@ return [
     'اطلب الخدمة الآن' => 'Request This Service',
     'مميزاتنا' => 'Why Shora',
     'لماذا تختار شورى إخوان؟' => 'Why Choose Shora Brothers?',
+    'لماذا تختار شركة شورى إخوان؟' => 'Why Choose Shora Brothers Company?',
     'منذ عام 1978 ونحن الخيار الأول للمشاريع الاستراتيجية في السوق السورية، بخبرة تمتد لأكثر من أربعة عقود.' => 'Since 1978, we have been a trusted choice for strategic projects in Syria, backed by more than four decades of experience.',
     'خبرة تمتد لأربعة عقود' => 'Four Decades of Experience',
     'منذ 1978 ونحن نبني الثقة مع القطاعين العام والخاص والمنظمات الدولية في سوريا.' => 'Since 1978, we have built trust with Syria’s public and private sectors and international organizations.',
@@ -245,6 +248,7 @@ return [
     'مراكز صيانة وفرق فنية متنقلة للتدخل السريع وعقود صيانة دورية تضمن استمرارية عملكم.' => 'Service centers, mobile technical teams, and scheduled maintenance contracts that keep your operations running.',
     'هل لديك مشروع تود مناقشته مع خبرائنا؟' => 'Have a Project You Would Like to Discuss?',
     'فريق شورى إخوان الهندسي جاهز لدراسة متطلبات مشروعك ودفتر الشروط الخاص به بكل دقة.' => 'Our engineering team is ready to study your project requirements and specifications in detail.',
+    'فريق شركة شورى إخوان الهندسي جاهز لدراسة متطلبات مشروعك ودفتر الشروط الخاص به بكل دقة.' => 'Shora Brothers Company engineering team is ready to study your project requirements and specifications in detail.',
     'تواصل معنا الآن' => 'Contact Us Now',
 
     // Sectors pages

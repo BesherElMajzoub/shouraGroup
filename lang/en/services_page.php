@@ -18,7 +18,7 @@ return [
 
     'why_us' => [
         'eyebrow' => 'What Sets Us Apart',
-        'heading' => 'Why Choose Shora Brothers?',
+        'heading' => 'Why Choose Shora Brothers Company?',
         'paragraph' => "Since 1978, we've been the first choice for strategic projects in the Syrian market, with over four decades of expertise.",
     ],
 
@@ -31,7 +31,7 @@ return [
 
     'cta' => [
         'heading' => 'Have a project you\'d like to discuss with our experts?',
-        'paragraph' => "The Shora Brothers engineering team is ready to carefully study your project's requirements and specifications.",
+        'paragraph' => "Shora Brothers Company engineering team is ready to carefully study your project's requirements and specifications.",
         'contact_btn' => 'Contact Us Now',
         'sectors_btn' => 'Discover Our Sectors',
     ],

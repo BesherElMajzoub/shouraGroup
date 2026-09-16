@@ -10,6 +10,7 @@ return [
     ],
 
     'contact_btn' => 'تواصل معنا',
+    'whatsapp_btn' => 'راسلنا عبر واتساب',
     'inquiry_subject_prefix' => 'استفسار حول قطاع: ',
 
     'brands' => [

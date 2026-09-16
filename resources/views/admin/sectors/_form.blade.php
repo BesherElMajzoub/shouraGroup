@@ -19,11 +19,20 @@
     </div>
 </div>
 
-<div>
-    <label for="email" class="block text-xs font-bold text-gray-700 mb-2">بريد القطاع الإلكتروني</label>
-    <input type="email" id="email" name="email" value="{{ old('email', $sector->email ?? '') }}" dir="ltr" placeholder="pumps@shora.com"
-           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 text-left focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
-    <p class="text-[11px] text-gray-400 mt-1.5">يُوجَّه إليه زر «تواصل معنا» في صفحة القطاع. إن تُرك فارغاً يُستخدم البريد الرسمي العام.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+        <label for="email" class="block text-xs font-bold text-gray-700 mb-2">بريد القطاع الإلكتروني</label>
+        <input type="email" id="email" name="email" value="{{ old('email', $sector->email ?? '') }}" dir="ltr" placeholder="pumps@shora.com"
+               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 text-left focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
+        <p class="text-[11px] text-gray-400 mt-1.5">يُوجَّه إليه زر «تواصل معنا» في صفحة القطاع. إن تُرك فارغاً يُستخدم البريد الرسمي العام.</p>
+    </div>
+
+    <div>
+        <label for="whatsapp" class="block text-xs font-bold text-gray-700 mb-2">رقم واتساب القطاع</label>
+        <input type="text" id="whatsapp" name="whatsapp" value="{{ old('whatsapp', $sector->whatsapp ?? '') }}" dir="ltr" placeholder="963932101176"
+               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 text-left focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
+        <p class="text-[11px] text-gray-400 mt-1.5">بالصيغة الدولية بدون + أو أصفار بادئة. إن تُرك فارغاً يُستخدم رقم واتساب التواصل العام.</p>
+    </div>
 </div>
 
 <div dir="ltr" class="text-left">

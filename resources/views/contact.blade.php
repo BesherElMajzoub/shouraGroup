@@ -7,15 +7,33 @@
 
     @php
         // كل خدمة تحمل اسم قسمها المختص؛ نبني منها قائمة الأقسام دون تكرار
-        $departments = collect([['name' => __('contact.general_inquiry'), 'email' => $contact_email, 'sector' => null]])
+        $generalWhatsapp = preg_replace('/\D/', '', (string) $contact_whatsapp);
+
+        $departments = collect([['name' => __('contact.general_inquiry'), 'email' => $contact_email, 'whatsapp' => $generalWhatsapp, 'sector' => null]])
             ->merge(
                 $services->pluck('dept')->unique()->values()
-                    ->map(fn ($dept) => ['name' => $dept, 'email' => $sales_email, 'sector' => null])
+                    ->map(fn ($dept) => ['name' => $dept, 'email' => $sales_email, 'whatsapp' => $generalWhatsapp, 'sector' => null])
             )
-            // كل قطاع قسم مستقل ببريده الخاص القادم من لوحة التحكم
+            // كل قطاع قسم مستقل ببريده ورقم واتسابه القادمين من لوحة التحكم
             ->merge(
-                $sectors->map(fn ($s) => ['name' => $s->name, 'email' => $s->contact_email, 'sector' => $s->slug])
-            );
+                $sectors->map(fn ($s) => [
+                    'name' => $s->name,
+                    'email' => $s->contact_email,
+                    'whatsapp' => $s->contact_whatsapp,
+                    'sector' => $s->slug,
+                ])
+            )
+            ->values();
+
+        // القسم المحدد مسبقاً يأتي من رابط القطاع (?sector=) أو من ?department=
+        // ويُحسب هنا على السيرفر حتى يظهر البريد والرقم الصحيحان قبل عمل الجافاسكربت
+        $requestedSector = request('sector');
+        $requestedDepartment = request('department');
+        $selectedIndex = $departments->search(fn ($d) => $requestedSector
+            ? $d['sector'] === $requestedSector
+            : ($requestedDepartment && $d['name'] === $requestedDepartment));
+        $selectedIndex = $selectedIndex === false ? 0 : $selectedIndex;
+        $selectedDept = $departments[$selectedIndex];
     @endphp
 
     {{-- ===== PAGE HEADER ===== --}}
@@ -59,7 +77,7 @@
                         <a href="mailto:{{ $sales_email }}" class="text-sm text-[#4b4b4b] hover:text-brand transition-colors block" dir="ltr">{{ $sales_email }}</a>
                         <a href="{{ url('/wholesale') }}" class="inline-flex items-center gap-1 text-sm text-brand font-bold mt-1.5 hover:gap-2 transition-all">
                             {{ __('contact.info.wholesale_link') }}
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                            <svg class="w-3.5 h-3.5 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
                         </a>
                     </div>
                 </div>
@@ -91,7 +109,7 @@
                                     style="-webkit-appearance:none; -moz-appearance:none; appearance:none;"
                                     class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 pl-10 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                                 @foreach ($departments as $i => $dept)
-                                    <option value="{{ $dept['email'] }}" data-name="{{ $dept['name'] }}" data-sector="{{ $dept['sector'] }}" {{ $i === 0 ? 'selected' : '' }}>{{ $dept['name'] }}</option>
+                                    <option value="{{ $dept['email'] }}" data-name="{{ $dept['name'] }}" data-sector="{{ $dept['sector'] }}" data-whatsapp="{{ $dept['whatsapp'] }}" {{ $i === $selectedIndex ? 'selected' : '' }}>{{ $dept['name'] }}</option>
                                 @endforeach
                             </select>
                             <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
@@ -100,7 +118,12 @@
                              style="background:rgba(225,29,38,.05); border:1px solid rgba(225,29,38,.15);">
                             <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
                             <span class="text-[#4b4b4b]">{{ __('contact.form.department_note') }}</span>
-                            <a id="deptEmailLink" href="#" class="font-bold text-brand hover:underline" dir="ltr"></a>
+                            <a id="deptEmailLink" href="mailto:{{ $selectedDept['email'] }}" class="font-bold text-brand hover:underline" dir="ltr">{{ $selectedDept['email'] }}</a>
+                            <span id="deptWhatsappWrap" class="{{ $selectedDept['whatsapp'] ? 'inline-flex' : 'hidden' }} items-center gap-2">
+                                <span class="text-[#9a9a9a]">|</span>
+                                <svg class="w-4 h-4 fill-current text-[#25D366] shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.504-5.728-1.464L0 24zm6.59-4.846c1.6.95 3.197 1.451 4.863 1.452 5.48-.001 9.94-4.46 9.943-9.94.002-2.654-1.031-5.15-2.906-7.028C16.671 1.768 14.17.732 11.516.732 6.037.732 1.577 5.191 1.574 10.67c-.001 1.764.46 3.49 1.332 5.021l-1.011 3.69 3.753-.984zm12.333-6.52c-.3-.15-1.77-.874-2.043-.973-.274-.1-.473-.15-.673.15-.2.3-.77.973-.943 1.173-.173.2-.347.225-.647.075-.3-.15-1.267-.467-2.413-1.49-1.002-.894-1.396-1.564-1.595-1.9-.2-.33-.021-.508.13-.658.135-.135.3-.35.45-.525.15-.175.2-.299.3-.5.1-.2.05-.375-.025-.525-.075-.15-.673-1.62-.922-2.206-.24-.582-.486-.504-.673-.513-.173-.008-.372-.008-.572-.008-.2 0-.523.075-.797.375-.274.3-1.045 1.021-1.045 2.493 0 1.472 1.07 2.893 1.22 3.093.15.2 2.106 3.216 5.102 4.512.713.31 1.269.493 1.704.632.716.227 1.369.195 1.884.118.574-.085 1.77-.724 2.019-1.396.25-.672.25-1.246.175-1.396-.075-.15-.274-.225-.574-.375z"/></svg>
+                                <a id="deptWhatsappLink" href="https://wa.me/{{ $selectedDept['whatsapp'] }}" target="_blank" rel="noopener" class="font-bold text-[#128C7E] hover:underline" dir="ltr">+{{ $selectedDept['whatsapp'] }}</a>
+                            </span>
                         </div>
                     </div>
 
@@ -136,11 +159,16 @@
                                   class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all resize-none"></textarea>
                     </div>
 
-                    <div class="pt-2">
+                    <div class="pt-2 flex flex-col sm:flex-row gap-3">
                         <button type="submit" id="submitBtn"
                                 class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
                             {{ __('contact.form.submit_btn') }}
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+                        </button>
+                        <button type="submit" id="whatsappBtn"
+                                class="{{ $selectedDept['whatsapp'] ? 'inline-flex' : 'hidden' }} w-full sm:w-auto items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-[#25d366]/20">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.504-5.728-1.464L0 24zm6.59-4.846c1.6.95 3.197 1.451 4.863 1.452 5.48-.001 9.94-4.46 9.943-9.94.002-2.654-1.031-5.15-2.906-7.028C16.671 1.768 14.17.732 11.516.732 6.037.732 1.577 5.191 1.574 10.67c-.001 1.764.46 3.49 1.332 5.021l-1.011 3.69 3.753-.984zm12.333-6.52c-.3-.15-1.77-.874-2.043-.973-.274-.1-.473-.15-.673.15-.2.3-.77.973-.943 1.173-.173.2-.347.225-.647.075-.3-.15-1.267-.467-2.413-1.49-1.002-.894-1.396-1.564-1.595-1.9-.2-.33-.021-.508.13-.658.135-.135.3-.35.45-.525.15-.175.2-.299.3-.5.1-.2.05-.375-.025-.525-.075-.15-.673-1.62-.922-2.206-.24-.582-.486-.504-.673-.513-.173-.008-.372-.008-.572-.008-.2 0-.523.075-.797.375-.274.3-1.045 1.021-1.045 2.493 0 1.472 1.07 2.893 1.22 3.093.15.2 2.106 3.216 5.102 4.512.713.31 1.269.493 1.704.632.716.227 1.369.195 1.884.118.574-.085 1.77-.724 2.019-1.396.25-.672.25-1.246.175-1.396-.075-.15-.274-.225-.574-.375z"/></svg>
+                            {{ __('contact.form.whatsapp_btn') }}
                         </button>
                     </div>
                 </form>
@@ -252,10 +280,14 @@
 
     const select   = document.getElementById('department');
     const deptLink = document.getElementById('deptEmailLink');
+    const waWrap   = document.getElementById('deptWhatsappWrap');
+    const waLink   = document.getElementById('deptWhatsappLink');
     const btn      = document.getElementById('submitBtn');
+    const waBtn    = document.getElementById('whatsappBtn');
     const okBox    = document.getElementById('formSuccess');
     const errBox   = document.getElementById('formError');
     const original = btn.innerHTML;
+    const waOriginal = waBtn.innerHTML;
     const sendingText = @json(__('contact.js.sending'));
     const serviceSubjectPrefix = @json(__('contact.js.service_subject_prefix'));
     const serviceMessagePlaceholder = @json(__('contact.js.service_message_placeholder'));
@@ -266,12 +298,33 @@
     const errorDefault  = @json(__('contact.js.error_default'));
     const mailBodyLabels = @json(__('contact.js.mail_body'));
 
+    // رقم واتساب القسم المختار، فارغ إن لم يُضبط له رقم من لوحة التحكم
+    function deptWhatsapp() {
+        const option = select.options[select.selectedIndex];
+        return (option && option.dataset.whatsapp) || '';
+    }
+
     function updateDeptEmail() {
         deptLink.textContent = select.value;
         deptLink.href = 'mailto:' + select.value;
+
+        const number = deptWhatsapp();
+        waWrap.classList.toggle('hidden', !number);
+        waWrap.classList.toggle('inline-flex', !!number);
+        waBtn.classList.toggle('hidden', !number);
+        waBtn.classList.toggle('inline-flex', !!number);
+        if (number) {
+            waLink.textContent = '+' + number;
+            waLink.href = 'https://wa.me/' + number;
+        }
     }
     select.addEventListener('change', updateDeptEmail);
     updateDeptEmail();
+
+    // الزر المضغوط يحدّد قناة الإرسال: البريد أم واتساب
+    let channel = 'email';
+    btn.addEventListener('click', () => { channel = 'email'; });
+    waBtn.addEventListener('click', () => { channel = 'whatsapp'; });
 
     // تعبئة الموضوع مسبقاً من روابط الخدمات والقطاعات والمشاريع
     (function prefill() {
@@ -307,14 +360,21 @@
 
         const deptName  = select.options[select.selectedIndex].dataset.name;
         const deptEmail = select.value;
+        const waNumber  = deptWhatsapp();
+        const viaWa     = channel === 'whatsapp' && !!waNumber;
+        const activeBtn = viaWa ? waBtn : btn;
+        const activeOriginal = viaWa ? waOriginal : original;
+        // تُفتح نافذة واتساب الآن ضمن نقرة المستخدم حتى لا يحجبها المتصفح
+        const waWindow  = viaWa ? window.open('', '_blank') : null;
+        channel = 'email'; // العودة للوضع الافتراضي حتى لا ترث الرسالة التالية القناة
         const name    = document.getElementById('name').value;
         const phone   = document.getElementById('phone').value;
         const email   = document.getElementById('email').value;
         const subject = document.getElementById('subject').value;
         const message = document.getElementById('message').value;
 
-        btn.disabled = true;
-        btn.innerHTML = sendingText;
+        activeBtn.disabled = true;
+        activeBtn.innerHTML = sendingText;
         errBox.classList.add('hidden');
 
         fetch('{{ route('contact.store') }}', {
@@ -332,8 +392,8 @@
         })
         .then(r => r.json().then(body => ({ status: r.status, body })))
         .then(({ status, body }) => {
-            btn.disabled = false;
-            btn.innerHTML = original;
+            activeBtn.disabled = false;
+            activeBtn.innerHTML = activeOriginal;
 
             if (status === 422) throw new Error(firstError(body));
             if (!body.ok) throw new Error('');
@@ -342,23 +402,30 @@
             okBox.classList.remove('hidden');
             okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            const body =
+            const details =
                 mailBodyLabels.name + name + '\n' +
                 mailBodyLabels.phone + phone + '\n' +
                 mailBodyLabels.email + (email || mailBodyLabels.not_available) + '\n' +
                 mailBodyLabels.department + deptName + '\n\n' +
                 mailBodyLabels.message_heading + '\n' + message;
 
-            window.location.href = 'mailto:' + deptEmail
-                + '?subject=' + encodeURIComponent(subject)
-                + '&body=' + encodeURIComponent(body);
+            if (viaWa) {
+                const waText = mailBodyLabels.subject + subject + '\n' + details;
+                const waUrl  = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(waText);
+                if (waWindow) { waWindow.location.href = waUrl; } else { window.open(waUrl, '_blank'); }
+            } else {
+                window.location.href = 'mailto:' + deptEmail
+                    + '?subject=' + encodeURIComponent(subject)
+                    + '&body=' + encodeURIComponent(details);
+            }
 
             form.reset();
             updateDeptEmail();
         })
         .catch(err => {
-            btn.disabled = false;
-            btn.innerHTML = original;
+            activeBtn.disabled = false;
+            activeBtn.innerHTML = activeOriginal;
+            if (waWindow) waWindow.close();
             errBox.textContent = err.message || errorDefault;
             errBox.classList.remove('hidden');
         });

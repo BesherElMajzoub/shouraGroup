@@ -91,6 +91,7 @@ class SectorController extends Controller
             'name_en' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', $slugRule],
             'email' => ['nullable', 'email', 'max:255'],
+            'whatsapp' => ['nullable', 'string', 'max:30'],
             'tagline' => ['nullable', 'string', 'max:255'],
             'tagline_en' => ['required_with:tagline', 'nullable', 'string', 'max:255'],
             'intro' => ['nullable', 'string'],
