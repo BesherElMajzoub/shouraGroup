@@ -7,10 +7,14 @@
 
     @php
         // كل خدمة تحمل اسم قسمها المختص؛ نبني منها قائمة الأقسام دون تكرار
-        $departments = collect([['name' => __('contact.general_inquiry'), 'email' => $contact_email]])
+        $departments = collect([['name' => __('contact.general_inquiry'), 'email' => $contact_email, 'sector' => null]])
             ->merge(
                 $services->pluck('dept')->unique()->values()
-                    ->map(fn ($dept) => ['name' => $dept, 'email' => $sales_email])
+                    ->map(fn ($dept) => ['name' => $dept, 'email' => $sales_email, 'sector' => null])
+            )
+            // كل قطاع قسم مستقل ببريده الخاص القادم من لوحة التحكم
+            ->merge(
+                $sectors->map(fn ($s) => ['name' => $s->name, 'email' => $s->contact_email, 'sector' => $s->slug])
             );
     @endphp
 
@@ -87,7 +91,7 @@
                                     style="-webkit-appearance:none; -moz-appearance:none; appearance:none;"
                                     class="w-full bg-[#f7f7f8] rounded-xl px-4 py-3 pl-10 text-sm text-[#141414] focus:outline-none focus:ring-2 focus:ring-brand focus:bg-white transition-all">
                                 @foreach ($departments as $i => $dept)
-                                    <option value="{{ $dept['email'] }}" data-name="{{ $dept['name'] }}" {{ $i === 0 ? 'selected' : '' }}>{{ $dept['name'] }}</option>
+                                    <option value="{{ $dept['email'] }}" data-name="{{ $dept['name'] }}" data-sector="{{ $dept['sector'] }}" {{ $i === 0 ? 'selected' : '' }}>{{ $dept['name'] }}</option>
                                 @endforeach
                             </select>
                             <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
@@ -275,11 +279,13 @@
         const subjectInput = document.getElementById('subject');
         const messageArea  = document.getElementById('message');
 
+        // ?sector=slug يأتي من صفحة القطاع ويختار قسم القطاع ببريده الخاص
+        const sector = p.get('sector');
         const department = p.get('department');
-        if (department) {
-            const match = [...select.options].find(o => o.dataset.name === department);
-            if (match) { select.value = match.value; updateDeptEmail(); }
-        }
+        const match = sector
+            ? [...select.options].find(o => o.dataset.sector === sector)
+            : (department ? [...select.options].find(o => o.dataset.name === department) : null);
+        if (match) { select.selectedIndex = match.index; updateDeptEmail(); }
 
         const service = p.get('service');
         const project = p.get('project');

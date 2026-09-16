@@ -37,13 +37,13 @@
             {{-- Projects Grid --}}
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-12" id="projectsGrid">
                 @foreach ($projects as $i => $p)
-                    <article class="reveal project-card group bg-white rounded-2xl overflow-hidden shadow-sm ring-1 ring-black/5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                    <article class="reveal project-card group flex h-full flex-col bg-white rounded-2xl overflow-hidden shadow-sm ring-1 ring-black/5 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
                              data-category="{{ $p->category->slug }}"
                              style="transition-delay:{{ $i * 0.05 }}s">
-                        <a href="{{ route('projects.show', $p->slug) }}" class="block h-full" aria-label="{{ __('projects.view_details_for', ['project' => $p->title]) }}">
+                        <a href="{{ route('projects.show', $p->slug) }}" class="flex h-full flex-col" aria-label="{{ __('projects.view_details_for', ['project' => $p->title]) }}">
                         
                         {{-- Image with overlay on hover --}}
-                        <div class="relative h-64 overflow-hidden">
+                        <div class="relative h-64 shrink-0 overflow-hidden">
                             <img src="{{ $p->image_url }}" alt="{{ $p->title }}" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             
@@ -63,12 +63,12 @@
                         </div>
 
                         {{-- Details --}}
-                        <div class="p-6">
+                        <div class="flex flex-1 flex-col p-6">
                             <div class="text-[11px] font-bold text-brand mb-1">{{ __('projects.client_label') }}: {{ $p->client }}</div>
                             <h3 class="text-xl font-bold text-[#141414] mb-3 leading-snug group-hover:text-brand transition-colors">{{ $p->title }}</h3>
                             <p class="text-[#4b4b4b] text-sm leading-relaxed mb-4 h-24 overflow-hidden line-clamp-4">{{ $p->summary }}</p>
                             
-                            <div class="border-t border-gray-100 pt-4 flex items-center justify-between">
+                            <div class="mt-auto border-t border-gray-100 pt-4 flex items-center justify-between">
                                 <span class="inline-flex items-center gap-1 text-brand font-bold text-sm group-hover:gap-2 transition-all">
                                     {{ __('projects.view_details') }}
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
@@ -124,7 +124,7 @@
         cards.forEach(card => {
             const cardCat = card.getAttribute('data-category');
             if (catId === 'all' || cardCat === catId) {
-                card.style.display = 'block';
+                card.style.removeProperty('display');
                 card.classList.add('in-view');
             } else {
                 card.style.display = 'none';

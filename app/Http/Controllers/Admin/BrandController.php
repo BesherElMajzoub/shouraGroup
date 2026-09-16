@@ -97,9 +97,12 @@ class BrandController extends Controller
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', $slugRule],
             'country' => ['nullable', 'string', 'max:100'],
+            'country_en' => ['required_with:country', 'nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
+            'description_en' => ['required_with:description', 'nullable', 'string'],
             'logo' => ['nullable', 'image', 'max:7168'],
             'is_agency' => ['boolean'],
             'show_on_home' => ['boolean'],

@@ -36,15 +36,12 @@
                     @endforelse
                 </div>
 
+                {{-- Sends the visitor to the contact form with this sector's department (and inbox) preselected --}}
                 <div class="mt-10 flex flex-wrap gap-4">
-                    <a href="{{ url('/contact') }}?subject={{ urlencode(__('sectors_show.inquiry_subject_prefix') . $sector->name) }}"
+                    <a href="{{ url('/contact') }}?sector={{ $sector->slug }}&subject={{ urlencode(__('sectors_show.inquiry_subject_prefix') . $sector->name) }}"
                        class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-7 py-3 rounded-xl font-bold text-sm transition-colors shadow-lg shadow-brand/20">
-                        {{ __('sectors_show.quote_btn') }}
+                        {{ __('sectors_show.contact_btn') }}
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
-                    </a>
-                    <a href="{{ url('/wholesale') }}"
-                       class="inline-flex items-center gap-2 border-2 border-[#141414] hover:bg-[#141414] hover:text-white text-[#141414] px-7 py-3 rounded-xl font-bold text-sm transition-colors">
-                        {{ __('sectors_show.wholesale_btn') }}
                     </a>
                 </div>
             </div>

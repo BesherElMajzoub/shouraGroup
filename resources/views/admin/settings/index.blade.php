@@ -24,15 +24,24 @@
                 <h3 class="text-base font-black text-gray-900 pb-4 border-b border-gray-100">نصوص الصفحة الرئيسية</h3>
 
                 <div>
-                    <label for="about_subtitle" class="{{ $label }}">العنوان الفرعي لقسم «من نحن»</label>
+                    <label for="about_subtitle" class="{{ $label }}">العنوان الفرعي لقسم «من نحن» — عربي</label>
                     <input type="text" id="about_subtitle" name="about_subtitle" required
                            value="{{ old('about_subtitle', $settings['about_subtitle'] ?? '') }}" class="{{ $field }}">
                 </div>
+                <div dir="ltr" class="text-left">
+                    <label for="about_subtitle_en" class="{{ $label }}">About subtitle — English</label>
+                    <input type="text" id="about_subtitle_en" name="about_subtitle_en" required
+                           value="{{ old('about_subtitle_en', $settingsEn['about_subtitle'] ?? '') }}" class="{{ $field }}">
+                </div>
 
                 <div>
-                    <label for="about_body" class="{{ $label }}">فقرات «من نحن»</label>
+                    <label for="about_body" class="{{ $label }}">فقرات «من نحن» — عربي</label>
                     <textarea id="about_body" name="about_body" rows="7" required class="{{ $field }} resize-none">{{ old('about_body', $settings['about_body'] ?? '') }}</textarea>
                     <p class="text-[11px] text-gray-400 mt-1.5">افصل بين كل فقرة والأخرى بسطر فارغ.</p>
+                </div>
+                <div dir="ltr" class="text-left">
+                    <label for="about_body_en" class="{{ $label }}">About paragraphs — English</label>
+                    <textarea id="about_body_en" name="about_body_en" rows="7" required class="{{ $field }} resize-none">{{ old('about_body_en', $settingsEn['about_body'] ?? '') }}</textarea>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -65,23 +74,43 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="vision_text" class="{{ $label }}">نص الرؤية</label>
+                        <label for="vision_text" class="{{ $label }}">نص الرؤية — عربي</label>
                         <textarea id="vision_text" name="vision_text" rows="4" required class="{{ $field }} resize-none">{{ old('vision_text', $settings['vision_text'] ?? '') }}</textarea>
                     </div>
                     <div>
-                        <label for="mission_text" class="{{ $label }}">نص الرسالة</label>
+                        <label for="mission_text" class="{{ $label }}">نص الرسالة — عربي</label>
                         <textarea id="mission_text" name="mission_text" rows="4" required class="{{ $field }} resize-none">{{ old('mission_text', $settings['mission_text'] ?? '') }}</textarea>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" dir="ltr">
+                    <div class="text-left">
+                        <label for="vision_text_en" class="{{ $label }}">Vision — English</label>
+                        <textarea id="vision_text_en" name="vision_text_en" rows="4" required class="{{ $field }} resize-none">{{ old('vision_text_en', $settingsEn['vision_text'] ?? '') }}</textarea>
+                    </div>
+                    <div class="text-left">
+                        <label for="mission_text_en" class="{{ $label }}">Mission — English</label>
+                        <textarea id="mission_text_en" name="mission_text_en" rows="4" required class="{{ $field }} resize-none">{{ old('mission_text_en', $settingsEn['mission_text'] ?? '') }}</textarea>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="partners_intro" class="{{ $label }}">مقدمة قسم «شركاؤنا»</label>
+                        <label for="partners_intro" class="{{ $label }}">مقدمة قسم «شركاؤنا» — عربي</label>
                         <textarea id="partners_intro" name="partners_intro" rows="3" required class="{{ $field }} resize-none">{{ old('partners_intro', $settings['partners_intro'] ?? '') }}</textarea>
                     </div>
                     <div>
-                        <label for="clients_intro" class="{{ $label }}">مقدمة قسم «عملاؤنا»</label>
+                        <label for="clients_intro" class="{{ $label }}">مقدمة قسم «عملاؤنا» — عربي</label>
                         <textarea id="clients_intro" name="clients_intro" rows="3" required class="{{ $field }} resize-none">{{ old('clients_intro', $settings['clients_intro'] ?? '') }}</textarea>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" dir="ltr">
+                    <div class="text-left">
+                        <label for="partners_intro_en" class="{{ $label }}">Partners introduction — English</label>
+                        <textarea id="partners_intro_en" name="partners_intro_en" rows="3" required class="{{ $field }} resize-none">{{ old('partners_intro_en', $settingsEn['partners_intro'] ?? '') }}</textarea>
+                    </div>
+                    <div class="text-left">
+                        <label for="clients_intro_en" class="{{ $label }}">Clients introduction — English</label>
+                        <textarea id="clients_intro_en" name="clients_intro_en" rows="3" required class="{{ $field }} resize-none">{{ old('clients_intro_en', $settingsEn['clients_intro'] ?? '') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -91,8 +120,12 @@
                 <h3 class="text-base font-black text-gray-900 pb-4 border-b border-gray-100">صفحة «من نحن»</h3>
 
                 <div>
-                    <label for="story_overview_body" class="{{ $label }}">فقرة «كيف بدأت الحكاية»</label>
+                    <label for="story_overview_body" class="{{ $label }}">فقرة «كيف بدأت الحكاية» — عربي</label>
                     <textarea id="story_overview_body" name="story_overview_body" rows="6" required class="{{ $field }} resize-none">{{ old('story_overview_body', $settings['story_overview_body'] ?? '') }}</textarea>
+                </div>
+                <div dir="ltr" class="text-left">
+                    <label for="story_overview_body_en" class="{{ $label }}">Company story — English</label>
+                    <textarea id="story_overview_body_en" name="story_overview_body_en" rows="6" required class="{{ $field }} resize-none">{{ old('story_overview_body_en', $settingsEn['story_overview_body'] ?? '') }}</textarea>
                 </div>
 
                 <div>
@@ -126,8 +159,12 @@
                     ['contact_intro', 'اتصل بنا'],
                 ] as [$key, $pageName])
                     <div>
-                        <label for="{{ $key }}" class="{{ $label }}">صفحة «{{ $pageName }}»</label>
+                        <label for="{{ $key }}" class="{{ $label }}">صفحة «{{ $pageName }}» — عربي</label>
                         <textarea id="{{ $key }}" name="{{ $key }}" rows="3" required class="{{ $field }} resize-none">{{ old($key, $settings[$key] ?? '') }}</textarea>
+                    </div>
+                    <div dir="ltr" class="text-left">
+                        <label for="{{ $key }}_en" class="{{ $label }}">{{ $pageName }} — English</label>
+                        <textarea id="{{ $key }}_en" name="{{ $key }}_en" rows="3" required class="{{ $field }} resize-none">{{ old($key.'_en', $settingsEn[$key] ?? '') }}</textarea>
                     </div>
                 @endforeach
             </div>
@@ -173,10 +210,15 @@
                         <p class="text-[11px] text-gray-400 mt-1.5">بالصيغة الدولية بدون علامة + أو أصفار بادئة. اتركه فارغاً لإخفاء زر الواتساب.</p>
                     </div>
                     <div>
-                        <label for="working_hours" class="{{ $label }}">أوقات الدوام الرسمي</label>
+                        <label for="working_hours" class="{{ $label }}">أوقات الدوام الرسمي — عربي</label>
                         <input type="text" id="working_hours" name="working_hours" required
                                value="{{ old('working_hours', $settings['working_hours'] ?? '') }}" class="{{ $field }}">
                     </div>
+                </div>
+                <div dir="ltr" class="text-left">
+                    <label for="working_hours_en" class="{{ $label }}">Working hours — English</label>
+                    <input type="text" id="working_hours_en" name="working_hours_en" required
+                           value="{{ old('working_hours_en', $settingsEn['working_hours'] ?? '') }}" class="{{ $field }}">
                 </div>
             </div>
 

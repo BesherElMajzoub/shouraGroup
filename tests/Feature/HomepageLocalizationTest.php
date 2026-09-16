@@ -14,17 +14,20 @@ class HomepageLocalizationTest extends TestCase
     {
         $service = Service::create([
             'title' => 'تركيب وتسليم مجموعات التوليد الكهربائية',
+            'title_en' => 'Custom Generator Installation',
             'dept' => 'قسم مجموعات التوليد والطاقة',
+            'dept_en' => 'Custom Energy Department',
             'group' => 'home',
             'description' => 'توريد وتركيب وتشغيل مجموعات التوليد الكهربائية باستطاعات من 20 وحتى 2000 KVA، مع لوحات النقل الآلي والكبائن العازلة للصوت.',
+            'description_en' => 'A newly authored English service description.',
             'order' => 1,
             'is_active' => true,
         ]);
 
         $englishUrl = url('/contact').'?service='.
-            urlencode('Generator Set Installation & Commissioning').
+            urlencode('Custom Generator Installation').
             '&department='.
-            urlencode('Power Generation & Energy Department');
+            urlencode('Custom Energy Department');
 
         $response = $this->withSession(['locale' => 'en'])->get(route('home'));
 
@@ -32,17 +35,19 @@ class HomepageLocalizationTest extends TestCase
             ->assertOk()
             ->assertSee('<html lang="en" dir="ltr">', false)
             ->assertSeeText('A Legacy of Trust and Engineering Excellence')
-            ->assertSeeText('Explore All Sectors')
+            ->assertSeeText('Explore Our Sectors')
             ->assertSee($englishUrl, false)
-            ->assertDontSee(urlencode($service->title), false)
-            ->assertDontSeeText('تفاصيل كل القطاعات');
+            ->assertSeeText('A newly authored English service description.')
+            ->assertDontSeeText('تركيب وتسليم مجموعات التوليد الكهربائية');
     }
 
     public function test_arabic_homepage_keeps_arabic_service_request_values(): void
     {
         $service = Service::create([
             'title' => 'تركيب وتسليم مجموعات التوليد الكهربائية',
+            'title_en' => 'Custom Generator Installation',
             'dept' => 'قسم مجموعات التوليد والطاقة',
+            'dept_en' => 'Custom Energy Department',
             'group' => 'home',
             'order' => 1,
             'is_active' => true,

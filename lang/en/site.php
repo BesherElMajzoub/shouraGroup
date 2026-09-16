@@ -517,6 +517,10 @@ return [
     'تأتي هذه الخطوة الاستراتيجية لتوفير حلول ضخ متنوعة وموثوقة تواكب متطلبات المشاريع الحديثة، وتتميز منتجات EMS بمتانتها وكفاءتها العالية في استهلاك الطاقة.' => 'This strategic addition provides diverse, reliable pumping solutions for modern projects. EMS products are known for durability and high energy efficiency.',
     'ندعوكم لزيارة فروعنا في دمشق وحلب للاطلاع على التشكيلة الجديدة والمواصفات الفنية، حيث يقف فريقنا الهندسي جاهزاً لتقديم الاستشارة واختيار المضخة الأنسب لمشاريعكم.' => 'Visit our Damascus and Aleppo branches to explore the new range and technical specifications. Our engineers are ready to advise you and select the right pump for your project.',
 
+    // Project statuses
+    'مكتمل' => 'Completed',
+    'قيد التنفيذ' => 'In progress',
+
     // Brand countries and descriptions
     'الصين' => 'China',
     'إيطاليا' => 'Italy',
@@ -526,7 +530,7 @@ return [
     'ألمانيا' => 'Germany',
     'كوريا الجنوبية' => 'South Korea',
     'عالمية' => 'Global',
-    '>الهند<' => '>India<',
+    'الهند' => 'India',
     'سلوفينيا' => 'Slovenia',
     'تركيا' => 'Türkiye',
     'محركات ديزل صناعية لمجموعات التوليد الكهربائي بمختلف الاستطاعات.' => 'Industrial diesel engines for generator sets across a wide range of capacities.',

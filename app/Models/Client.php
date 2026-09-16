@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasLocalizedFields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Client extends Model
 {
-    protected $fillable = ['name', 'logo', 'order', 'is_active'];
+    use HasLocalizedFields;
+
+    protected array $localizedFields = ['name'];
+
+    protected $fillable = ['name', 'name_en', 'logo', 'order', 'is_active'];
 
     protected $casts = [
         'is_active' => 'boolean',

@@ -67,9 +67,13 @@ class BranchController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:100'],
+            'city_en' => ['required', 'string', 'max:100'],
             'address' => ['required', 'string', 'max:255'],
+            'address_en' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:255'],
+            'description_en' => ['required_with:description', 'nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'mobile' => ['nullable', 'string', 'max:50'],
             // موضع الدبوس على خريطة سوريا بالنسبة المئوية

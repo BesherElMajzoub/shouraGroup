@@ -35,8 +35,8 @@
             <input id="title_ar" name="title_ar" value="{{ old('title_ar', $project?->title_ar) }}" required class="{{ $inputClass }}">
         </div>
         <div>
-            <label for="title_en" class="block text-xs font-bold text-gray-700 mb-2">عنوان المشروع (English)</label>
-            <input id="title_en" name="title_en" value="{{ old('title_en', $project?->title_en) }}" dir="ltr" class="{{ $inputClass }} text-left">
+            <label for="title_en" class="block text-xs font-bold text-gray-700 mb-2">عنوان المشروع (English) *</label>
+            <input id="title_en" name="title_en" value="{{ old('title_en', $project?->title_en) }}" dir="ltr" required class="{{ $inputClass }} text-left">
         </div>
         <div>
             <label for="category_id" class="block text-xs font-bold text-gray-700 mb-2">تصنيف المشروع *</label>

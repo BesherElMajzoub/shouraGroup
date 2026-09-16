@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             ProjectsSeeder::class,
             NewsSeeder::class,
+            LocalizationBackfillSeeder::class,
         ]);
     }
 }

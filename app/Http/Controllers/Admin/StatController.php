@@ -33,6 +33,7 @@ class StatController extends Controller
         $validated = $request->validate([
             'value' => ['required', 'string', 'max:255'],
             'label' => ['required', 'string', 'max:255'],
+            'label_en' => ['required', 'string', 'max:255'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
         ]);
@@ -60,6 +61,7 @@ class StatController extends Controller
         $validated = $request->validate([
             'value' => ['required', 'string', 'max:255'],
             'label' => ['required', 'string', 'max:255'],
+            'label_en' => ['required', 'string', 'max:255'],
             'order' => ['required', 'integer'],
             'is_active' => ['boolean'],
         ]);

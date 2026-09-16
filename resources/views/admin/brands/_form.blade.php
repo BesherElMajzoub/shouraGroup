@@ -21,6 +21,19 @@
     </div>
 </div>
 
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" dir="ltr">
+    <div class="text-left">
+        <label for="name_en" class="block text-xs font-bold text-gray-700 mb-2">Brand name — English <span class="text-brand">*</span></label>
+        <input type="text" id="name_en" name="name_en" value="{{ old('name_en', $brand->name_en ?? '') }}" required
+               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+    </div>
+    <div class="text-left">
+        <label for="country_en" class="block text-xs font-bold text-gray-700 mb-2">Country — English</label>
+        <input type="text" id="country_en" name="country_en" value="{{ old('country_en', $brand->country_en ?? '') }}"
+               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+    </div>
+</div>
+
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div>
         <label for="slug" class="block text-xs font-bold text-gray-700 mb-2">المعرّف في الرابط (بالإنجليزية)</label>
@@ -33,6 +46,12 @@
         <input type="number" id="order" name="order" value="{{ old('order', $brand->order ?? 0) }}" required
                class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
     </div>
+</div>
+
+<div dir="ltr" class="text-left">
+    <label for="description_en" class="block text-xs font-bold text-gray-700 mb-2">Product range — English</label>
+    <textarea id="description_en" name="description_en" rows="3"
+              class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">{{ old('description_en', $brand->description_en ?? '') }}</textarea>
 </div>
 
 <div>

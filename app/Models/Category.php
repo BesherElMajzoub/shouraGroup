@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasLocalizedFields;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['type', 'name', 'slug', 'order'];
+    use HasLocalizedFields;
+
+    protected array $localizedFields = ['name'];
+
+    protected $fillable = ['type', 'name', 'name_en', 'slug', 'order'];
 
     protected $casts = [
         'order' => 'integer',

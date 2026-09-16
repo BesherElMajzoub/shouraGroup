@@ -25,8 +25,8 @@
 
                 <!-- Title (English) -->
                 <div>
-                    <label for="title_en" class="block text-xs font-bold text-gray-700 mb-2">عنوان الخبر (إنجليزي — اختياري)</label>
-                    <input type="text" id="title_en" name="title_en" value="{{ old('title_en', $news->title_en) }}" dir="ltr"
+                    <label for="title_en" class="block text-xs font-bold text-gray-700 mb-2">عنوان الخبر (English) <span class="text-brand">*</span></label>
+                    <input type="text" id="title_en" name="title_en" value="{{ old('title_en', $news->title_en) }}" dir="ltr" required
                            class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all text-left">
                 </div>
             </div>
@@ -70,7 +70,7 @@
 
             <!-- Excerpt (English) -->
             <div>
-                <label for="excerpt_en" class="block text-xs font-bold text-gray-700 mb-2">ملخص الخبر (إنجليزي — اختياري)</label>
+                <label for="excerpt_en" class="block text-xs font-bold text-gray-700 mb-2">ملخص الخبر (English)</label>
                 <textarea id="excerpt_en" name="excerpt_en" rows="2" dir="ltr" placeholder="Short, engaging summary in English..."
                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-none text-left">{{ old('excerpt_en', $news->excerpt_en) }}</textarea>
             </div>
@@ -84,8 +84,8 @@
 
             <!-- Body (English) -->
             <div>
-                <label for="body_en" class="block text-xs font-bold text-gray-700 mb-2">محتوى الخبر بالتفصيل (إنجليزي — اختياري)</label>
-                <textarea id="body_en" name="body_en" rows="10" dir="ltr" placeholder="Write the full article in English here..."
+                <label for="body_en" class="block text-xs font-bold text-gray-700 mb-2">محتوى الخبر بالتفصيل (English) <span class="text-brand">*</span></label>
+                <textarea id="body_en" name="body_en" rows="10" dir="ltr" required placeholder="Write the full article in English here..."
                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-y text-left">{{ old('body_en', $news->body_en) }}</textarea>
             </div>
 

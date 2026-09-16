@@ -58,21 +58,16 @@ class LocalizePublicSite
             return $response;
         }
 
-        $translations = trans('site');
-
-        if (is_array($translations) && method_exists($response, 'getContent')) {
+        if (method_exists($response, 'getContent')) {
             $content = $response->getContent();
 
             if (is_string($content)) {
-                $translated = strtr($content, $translations);
-                $response->setContent($translated);
-
                 // Longest first: "aria" fully contains "short"/"full" ('العربية'), and
                 // str_replace() applies needles in order, so a short match first would
                 // leave a partial, still-Arabic remainder behind.
                 $expectedArabic = array_filter(array_map('trans', self::EXPECTED_ARABIC_KEYS));
                 usort($expectedArabic, fn ($a, $b) => mb_strlen($b) <=> mb_strlen($a));
-                $forCheck = str_replace($expectedArabic, '', $translated);
+                $forCheck = str_replace($expectedArabic, '', $content);
 
                 // Strip <script> blocks: source-level JS comments/strings aren't
                 // rendered to the visitor, so they shouldn't trigger this check.

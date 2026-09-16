@@ -88,10 +88,15 @@ class SectorController extends Controller
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', $slugRule],
+            'email' => ['nullable', 'email', 'max:255'],
             'tagline' => ['nullable', 'string', 'max:255'],
+            'tagline_en' => ['required_with:tagline', 'nullable', 'string', 'max:255'],
             'intro' => ['nullable', 'string'],
+            'intro_en' => ['required_with:intro', 'nullable', 'string'],
             'specialties' => ['nullable', 'string'],
+            'specialties_en' => ['required_with:specialties', 'nullable', 'string'],
             'icon' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'max:7168'],
             'is_coming_soon' => ['boolean'],
@@ -107,7 +112,12 @@ class SectorController extends Controller
         $validated['is_coming_soon'] = $request->has('is_coming_soon');
         $validated['is_active'] = $request->has('is_active');
 
-        $validated['specialties'] = collect(preg_split('/\r\n|\r|\n/', $request->input('specialties', '')))
+        $validated['specialties'] = collect(preg_split('/\r\n|\r|\n/', (string) $request->input('specialties')))
+            ->map(fn ($line) => trim($line))
+            ->filter()
+            ->values()
+            ->all();
+        $validated['specialties_en'] = collect(preg_split('/\r\n|\r|\n/', (string) $request->input('specialties_en')))
             ->map(fn ($line) => trim($line))
             ->filter()
             ->values()

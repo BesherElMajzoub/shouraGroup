@@ -9,9 +9,8 @@ return [
         'empty' => 'Specialty details will be added soon.',
     ],
 
-    'quote_btn' => 'Request a Quote or Consultation',
+    'contact_btn' => 'Contact Us',
     'inquiry_subject_prefix' => 'Inquiry about sector: ',
-    'wholesale_btn' => 'Wholesale Order',
 
     'brands' => [
         'eyebrow' => 'Agencies & Partnerships',

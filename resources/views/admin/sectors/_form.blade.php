@@ -20,9 +20,28 @@
 </div>
 
 <div>
+    <label for="email" class="block text-xs font-bold text-gray-700 mb-2">بريد القطاع الإلكتروني</label>
+    <input type="email" id="email" name="email" value="{{ old('email', $sector->email ?? '') }}" dir="ltr" placeholder="pumps@shora.com"
+           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 text-left focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
+    <p class="text-[11px] text-gray-400 mt-1.5">يُوجَّه إليه زر «تواصل معنا» في صفحة القطاع. إن تُرك فارغاً يُستخدم البريد الرسمي العام.</p>
+</div>
+
+<div dir="ltr" class="text-left">
+    <label for="name_en" class="block text-xs font-bold text-gray-700 mb-2">Sector name — English <span class="text-brand">*</span></label>
+    <input type="text" id="name_en" name="name_en" value="{{ old('name_en', $sector->name_en ?? '') }}" required
+           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+</div>
+
+<div>
     <label for="tagline" class="block text-xs font-bold text-gray-700 mb-2">العنوان الفرعي</label>
     <input type="text" id="tagline" name="tagline" value="{{ old('tagline', $sector->tagline ?? '') }}"
            class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
+</div>
+
+<div dir="ltr" class="text-left">
+    <label for="tagline_en" class="block text-xs font-bold text-gray-700 mb-2">Tagline — English</label>
+    <input type="text" id="tagline_en" name="tagline_en" value="{{ old('tagline_en', $sector->tagline_en ?? '') }}"
+           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
 </div>
 
 <div>
@@ -31,11 +50,23 @@
               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">{{ old('intro', $sector->intro ?? '') }}</textarea>
 </div>
 
+<div dir="ltr" class="text-left">
+    <label for="intro_en" class="block text-xs font-bold text-gray-700 mb-2">Sector introduction — English</label>
+    <textarea id="intro_en" name="intro_en" rows="4"
+              class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">{{ old('intro_en', $sector->intro_en ?? '') }}</textarea>
+</div>
+
 <div>
     <label for="specialties" class="block text-xs font-bold text-gray-700 mb-2">التخصصات والمعدات</label>
     <textarea id="specialties" name="specialties" rows="5" placeholder="بند في كل سطر"
               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">{{ old('specialties', implode("\n", $sector->specialties ?? [])) }}</textarea>
     <p class="text-[11px] text-gray-400 mt-1.5">اكتب كل بند في سطر منفصل.</p>
+</div>
+
+<div dir="ltr" class="text-left">
+    <label for="specialties_en" class="block text-xs font-bold text-gray-700 mb-2">Specialties and equipment — English</label>
+    <textarea id="specialties_en" name="specialties_en" rows="5" placeholder="One item per line"
+              class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">{{ old('specialties_en', implode("\n", $sector->specialties_en ?? [])) }}</textarea>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -15,6 +15,11 @@ return [
         'name' => 'Shora Brothers',
     ],
 
+    'structured_data' => [
+        'street_address' => 'Al-Marjeh',
+        'address_locality' => 'Damascus',
+    ],
+
     'topbar' => [
         'wholesale' => 'Wholesale',
     ],
@@ -72,7 +77,7 @@ return [
             'title_line2' => 'Driving Your Projects with Confidence',
             'paragraph' => "Since 1978, Shora Brothers has brought decades of engineering expertise and a network of global partners to every project—covering power generation, water pumps, air compressors, medical-gas systems, and industrial and agricultural tools.",
             'cta_sectors' => 'Explore Our Sectors',
-            'cta_contact' => 'Talk to Our Team',
+            'cta_contact' => 'Contact Us',
             'network_aria' => "Shora Brothers' Interconnected Sectors",
             'since_year' => 'Since 1978',
             'branches' => [

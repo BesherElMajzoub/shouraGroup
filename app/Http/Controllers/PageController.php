@@ -190,6 +190,8 @@ class PageController extends Controller
             'working_hours' => setting('working_hours'),
             'branches' => Branch::where('is_active', true)->orderBy('order')->get(),
             'services' => Service::where('is_active', true)->orderBy('order')->get(),
+            // Each live sector is its own department in the form, with its own inbox
+            'sectors' => Sector::where('is_active', true)->where('is_coming_soon', false)->orderBy('order')->get(),
         ]);
     }
 }

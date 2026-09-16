@@ -31,6 +31,12 @@
                 </div>
             </div>
 
+            <div dir="ltr" class="text-left">
+                <label for="name_en" class="block text-xs font-bold text-gray-700 mb-2">Client / partner name — English</label>
+                <input type="text" id="name_en" name="name_en" value="{{ old('name_en', $client->name_en) }}" required
+                       class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 <!-- Current and New Logo -->
                 <div class="space-y-4">

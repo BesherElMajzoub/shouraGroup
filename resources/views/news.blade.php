@@ -22,12 +22,14 @@
                 <div class="flex flex-wrap items-center gap-2 justify-center md:justify-start">
                     <button type="button" 
                             onclick="filterNews('all', this)" 
+                            data-category="all"
                             class="news-cat-btn px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-brand text-white shadow-lg shadow-brand/20">
                         {{ __('news.filters.all') }}
                     </button>
                     @foreach ($categories as $cat)
                         <button type="button" 
                                 onclick="filterNews('{{ $cat->slug }}', this)" 
+                                data-category="{{ $cat->slug }}"
                                 class="news-cat-btn px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-[#f7f7f8] text-[#4b4b4b] hover:bg-gray-200">
                             {{ $cat->name }}
                         </button>
@@ -148,12 +150,7 @@
             
             // Check active category button
             const activeBtn = document.querySelector('.news-cat-btn.bg-brand');
-            const selectedCat = activeBtn.textContent.trim();
-            
-            let catId = 'all';
-            if (selectedCat.includes('المشاريع')) catId = 'projects';
-            else if (selectedCat.includes('شراكات')) catId = 'partnerships';
-            else if (selectedCat.includes('إنجازات')) catId = 'achievements';
+            const catId = activeBtn?.dataset.category || 'all';
 
             const cardCat = card.getAttribute('data-category');
             const matchesCat = (catId === 'all' || cardCat === catId);

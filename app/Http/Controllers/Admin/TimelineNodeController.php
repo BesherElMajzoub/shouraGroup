@@ -33,7 +33,9 @@ class TimelineNodeController extends Controller
         $validated = $request->validate([
             'event_date' => ['required', 'string', 'max:100'],
             'title' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
+            'description_en' => ['required', 'string'],
             'order' => ['required', 'integer'],
         ]);
 
@@ -58,7 +60,9 @@ class TimelineNodeController extends Controller
         $validated = $request->validate([
             'event_date' => ['required', 'string', 'max:100'],
             'title' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
+            'description_en' => ['required', 'string'],
             'order' => ['required', 'integer'],
         ]);
 

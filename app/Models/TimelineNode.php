@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasLocalizedFields;
 use Illuminate\Database\Eloquent\Model;
 
 class TimelineNode extends Model
 {
-    protected $fillable = ['event_date', 'title', 'description', 'order'];
+    use HasLocalizedFields;
+
+    protected array $localizedFields = ['title', 'description'];
+
+    protected $fillable = ['event_date', 'title', 'title_en', 'description', 'description_en', 'order'];
 
     protected $casts = [
         'order' => 'integer',

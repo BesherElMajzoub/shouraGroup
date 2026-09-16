@@ -31,6 +31,12 @@
                 </div>
             </div>
 
+            <div dir="ltr" class="text-left">
+                <label for="label_en" class="block text-xs font-bold text-gray-700 mb-2">Label — English</label>
+                <input type="text" id="label_en" name="label_en" value="{{ old('label_en', $stat->label_en) }}" required
+                       class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+            </div>
+
             <!-- Label -->
             <div>
                 <label for="label" class="block text-xs font-bold text-gray-700 mb-2">الوصف / النص المصاحب (مثل: عاماً من الخبرة)</label>

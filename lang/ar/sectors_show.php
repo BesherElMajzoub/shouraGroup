@@ -9,9 +9,8 @@ return [
         'empty' => 'سيتم إضافة تفاصيل التخصصات قريباً.',
     ],
 
-    'quote_btn' => 'اطلب عرض سعر أو استشارة',
+    'contact_btn' => 'تواصل معنا',
     'inquiry_subject_prefix' => 'استفسار حول قطاع: ',
-    'wholesale_btn' => 'طلبية جملة',
 
     'brands' => [
         'eyebrow' => 'وكالات وشراكات',

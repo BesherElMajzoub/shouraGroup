@@ -18,6 +18,19 @@
     </div>
 </div>
 
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" dir="ltr">
+    <div class="text-left">
+        <label for="name_en" class="block text-xs font-bold text-gray-700 mb-2">Branch name — English <span class="text-brand">*</span></label>
+        <input type="text" id="name_en" name="name_en" value="{{ old('name_en', $branch->name_en ?? '') }}" required
+               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+    </div>
+    <div class="text-left">
+        <label for="city_en" class="block text-xs font-bold text-gray-700 mb-2">City — English <span class="text-brand">*</span></label>
+        <input type="text" id="city_en" name="city_en" value="{{ old('city_en', $branch->city_en ?? '') }}" required
+               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+    </div>
+</div>
+
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div>
         <label for="address" class="block text-xs font-bold text-gray-700 mb-2">العنوان <span class="text-brand">*</span></label>
@@ -29,6 +42,19 @@
         <label for="description" class="block text-xs font-bold text-gray-700 mb-2">وصف مختصر</label>
         <input type="text" id="description" name="description" value="{{ old('description', $branch->description ?? '') }}" placeholder="صالة عرض ومبيعات مفرق وجملة"
                class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
+    </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" dir="ltr">
+    <div class="text-left">
+        <label for="address_en" class="block text-xs font-bold text-gray-700 mb-2">Address — English <span class="text-brand">*</span></label>
+        <input type="text" id="address_en" name="address_en" value="{{ old('address_en', $branch->address_en ?? '') }}" required
+               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+    </div>
+    <div class="text-left">
+        <label for="description_en" class="block text-xs font-bold text-gray-700 mb-2">Short description — English</label>
+        <input type="text" id="description_en" name="description_en" value="{{ old('description_en', $branch->description_en ?? '') }}"
+               class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
     </div>
 </div>
 

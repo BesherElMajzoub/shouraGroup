@@ -30,6 +30,19 @@
                 </div>
             </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" dir="ltr">
+                <div class="text-left">
+                    <label for="title_en" class="block text-xs font-bold text-gray-700 mb-2">Service name — English</label>
+                    <input type="text" id="title_en" name="title_en" value="{{ old('title_en') }}" required
+                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+                </div>
+                <div class="text-left">
+                    <label for="dept_en" class="block text-xs font-bold text-gray-700 mb-2">Department — English</label>
+                    <input type="text" id="dept_en" name="dept_en" value="{{ old('dept_en') }}" required
+                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+                </div>
+            </div>
+
             <!-- Group -->
             <div>
                 <label for="group" class="block text-xs font-bold text-gray-700 mb-2">مكان عرض الخدمة</label>
@@ -40,11 +53,23 @@
                 </select>
             </div>
 
+            <div dir="ltr" class="text-left">
+                <label for="description_en" class="block text-xs font-bold text-gray-700 mb-2">Description — English</label>
+                <textarea id="description_en" name="description_en" rows="4" required
+                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand resize-none">{{ old('description_en') }}</textarea>
+            </div>
+
             <!-- Description -->
             <div>
                 <label for="description" class="block text-xs font-bold text-gray-700 mb-2">شرح / وصف الخدمة بالتفصيل</label>
                 <textarea id="description" name="description" rows="4" required
                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-none">{{ old('description') }}</textarea>
+            </div>
+
+            <div dir="ltr" class="text-left">
+                <label for="features_text_en" class="block text-xs font-bold text-gray-700 mb-2">Features — English (one per line)</label>
+                <textarea id="features_text_en" name="features_text_en" rows="5"
+                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand resize-none">{{ old('features_text_en') }}</textarea>
             </div>
 
             <!-- Features list (one per line) -->

@@ -198,10 +198,12 @@
                     <div class="relative w-72 h-72 sm:w-80 sm:h-80 mx-auto">
                         <div class="absolute -inset-3 rounded-full border-2 border-dashed border-brand/25"></div>
                         <div class="absolute inset-0 rounded-full bg-white shadow-2xl ring-1 ring-black/5 grid place-items-center">
-                            <div class="text-center px-8">
-                                <div class="text-sm font-bold text-[#4b4b4b] mb-1">{{ __('ui.welcome.sectors.since_year_label') }}</div>
-                                <div class="text-6xl font-black text-brand leading-none mb-4">1978</div>
-                                <img src="{{ asset('images/shora-logo.png') }}" alt="{{ __('ui.company.name') }}" class="h-12 w-auto mx-auto">
+                            <div class="relative text-center px-6">
+                                <div class="absolute inset-x-0 bottom-full mb-3 flex items-baseline justify-center gap-1.5 whitespace-nowrap">
+                                    <span class="text-sm sm:text-base font-bold text-[#4b4b4b]">{{ __('ui.welcome.sectors.since_year_label') }}</span>
+                                    <span class="text-3xl sm:text-4xl font-black text-brand leading-none">1978</span>
+                                </div>
+                                <img src="{{ asset('images/shora-logo.png') }}" alt="{{ __('ui.company.name') }}" class="h-40 sm:h-44 w-auto mx-auto">
                             </div>
                         </div>
                     </div>
@@ -249,7 +251,7 @@
                         </div>
                         <h3 class="text-lg font-bold text-[#141414] mb-2 leading-snug">{{ $s->title }}</h3>
                         <p class="text-[#4b4b4b] text-sm leading-relaxed">{{ $s->description }}</p>
-                        <a href="{{ url('/contact') }}?service={{ urlencode(localized_content($s->title)) }}&department={{ urlencode(localized_content($s->dept)) }}"
+                        <a href="{{ url('/contact') }}?service={{ urlencode($s->title) }}&department={{ urlencode($s->dept) }}"
                            class="inline-flex items-center gap-1 mt-4 text-brand font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                             {{ __('ui.welcome.services.request_cta') }}
                             <svg class="w-4 h-4 @if(app()->getLocale() === 'en') rotate-180 @endif" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>

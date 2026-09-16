@@ -2,13 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasLocalizedFields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Brand extends Model
 {
+    use HasLocalizedFields;
+
+    protected array $localizedFields = ['name', 'country', 'description'];
+
     protected $fillable = [
-        'name', 'slug', 'country', 'description', 'logo',
+        'name', 'name_en', 'slug', 'country', 'country_en', 'description', 'description_en', 'logo',
         'is_agency', 'show_on_home', 'order', 'is_active',
     ];
 

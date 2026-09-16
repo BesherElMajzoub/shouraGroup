@@ -52,8 +52,8 @@
       },
       "address": {
         "@@type": "PostalAddress",
-        "streetAddress": "المرجة",
-        "addressLocality": "دمشق",
+        "streetAddress": "{{ __('ui.structured_data.street_address') }}",
+        "addressLocality": "{{ __('ui.structured_data.address_locality') }}",
         "addressCountry": "SY"
       }
     }

@@ -25,6 +25,13 @@ class HomeContentController extends Controller
         'contact_email', 'sales_email', 'hr_email', 'phone_main', 'wholesale_whatsapp', 'working_hours',
     ];
 
+    private const LOCALIZED_TEXT_KEYS = [
+        'about_subtitle', 'about_body', 'vision_text', 'mission_text', 'partners_intro', 'clients_intro',
+        'story_overview_body',
+        'sectors_intro', 'services_intro', 'brands_intro', 'projects_intro',
+        'wholesale_intro', 'careers_intro', 'contact_intro', 'working_hours',
+    ];
+
     /**
      * Image settings and their storage directories.
      */
@@ -40,9 +47,11 @@ class HomeContentController extends Controller
      */
     public function index()
     {
-        $settings = Setting::all()->pluck('value', 'key');
+        $allSettings = Setting::all();
+        $settings = $allSettings->pluck('value', 'key');
+        $settingsEn = $allSettings->pluck('value_en', 'key');
 
-        return view('admin.settings.index', compact('settings'));
+        return view('admin.settings.index', compact('settings', 'settingsEn'));
     }
 
     /**
@@ -50,7 +59,7 @@ class HomeContentController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate([
+        $rules = [
             'about_subtitle' => ['required', 'string', 'max:255'],
             'about_body' => ['required', 'string'],
             'home_about_main_image' => ['nullable', 'image', 'max:7168'],
@@ -77,10 +86,20 @@ class HomeContentController extends Controller
             'phone_main' => ['required', 'string', 'max:50'],
             'wholesale_whatsapp' => ['nullable', 'string', 'max:30'],
             'working_hours' => ['required', 'string', 'max:255'],
-        ]);
+        ];
+
+        foreach (self::LOCALIZED_TEXT_KEYS as $key) {
+            $rules[$key.'_en'] = ['required', 'string', $key === 'about_subtitle' || $key === 'working_hours' ? 'max:255' : 'max:10000'];
+        }
+
+        $request->validate($rules);
 
         foreach (self::TEXT_KEYS as $key) {
-            Setting::updateOrCreate(['key' => $key], ['value' => $request->input($key)]);
+            $values = ['value' => $request->input($key)];
+            if (in_array($key, self::LOCALIZED_TEXT_KEYS, true)) {
+                $values['value_en'] = $request->input($key.'_en');
+            }
+            Setting::updateOrCreate(['key' => $key], $values);
         }
 
         foreach (self::IMAGE_FIELDS as $key => $config) {
@@ -105,6 +124,8 @@ class HomeContentController extends Controller
         // setting() caches forever, so the edited values need their entries dropped.
         foreach ([...self::TEXT_KEYS, ...array_keys(self::IMAGE_FIELDS)] as $key) {
             Cache::forget("setting.{$key}");
+            Cache::forget("setting.{$key}.ar");
+            Cache::forget("setting.{$key}.en");
         }
 
         return redirect()->route('admin.settings.index')->with('success', 'تم تحديث الإعدادات والنصوص بنجاح.');

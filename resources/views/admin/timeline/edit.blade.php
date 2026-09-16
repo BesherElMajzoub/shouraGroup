@@ -31,11 +31,23 @@
                 </div>
             </div>
 
+            <div dir="ltr" class="text-left">
+                <label for="title_en" class="block text-xs font-bold text-gray-700 mb-2">Event title — English</label>
+                <input type="text" id="title_en" name="title_en" value="{{ old('title_en', $timelineNode->title_en) }}" required
+                       class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand">
+            </div>
+
             <!-- Description -->
             <div>
                 <label for="description" class="block text-xs font-bold text-gray-700 mb-2">الوصف بالتفصيل</label>
                 <textarea id="description" name="description" rows="4" required
                           class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all resize-none">{{ old('description', $timelineNode->description) }}</textarea>
+            </div>
+
+            <div dir="ltr" class="text-left">
+                <label for="description_en" class="block text-xs font-bold text-gray-700 mb-2">Description — English</label>
+                <textarea id="description_en" name="description_en" rows="4" required
+                          class="w-full bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-900 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand resize-none">{{ old('description_en', $timelineNode->description_en) }}</textarea>
             </div>
 
             <!-- Order -->
