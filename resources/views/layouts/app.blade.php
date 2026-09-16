@@ -23,14 +23,14 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="@yield('title', $siteTitle)">
     <meta property="og:description" content="@yield('description', $siteDesc)">
-    <meta property="og:image" content="{{ asset('images/about_skyscrapers.png') }}">
+    <meta property="og:image" content="@yield('og_image', asset('images/about_skyscrapers.png'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="@yield('title', $siteTitle)">
     <meta property="twitter:description" content="@yield('description', $siteDesc)">
-    <meta property="twitter:image" content="{{ asset('images/about_skyscrapers.png') }}">
+    <meta property="twitter:image" content="@yield('og_image', asset('images/about_skyscrapers.png'))">
 
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json">

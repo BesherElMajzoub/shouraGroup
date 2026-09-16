@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PublicMediaController;
 use App\Http\Controllers\WholesaleController;
+use Illuminate\Support\Facades\Route;
 
 // Do not rely on public/storage being a usable symlink: many shared hosts
 // disable following symlinks and answer those image requests with HTTP 403.
@@ -29,6 +28,7 @@ Route::get('/sectors/{slug}', [PageController::class, 'sectorShow'])->name('sect
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/brands', [PageController::class, 'brands'])->name('brands');
 Route::get('/projects', [PageController::class, 'projects'])->name('projects');
+Route::get('/projects/{slug}', [PageController::class, 'projectShow'])->name('projects.show');
 Route::get('/news', [PageController::class, 'news'])->name('news');
 Route::get('/news/{slug}', [PageController::class, 'newsShow'])->name('news.show');
 
@@ -49,6 +49,22 @@ Route::permanentRedirect('/branches', '/contact');
 
 // Admin Auth Routes
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BranchController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HomeContentController;
+use App\Http\Controllers\Admin\JobApplicationController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SectorController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StatController;
+use App\Http\Controllers\Admin\TimelineNodeController;
+use App\Http\Controllers\Admin\WholesaleRequestController;
+
 Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login.submit');
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
@@ -58,40 +74,40 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
     });
-    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Messages Inbox
-    Route::get('/messages', [\App\Http\Controllers\Admin\MessageController::class, 'index'])->name('messages.index');
-    Route::get('/messages/{message}', [\App\Http\Controllers\Admin\MessageController::class, 'show'])->name('messages.show');
-    Route::post('/messages/{message}/read', [\App\Http\Controllers\Admin\MessageController::class, 'markRead'])->name('messages.read');
-    Route::delete('/messages/{message}', [\App\Http\Controllers\Admin\MessageController::class, 'destroy'])->name('messages.destroy');
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages/{message}/read', [MessageController::class, 'markRead'])->name('messages.read');
+    Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
 
     // Wholesale (B2B) Inbox
-    Route::get('/wholesale-requests', [\App\Http\Controllers\Admin\WholesaleRequestController::class, 'index'])->name('wholesale.index');
-    Route::get('/wholesale-requests/{wholesaleRequest}', [\App\Http\Controllers\Admin\WholesaleRequestController::class, 'show'])->name('wholesale.show');
-    Route::post('/wholesale-requests/{wholesaleRequest}/read', [\App\Http\Controllers\Admin\WholesaleRequestController::class, 'markRead'])->name('wholesale.read');
-    Route::delete('/wholesale-requests/{wholesaleRequest}', [\App\Http\Controllers\Admin\WholesaleRequestController::class, 'destroy'])->name('wholesale.destroy');
+    Route::get('/wholesale-requests', [WholesaleRequestController::class, 'index'])->name('wholesale.index');
+    Route::get('/wholesale-requests/{wholesaleRequest}', [WholesaleRequestController::class, 'show'])->name('wholesale.show');
+    Route::post('/wholesale-requests/{wholesaleRequest}/read', [WholesaleRequestController::class, 'markRead'])->name('wholesale.read');
+    Route::delete('/wholesale-requests/{wholesaleRequest}', [WholesaleRequestController::class, 'destroy'])->name('wholesale.destroy');
 
     // Job Applications Inbox
-    Route::get('/applications', [\App\Http\Controllers\Admin\JobApplicationController::class, 'index'])->name('applications.index');
-    Route::get('/applications/{jobApplication}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'show'])->name('applications.show');
-    Route::get('/applications/{jobApplication}/cv', [\App\Http\Controllers\Admin\JobApplicationController::class, 'downloadCv'])->name('applications.cv');
-    Route::post('/applications/{jobApplication}/read', [\App\Http\Controllers\Admin\JobApplicationController::class, 'markRead'])->name('applications.read');
-    Route::delete('/applications/{jobApplication}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'destroy'])->name('applications.destroy');
+    Route::get('/applications', [JobApplicationController::class, 'index'])->name('applications.index');
+    Route::get('/applications/{jobApplication}', [JobApplicationController::class, 'show'])->name('applications.show');
+    Route::get('/applications/{jobApplication}/cv', [JobApplicationController::class, 'downloadCv'])->name('applications.cv');
+    Route::post('/applications/{jobApplication}/read', [JobApplicationController::class, 'markRead'])->name('applications.read');
+    Route::delete('/applications/{jobApplication}', [JobApplicationController::class, 'destroy'])->name('applications.destroy');
 
     // Global Settings (Texts & Stories)
-    Route::get('/settings', [\App\Http\Controllers\Admin\HomeContentController::class, 'index'])->name('settings.index');
-    Route::post('/settings', [\App\Http\Controllers\Admin\HomeContentController::class, 'update'])->name('settings.update');
+    Route::get('/settings', [HomeContentController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [HomeContentController::class, 'update'])->name('settings.update');
 
     // CRUD Resources
-    Route::resource('stats', \App\Http\Controllers\Admin\StatController::class);
-    Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class);
-    Route::resource('sectors', \App\Http\Controllers\Admin\SectorController::class);
-    Route::resource('brands', \App\Http\Controllers\Admin\BrandController::class);
-    Route::resource('branches', \App\Http\Controllers\Admin\BranchController::class);
-    Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class);
-    Route::resource('timeline', \App\Http\Controllers\Admin\TimelineNodeController::class)->parameters(['timeline' => 'timelineNode']);
-    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
-    Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
-    Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
+    Route::resource('stats', StatController::class);
+    Route::resource('services', ServiceController::class);
+    Route::resource('sectors', SectorController::class);
+    Route::resource('brands', BrandController::class);
+    Route::resource('branches', BranchController::class);
+    Route::resource('clients', ClientController::class);
+    Route::resource('timeline', TimelineNodeController::class)->parameters(['timeline' => 'timelineNode']);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('projects', ProjectController::class)->except('show');
+    Route::resource('news', NewsController::class);
 });

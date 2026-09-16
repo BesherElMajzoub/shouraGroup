@@ -21,6 +21,7 @@
                         <th class="px-6 py-4">المشروع</th>
                         <th class="px-6 py-4">التصنيف</th>
                         <th class="px-6 py-4">العميل / السنة</th>
+                        <th class="px-6 py-4">صور المعرض</th>
                         <th class="px-6 py-4">الترتيب</th>
                         <th class="px-6 py-4">الحالة</th>
                         <th class="px-6 py-4 text-center">العمليات</th>
@@ -34,16 +35,20 @@
                                     <img src="{{ $project->image_url }}" alt="" class="w-full h-full object-cover">
                                 </div>
                             </td>
-                            <td class="px-6 py-4 font-bold text-gray-900">{{ $project->title }}</td>
+                            <td class="px-6 py-4">
+                                <div class="font-bold text-gray-900">{{ $project->title_ar }}</div>
+                                @if ($project->title_en)<div class="text-xs text-gray-400 mt-1" dir="ltr">{{ $project->title_en }}</div>@endif
+                            </td>
                             <td class="px-6 py-4">
                                 <span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-bold text-blue-700 ring-1 ring-inset ring-blue-600/20">
                                     {{ $project->category->name ?? 'غير مصنف' }}
                                 </span>
                             </td>
                             <td class="px-6 py-4 text-gray-600 font-medium">
-                                <div class="text-xs">{{ $project->client ?? 'غير محدد' }}</div>
+                                <div class="text-xs">{{ $project->client_ar ?? 'غير محدد' }}</div>
                                 <div class="text-[10px] text-gray-400 font-bold mt-0.5">{{ $project->year ?? 'غير محدد' }}</div>
                             </td>
+                            <td class="px-6 py-4 text-gray-500 font-semibold">{{ $project->images_count }}</td>
                             <td class="px-6 py-4 text-gray-500 font-semibold">{{ $project->order }}</td>
                             <td class="px-6 py-4">
                                 @if ($project->is_active)
@@ -67,7 +72,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="px-6 py-12 text-center text-gray-400 font-bold">لا يوجد أي مشاريع مضافة حالياً.</td>
+                            <td colspan="8" class="px-6 py-12 text-center text-gray-400 font-bold">لا يوجد أي مشاريع مضافة حالياً.</td>
                         </tr>
                     @endforelse
                 </tbody>

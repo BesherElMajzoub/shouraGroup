@@ -118,6 +118,19 @@ class PageController extends Controller
     }
 
     /**
+     * Display a single project with its full case-study details and gallery.
+     */
+    public function projectShow(string $slug)
+    {
+        $project = Project::where('slug', $slug)
+            ->where('is_active', true)
+            ->with(['category', 'images'])
+            ->firstOrFail();
+
+        return view('projects.show', compact('project'));
+    }
+
+    /**
      * Display the news catalog page.
      */
     public function news()

@@ -16,11 +16,20 @@ class ProjectsSeeder extends Seeder
         $projects = [
             [
                 'cat_slug' => 'power-generation',
-                'title' => 'دعم البنية التحتية والمخابز',
-                'client' => 'منظمة أوكسفام (Oxfam)',
-                'location' => 'سوريا',
+                'slug' => 'bakery-infrastructure-support',
+                'title_ar' => 'دعم البنية التحتية والمخابز',
+                'title_en' => 'Bakery Infrastructure Support',
+                'client_ar' => 'منظمة أوكسفام (Oxfam)',
+                'client_en' => 'Oxfam',
+                'location_ar' => 'سوريا',
+                'location_en' => 'Syria',
                 'year' => '2025',
-                'description' => 'توريد وتركيب وتجهيز مجموعة توليد كهربائية باستطاعة 80 K.V.A لتشغيل إحدى منشآت المخابز، لضمان استمرارية العمل وتأمين طاقة موثوقة ومستدامة تلبي الاحتياجات الحيوية للمنشأة.',
+                'status_ar' => 'مكتمل',
+                'status_en' => 'Completed',
+                'summary_ar' => 'حل طاقة موثوق يضمن استمرارية تشغيل إحدى منشآت المخابز الحيوية.',
+                'summary_en' => 'A reliable power solution that keeps a vital bakery facility operating continuously.',
+                'description_ar' => 'توريد وتركيب وتجهيز مجموعة توليد كهربائية باستطاعة 80 K.V.A لتشغيل إحدى منشآت المخابز، لضمان استمرارية العمل وتأمين طاقة موثوقة ومستدامة تلبي الاحتياجات الحيوية للمنشأة.',
+                'description_en' => 'Supply, installation, and commissioning of an 80 KVA generator set for a bakery facility, ensuring operational continuity through reliable and sustainable power.',
                 // TODO: استبدلها بصورة حقيقية من أرض الواقع عند توفرها
                 'image' => 'images/sectors/generators.png',
                 'order' => 1,
@@ -35,7 +44,7 @@ class ProjectsSeeder extends Seeder
             unset($p['cat_slug']);
             $p['category_id'] = $categories[$slug];
 
-            Project::updateOrCreate(['title' => $p['title']], $p);
+            Project::updateOrCreate(['slug' => $p['slug']], $p);
         }
     }
 }
