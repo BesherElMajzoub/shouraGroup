@@ -234,6 +234,7 @@
             <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
                 @foreach ($branches as $i => $b)
                     <button type="button" data-map="{{ $b->id }}"
+                            aria-controls="map-panel-{{ $b->id }}" aria-selected="{{ $i === 0 ? 'true' : 'false' }}"
                             class="map-tab px-5 py-2.5 rounded-xl text-sm font-bold transition-all
                                    {{ $i === 0 ? 'bg-brand text-white shadow-lg shadow-brand/20' : 'bg-[#f7f7f8] text-[#4b4b4b] ring-1 ring-black/5 hover:bg-brand-light hover:text-brand' }}">
                         {{ $b->name }}
@@ -241,13 +242,44 @@
                 @endforeach
             </div>
 
-            <div class="reveal relative rounded-[2rem] overflow-hidden shadow-xl ring-1 ring-black/5">
+            <div class="reveal rounded-[2rem] overflow-hidden shadow-xl ring-1 ring-black/5 bg-white">
                 @foreach ($branches as $i => $b)
-                    <iframe id="map-{{ $b->id }}"
-                            class="map-frame w-full h-96 border-0 {{ $i === 0 ? '' : 'hidden' }}"
-                            src="{{ $b->map_embed }}"
-                            title="{{ __('contact.maps.title', ['name' => $b->name]) }}"
-                            allowfullscreen loading="lazy"></iframe>
+                    <div id="map-panel-{{ $b->id }}" class="map-panel {{ $i === 0 ? '' : 'hidden' }}">
+                        {{-- خريطة جوجل التفاعلية للفرع --}}
+                        <iframe class="w-full h-80 sm:h-96 lg:h-[30rem] border-0 block"
+                                src="{{ $b->map_embed_url }}"
+                                title="{{ __('contact.maps.title', ['name' => $b->name]) }}"
+                                allowfullscreen loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                        {{-- شريط معلومات الفرع تحت الخريطة --}}
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-4 p-5 sm:p-6 bg-[#f7f7f8] border-t border-black/5">
+                            <div class="flex items-start gap-3 flex-1">
+                                <span class="shrink-0 w-10 h-10 rounded-xl bg-brand text-white grid place-items-center">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                                </span>
+                                <div>
+                                    <h3 class="font-bold text-[#141414]">{{ $b->name }}</h3>
+                                    <p class="text-sm text-[#4b4b4b]">{{ $b->address }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3 shrink-0">
+                                <a href="{{ $b->map_directions_url }}" target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand text-white text-sm font-bold
+                                          shadow-lg shadow-brand/20 hover:-translate-y-0.5 transition-all">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m21.5 2.5-19 8 8 3 3 8 8-19Z"/></svg>
+                                    {{ __('contact.maps.directions') }}
+                                </a>
+                                <a href="{{ $b->map_url }}" target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#4b4b4b] text-sm font-bold
+                                          ring-1 ring-black/10 hover:text-brand hover:ring-brand/30 transition-all">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+                                    {{ __('contact.maps.open_in_google') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -268,8 +300,10 @@
         tabs.forEach(t => { t.classList.remove(...activeCls); t.classList.add(...idleCls); });
         tab.classList.remove(...idleCls); tab.classList.add(...activeCls);
 
-        document.querySelectorAll('.map-frame').forEach(f => f.classList.add('hidden'));
-        document.getElementById('map-' + tab.dataset.map)?.classList.remove('hidden');
+        tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+
+        document.querySelectorAll('.map-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById('map-panel-' + tab.dataset.map)?.classList.remove('hidden');
     }));
 })();
 

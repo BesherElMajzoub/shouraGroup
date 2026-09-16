@@ -92,11 +92,11 @@
 </div>
 
 <div>
-    <label for="map_embed" class="block text-xs font-bold text-gray-700 mb-2">رابط الخريطة التفاعلية (Google Maps Embed)</label>
+    <label for="map_embed" class="block text-xs font-bold text-gray-700 mb-2">رابط موقع الفرع على خرائط جوجل</label>
     <input type="url" id="map_embed" name="map_embed" value="{{ old('map_embed', $branch->map_embed ?? '') }}" dir="ltr"
            placeholder="https://maps.google.com/maps?q=33.5142,36.2973&hl=ar&z=16&output=embed"
            class="w-full bg-gray-50 rounded-xl px-4 py-3 text-xs text-gray-900 border border-gray-200 font-mono text-left focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent focus:bg-white transition-all">
-    <p class="text-[11px] text-gray-400 mt-1.5">رابط <span dir="ltr">iframe</span> من خرائط جوجل (Google Maps) — يظهر في أسفل صفحة «اتصل بنا».</p>
+    <p class="text-[11px] text-gray-400 mt-1.5">الصق أي رابط من خرائط جوجل (Google Maps): رابط المشاركة، أو رابط <span dir="ltr">Embed</span>، أو رابط بالإحداثيات — يظهر في خريطة صفحة «اتصل بنا». إن تُرك فارغاً نستخدم عنوان الفرع تلقائياً.</p>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">

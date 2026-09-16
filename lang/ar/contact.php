@@ -50,6 +50,8 @@ return [
         'eyebrow' => 'كيف تصل إلينا',
         'heading' => 'مواقع فروعنا على الخريطة',
         'title' => 'خريطة :name',
+        'directions' => 'الاتجاهات',
+        'open_in_google' => 'فتح في خرائط جوجل',
     ],
 
     'js' => [

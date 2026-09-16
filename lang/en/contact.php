@@ -50,6 +50,8 @@ return [
         'eyebrow' => 'How to Reach Us',
         'heading' => 'Our Branch Locations on the Map',
         'title' => 'Map of :name',
+        'directions' => 'Directions',
+        'open_in_google' => 'Open in Google Maps',
     ],
 
     'js' => [
