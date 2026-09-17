@@ -10,8 +10,8 @@ return [
     'details_link' => 'Sector Details',
 
     'cta' => [
-        'heading' => 'Not Sure Which Sector Fits Your Project?',
-        'paragraph' => 'Our engineering team is ready to review your requirements and recommend the best fit among our sectors and global agencies.',
-        'button' => 'Request an Engineering Consultation',
+        'heading' => 'Ready to Meet Your Project Needs with the Best Supplies',
+        'paragraph' => 'Contact our sales department for an integrated technical and financial proposal ensuring the highest quality and best competitive value in the market.',
+        'button' => 'Contact the Dedicated Sales Department',
     ],
 ];

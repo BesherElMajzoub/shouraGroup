@@ -132,7 +132,7 @@ return [
         'branches' => [
             'eyebrow' => 'Wherever You Are',
             'heading' => 'Our Branches & Showrooms',
-            'description' => 'We serve our customers across Syria through our branches and showrooms in Damascus and Aleppo.',
+            'description' => 'We cover the needs of the Syrian market through a network of major showrooms and strategic centers in Damascus, Aleppo, and Homs, putting the finest engineering equipment directly in your hands.',
             'map_alt' => 'Map of Syria',
         ],
 
@@ -168,7 +168,7 @@ return [
         ],
 
         'cta' => [
-            'heading' => 'Years of Trust.. Let’s Build Your Next Project Together',
+            'heading' => '50 Years of Trust.. Let’s Build Your Next Project Together',
             'paragraph' => 'With our integrated services from consultation through commissioning and maintenance, we ensure peace of mind and uninterrupted continuity for your facility.',
             'contact_btn' => 'Contact Us',
             'sectors_btn' => 'Discover Our Sectors',

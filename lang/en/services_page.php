@@ -32,9 +32,8 @@ return [
     ],
 
     'cta' => [
-        'heading' => 'Have a project you\'d like to discuss with our experts?',
-        'paragraph' => "Shora Brothers Company engineering team is ready to carefully study your project's requirements and specifications.",
-        'contact_btn' => 'Contact Us Now',
+        'heading' => 'Ready to Meet Your Project Needs with the Best Supplies',
+        'paragraph' => 'Contact the relevant department for a complete technical and financial offer that guarantees the highest quality and the most competitive value in the market.',
         'sectors_btn' => 'Discover Our Sectors',
     ],
 
