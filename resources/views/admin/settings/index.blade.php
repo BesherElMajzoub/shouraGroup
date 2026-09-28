@@ -60,7 +60,7 @@
                 </div>
                 <p class="text-[10px] text-gray-400 -mt-3">الصيغ المدعومة: PNG, JPG, JPEG, GIF — بحد أقصى 7 ميغابايت لكل صورة.</p>
 
-                @php($homeAboutLogo = $settings['home_about_logo'] ?? 'images/shora-logo.svg')
+                @php($homeAboutLogo = $settings['home_about_logo'] ?? 'images/shora-logo.png')
                 <div>
                     <label for="home_about_logo" class="{{ $label }}">شعار قسم «من نحن»</label>
                     <div class="h-32 w-full rounded-xl overflow-hidden shadow-sm ring-1 ring-black/5 bg-white grid place-items-center mb-3">

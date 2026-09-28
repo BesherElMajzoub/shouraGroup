@@ -14,7 +14,7 @@
     @endphp
 
     <title>@yield('title', $siteTitle)</title>
-    <link rel="icon" type="image/svg+xml" href="{{ asset('images/shora-logo.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/shora-logo.png') }}">
     <meta name="description" content="@yield('description', $siteDesc)">
     <link rel="canonical" href="{{ url()->current() }}">
 
@@ -40,7 +40,7 @@
       "name": "{{ __('ui.company.name') }}",
       "alternateName": "Shora Brothers",
       "url": "{{ url('/') }}",
-      "logo": "{{ asset('images/shora-logo.svg') }}",
+      "logo": "{{ asset('images/shora-logo.png') }}",
       "foundingDate": "1978",
       "email": "{{ $contactEmail }}",
       "contactPoint": {

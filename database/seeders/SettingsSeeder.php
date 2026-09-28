@@ -36,7 +36,7 @@ class SettingsSeeder extends Seeder
             ],
             [
                 'key' => 'home_about_logo',
-                'value' => 'images/shora-logo.svg',
+                'value' => 'images/shora-logo.png',
                 'group' => 'home',
             ],
             [

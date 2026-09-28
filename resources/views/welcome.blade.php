@@ -276,7 +276,7 @@
 
     {{-- ============ PARTNERS — شركاؤنا ============ --}}
     <section id="partners" class="scroll-mt-24 py-20 lg:py-28 bg-[#141414] text-white relative overflow-hidden">
-        <img src="{{ asset('images/shora-logo.svg') }}" alt=""
+        <img src="{{ asset('images/shora-logo.png') }}" alt=""
              class="pointer-events-none absolute -left-20 -bottom-16 w-[30rem] opacity-[0.04] brightness-0 invert">
 
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
