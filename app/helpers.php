@@ -24,8 +24,11 @@ if (! function_exists('setting')) {
     function setting(string $key, $default = null)
     {
         $locale = app()->getLocale();
+        $cacheKey = Setting::isLocalizedValueKey($key)
+            ? "setting.{$key}.{$locale}"
+            : "setting.shared.{$key}";
 
-        return Cache::rememberForever("setting.{$key}.{$locale}", function () use ($key, $default) {
+        return Cache::rememberForever($cacheKey, function () use ($key, $default) {
             try {
                 $setting = Setting::where('key', $key)->first();
                 return $setting ? $setting->value : $default;

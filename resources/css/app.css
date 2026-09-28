@@ -385,9 +385,10 @@ html[dir="ltr"] .hover\:pr-1:hover {
     }
 
     .hero-satellite-label {
-        max-width: 5.6rem;
-        padding: .18rem .38rem;
-        font-size: .6rem;
+        max-width: 6.5rem;
+        padding: .2rem .42rem;
+        font-size: .72rem;
+        line-height: 1.3;
     }
 
     .hero-hub {

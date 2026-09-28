@@ -7,12 +7,12 @@
     {{-- ============ HERO ============ --}}
     @php
         $heroBranches = [
-            ['label' => __('ui.welcome.hero.branches.power_generation'),   'angle' => -90,     'delay' => 0.0, 'href' => '/sectors/power-generation', 'image' => 'images/hero/Shora Generators Services.PNG', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.water_pumps'),         'angle' => -30,     'delay' => 0.2, 'href' => '/sectors/water-pumps', 'image' => 'images/hero/Shora Water pumps.PNG', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.air_compressors'),     'angle' => 30,      'delay' => 0.4, 'href' => '/sectors/air-compressors', 'image' => 'images/hero/compressors.png', 'logo_scale' => 1.08],
-            ['label' => __('ui.welcome.hero.branches.medical_gases'),       'angle' => 90,      'delay' => 0.6, 'href' => '/sectors/medical-gases', 'image' => 'images/hero/shora_medical.png', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.industrial_tools'),    'angle' => 150,     'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image' => 'images/hero/image.png', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.global_agencies'),    'angle' => 210,     'delay' => 1.0, 'href' => '/brands', 'image' => 'images/brands/mmb.png', 'logo_scale' => 1.14],
+            ['label' => __('ui.welcome.hero.branches.power_generation'), 'angle' => -90, 'delay' => 0.0, 'href' => '/sectors/power-generation', 'image_128' => 'images/hero/responsive/generators-128.webp', 'image_256' => 'images/hero/responsive/generators-256.webp', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.water_pumps'), 'angle' => -30, 'delay' => 0.2, 'href' => '/sectors/water-pumps', 'image_128' => 'images/hero/responsive/water-pumps-128.webp', 'image_256' => 'images/hero/responsive/water-pumps-256.webp', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.air_compressors'), 'angle' => 30, 'delay' => 0.4, 'href' => '/sectors/air-compressors', 'image_128' => 'images/hero/responsive/compressors-128.webp', 'image_256' => 'images/hero/responsive/compressors-256.webp', 'logo_scale' => 1.08],
+            ['label' => __('ui.welcome.hero.branches.medical_gases'), 'angle' => 90, 'delay' => 0.6, 'href' => '/sectors/medical-gases', 'image_128' => 'images/hero/responsive/medical-128.webp', 'image_256' => 'images/hero/responsive/medical-256.webp', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.industrial_tools'), 'angle' => 150, 'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image_128' => 'images/hero/responsive/industrial-tools-128.webp', 'image_256' => 'images/hero/responsive/industrial-tools-256.webp', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.global_agencies'), 'angle' => 210, 'delay' => 1.0, 'href' => '/brands', 'image_128' => 'images/hero/responsive/mmb-128.webp', 'image_256' => 'images/hero/responsive/mmb-256.webp', 'logo_scale' => 1.14],
         ];
     @endphp
     <section id="hero" class="hero-section scroll-mt-24">
@@ -58,8 +58,10 @@
                             </span>
                             <a href="{{ url($branch['href']) }}" class="hero-satellite" aria-label="{{ $branch['label'] }}">
                                 <span class="hero-satellite-card">
-                                    @if (!empty($branch['image']))
-                                        <img src="{{ asset($branch['image']) }}" alt="" class="hero-satellite-image"
+                                    @if (!empty($branch['image_256']))
+                                        <img src="{{ asset($branch['image_256']) }}"
+                                             srcset="{{ asset($branch['image_128']) }} 128w, {{ asset($branch['image_256']) }} 256w"
+                                             sizes="(max-width: 639px) 72px, 104px" alt="" class="hero-satellite-image"
                                              style="--logo-scale: {{ $branch['logo_scale'] ?? 1 }};">
                                     @else
                                         <span class="hero-satellite-icon">
@@ -76,7 +78,10 @@
                         <span class="hero-hub-pulse" aria-hidden="true"></span>
                         <span class="hero-hub-ring" aria-hidden="true"></span>
                         <div class="hero-hub-core">
-                            <img src="{{ asset('images/hero/Shora Group Logo Offical Without BG.png') }}" alt="{{ __('ui.company.name') }}" class="hero-hub-logo">
+                            <img src="{{ asset('images/hero/responsive/shora-group-384.webp') }}"
+                                 srcset="{{ asset('images/hero/responsive/shora-group-256.webp') }} 256w, {{ asset('images/hero/responsive/shora-group-384.webp') }} 384w"
+                                 sizes="(max-width: 639px) 100px, 152px"
+                                 alt="{{ __('ui.company.name') }}" class="hero-hub-logo">
                             <span class="hero-hub-year">{{ __('ui.welcome.hero.since_year') }}</span>
                         </div>
                     </div>

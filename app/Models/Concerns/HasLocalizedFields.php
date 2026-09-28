@@ -16,7 +16,8 @@ trait HasLocalizedFields
         if (is_string($key)
             && ! request()->is('admin*')
             && ! str_ends_with($key, '_en')
-            && in_array($key, $this->localizedFields ?? [], true)) {
+            && in_array($key, $this->localizedFields ?? [], true)
+            && (! method_exists($this, 'shouldLocalizeField') || $this->shouldLocalizeField($key))) {
             if (app()->getLocale() === 'en') {
                 // English pages must never leak Arabic content. Optional empty
                 // translations stay empty and are handled by the view.

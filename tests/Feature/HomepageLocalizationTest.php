@@ -3,7 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\Service;
+use App\Models\Setting;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class HomepageLocalizationTest extends TestCase
@@ -58,5 +61,37 @@ class HomepageLocalizationTest extends TestCase
             ->assertOk()
             ->assertSee('<html lang="ar" dir="rtl">', false)
             ->assertSee(urlencode($service->title), false);
+    }
+
+    public function test_english_homepage_uses_the_shared_current_about_images(): void
+    {
+        Storage::fake('public');
+        Cache::forever('setting.home_about_main_image.en', 'uploads/home/about/stale-english-image.jpg');
+
+        foreach ([
+            'home_about_main_image' => 'uploads/home/about/main-current.jpg',
+            'home_about_secondary_image' => 'uploads/home/about/secondary-current.jpg',
+            'home_about_logo' => 'uploads/home/about/logo-current.png',
+        ] as $key => $path) {
+            Storage::disk('public')->put($path, 'image-content');
+
+            Setting::create([
+                'key' => $key,
+                'value' => $path,
+                'value_en' => null,
+                'group' => 'home',
+            ]);
+        }
+
+        $response = $this->withSession(['locale' => 'en'])->get(route('home'));
+
+        $response
+            ->assertOk()
+            ->assertSee('/media/uploads/home/about/main-current.jpg', false)
+            ->assertSee('/media/uploads/home/about/secondary-current.jpg', false)
+            ->assertSee('/media/uploads/home/about/logo-current.png', false)
+            ->assertDontSee('/media/uploads/home/about/stale-english-image.jpg', false)
+            ->assertSee('generators-128.webp 128w', false)
+            ->assertSee('sizes="(max-width: 639px) 72px, 104px"', false);
     }
 }

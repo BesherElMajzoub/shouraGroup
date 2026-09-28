@@ -128,6 +128,7 @@ class HomeContentController extends Controller
             Cache::forget("setting.{$key}");
             Cache::forget("setting.{$key}.ar");
             Cache::forget("setting.{$key}.en");
+            Cache::forget("setting.shared.{$key}");
         }
 
         return redirect()->route('admin.settings.index')->with('success', 'تم تحديث الإعدادات والنصوص بنجاح.');
