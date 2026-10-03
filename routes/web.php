@@ -33,13 +33,13 @@ Route::get('/news', [PageController::class, 'news'])->name('news');
 Route::get('/news/{slug}', [PageController::class, 'newsShow'])->name('news.show');
 
 Route::get('/wholesale', [PageController::class, 'wholesale'])->name('wholesale');
-Route::post('/wholesale', [WholesaleController::class, 'store'])->name('wholesale.store');
+Route::post('/wholesale', [WholesaleController::class, 'store'])->middleware('throttle:6,1')->name('wholesale.store');
 
 Route::get('/careers', [PageController::class, 'careers'])->name('careers');
 Route::post('/careers', [CareerController::class, 'store'])->middleware('throttle:6,1')->name('careers.store');
 
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:6,1')->name('contact.store');
 
 // Legacy URLs from the previous "مجموعة شركة شورى" site structure
 Route::permanentRedirect('/story', '/about');
@@ -100,14 +100,14 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::post('/settings', [HomeContentController::class, 'update'])->name('settings.update');
 
     // CRUD Resources
-    Route::resource('stats', StatController::class);
-    Route::resource('services', ServiceController::class);
-    Route::resource('sectors', SectorController::class);
-    Route::resource('brands', BrandController::class);
-    Route::resource('branches', BranchController::class);
-    Route::resource('clients', ClientController::class);
-    Route::resource('timeline', TimelineNodeController::class)->parameters(['timeline' => 'timelineNode']);
-    Route::resource('categories', CategoryController::class);
+    Route::resource('stats', StatController::class)->except('show');
+    Route::resource('services', ServiceController::class)->except('show');
+    Route::resource('sectors', SectorController::class)->except('show');
+    Route::resource('brands', BrandController::class)->except('show');
+    Route::resource('branches', BranchController::class)->except('show');
+    Route::resource('clients', ClientController::class)->except('show');
+    Route::resource('timeline', TimelineNodeController::class)->except('show')->parameters(['timeline' => 'timelineNode']);
+    Route::resource('categories', CategoryController::class)->except('show');
     Route::resource('projects', ProjectController::class)->except('show');
-    Route::resource('news', NewsController::class);
+    Route::resource('news', NewsController::class)->except('show');
 });

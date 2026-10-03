@@ -53,11 +53,7 @@ class NewsController extends Controller
         $validated['is_published'] = $request->has('is_published');
         $validated['published_at'] = $validated['published_at'] ?? now();
 
-        if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['title_ar']) ?: urlencode($validated['title_ar']);
-        } else {
-            $validated['slug'] = Str::slug($validated['slug']) ?: urlencode($validated['slug']);
-        }
+        $validated['slug'] = $this->uniqueSlug($validated['title_en'], $validated['slug'] ?? null, null);
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('uploads/news', 'public');
@@ -100,11 +96,7 @@ class NewsController extends Controller
         $validated['is_published'] = $request->has('is_published');
         $validated['published_at'] = $validated['published_at'] ?? now();
 
-        if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['title_ar']) ?: urlencode($validated['title_ar']);
-        } else {
-            $validated['slug'] = Str::slug($validated['slug']) ?: urlencode($validated['slug']);
-        }
+        $validated['slug'] = $this->uniqueSlug($validated['title_en'], $validated['slug'] ?? null, $news->id);
 
         if ($request->hasFile('image')) {
             if ($news->image && !str_starts_with($news->image, 'images/')) {
@@ -130,5 +122,18 @@ class NewsController extends Controller
         $news->delete();
 
         return redirect()->route('admin.news.index')->with('success', 'تم حذف الخبر بنجاح.');
+    }
+
+    private function uniqueSlug(string $title, ?string $requested = null, ?int $ignoreId = null): string
+    {
+        $base = Str::slug($requested ?: $title) ?: 'news';
+        $slug = $base;
+        $suffix = 2;
+
+        while (News::where('slug', $slug)->when($ignoreId, fn ($query) => $query->whereKeyNot($ignoreId))->exists()) {
+            $slug = $base.'-'.$suffix++;
+        }
+
+        return $slug;
     }
 }

@@ -8,11 +8,10 @@
     @php
         $heroBranches = [
             ['label' => __('ui.welcome.hero.branches.power_generation'), 'angle' => -90, 'delay' => 0.0, 'href' => '/sectors/power-generation', 'image_128' => 'images/hero/responsive/generators-128.webp', 'image_256' => 'images/hero/responsive/generators-256.webp', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.water_pumps'), 'angle' => -30, 'delay' => 0.2, 'href' => '/sectors/water-pumps', 'image_128' => 'images/hero/responsive/water-pumps-128.webp', 'image_256' => 'images/hero/responsive/water-pumps-256.webp', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.air_compressors'), 'angle' => 30, 'delay' => 0.4, 'href' => '/sectors/air-compressors', 'image_128' => 'images/hero/responsive/compressors-128.webp', 'image_256' => 'images/hero/responsive/compressors-256.webp', 'logo_scale' => 1.08],
-            ['label' => __('ui.welcome.hero.branches.medical_gases'), 'angle' => 90, 'delay' => 0.6, 'href' => '/sectors/medical-gases', 'image_128' => 'images/hero/responsive/medical-128.webp', 'image_256' => 'images/hero/responsive/medical-256.webp', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.industrial_tools'), 'angle' => 150, 'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image_128' => 'images/hero/responsive/industrial-tools-128.webp', 'image_256' => 'images/hero/responsive/industrial-tools-256.webp', 'logo_scale' => 1.42],
-            ['label' => __('ui.welcome.hero.branches.global_agencies'), 'angle' => 210, 'delay' => 1.0, 'href' => '/brands', 'image_128' => 'images/hero/responsive/mmb-128.webp', 'image_256' => 'images/hero/responsive/mmb-256.webp', 'logo_scale' => 1.14],
+            ['label' => __('ui.welcome.hero.branches.water_pumps'), 'angle' => -18, 'delay' => 0.2, 'href' => '/sectors/water-pumps', 'image_128' => 'images/hero/responsive/water-pumps-128.webp', 'image_256' => 'images/hero/responsive/water-pumps-256.webp', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.air_compressors'), 'angle' => 54, 'delay' => 0.4, 'href' => '/sectors/air-compressors', 'image_128' => 'images/hero/responsive/compressors-128.webp', 'image_256' => 'images/hero/responsive/compressors-256.webp', 'logo_scale' => 1.08],
+            ['label' => __('ui.welcome.hero.branches.medical_gases'), 'angle' => 126, 'delay' => 0.6, 'href' => '/sectors/medical-gases', 'image_128' => 'images/hero/responsive/medical-128.webp', 'image_256' => 'images/hero/responsive/medical-256.webp', 'logo_scale' => 1.42],
+            ['label' => __('ui.welcome.hero.branches.industrial_tools'), 'angle' => 198, 'delay' => 0.8, 'href' => '/sectors/industrial-tools', 'image_128' => 'images/hero/responsive/industrial-tools-128.webp', 'image_256' => 'images/hero/responsive/industrial-tools-256.webp', 'logo_scale' => 1.42],
         ];
     @endphp
     <section id="hero" class="hero-section scroll-mt-24">
